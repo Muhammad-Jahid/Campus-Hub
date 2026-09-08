@@ -10,13 +10,46 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>CampusHub</title>
+    <title>CampusHub | Premier University</title>
 
-    <link rel="stylesheet" href="./style.css">
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =====================================================
+         FONT AWESOME
+    ====================================================== -->
 
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    >
+
+
+    <!-- =====================================================
+         EXISTING AUTH / MAIN CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="./style.css"
+    >
+
+
+    <!-- =====================================================
+         HOME PAGE CSS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="./home.css"
     >
 
 </head>
@@ -25,799 +58,1156 @@
 <body>
 
 
-<!-- =====================================================
-     LOGO
-===================================================== -->
+    <!-- =====================================================
+         NAVBAR
+    ====================================================== -->
 
-<div class="logo">
+    <header class="navbar">
 
-    <div class="logo-box">
-        C
-    </div>
-
-    <span>
-        CampusHub
-    </span>
-
-</div>
+        <div class="nav-container">
 
 
+            <!-- LOGO -->
 
-<!-- =====================================================
-     MAIN AUTH CARD
-===================================================== -->
+            <a
+                href="index.html"
+                class="logo"
+            >
 
-<div class="auth-card" id="authCard">
+                <div class="logo-box">
+                    C
+                </div>
+
+                <span>
+                    CampusHub
+                </span>
+
+            </a>
 
 
-    <!-- =================================================
-         LOGIN
-    ================================================== -->
+            <!-- NAVIGATION -->
 
-    <section class="login-panel">
+            <nav class="nav-links">
 
-        <div class="login-content">
+                <a
+                    href="index.html"
+                    class="active"
+                >
+                    Home
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#events">
+                    Events
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </nav>
 
 
-            <div class="small-title">
-                PREMIER UNIVERSITY
+            <!-- LOGIN / REGISTER -->
+
+            <div class="nav-auth">
+
+                <a
+                    href="auth.html"
+                    class="login-link"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="auth.html"
+                    class="register-btn"
+                >
+                    Register
+                </a>
+
             </div>
 
 
-            <h1>
-                Welcome back
-            </h1>
+        </div>
 
-
-            <p class="subtitle">
-                Sign in to your Premier University account
-            </p>
+    </header>
 
 
 
-            <!-- LOGIN FORM -->
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
 
-            <form id="loginForm">
-
-
-                <label>
-                    Email address
-                </label>
+    <main>
 
 
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="you@premier.edu"
-                    required
-                >
+        <!-- =================================================
+             HERO SECTION
+        ================================================== -->
+
+        <section class="hero">
+
+            <div class="hero-container">
 
 
+                <!-- HERO LEFT CONTENT -->
 
-                <label>
-                    Password
-                </label>
+                <div class="hero-content">
 
 
-                <div class="password-box">
+                    <!-- SMALL BADGE -->
 
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password"
-                        required
-                    >
+                    <div class="hero-badge">
 
-                    <button
-                        type="button"
-                        id="showPassword"
-                    >
-                        Show
-                    </button>
+                        <i class="fa-solid fa-star"></i>
+
+                        Premier University • Official Platform
+
+                    </div>
+
+
+                    <!-- MAIN HEADING -->
+
+                    <h1>
+
+                        Connect. Learn.
+                        <br>
+
+                        Grow.
+                        <span>Together.</span>
+
+                    </h1>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p>
+
+                        A digital community connecting Premier University
+                        students, alumni, and opportunities — all in one place.
+
+                    </p>
+
+
+                    <!-- HERO BUTTONS -->
+
+                    <div class="hero-buttons">
+
+
+                        <!-- GET STARTED -->
+
+                        <a
+                            href="auth.html"
+                            class="primary-btn"
+                        >
+
+                            Get Started
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </a>
+
+
+                        <!-- EXPLORE COMMUNITY -->
+
+                        <a
+                            href="#community"
+                            class="secondary-btn"
+                        >
+
+                            Explore Community
+
+                            <i class="fa-solid fa-arrow-down"></i>
+
+                        </a>
+
+
+                    </div>
+
 
                 </div>
 
 
 
-                <div class="login-options">
+                <!-- =================================================
+                     HERO VISUAL
+                ================================================== -->
+
+                <div class="hero-visual">
 
 
-                    <label class="remember">
+                    <!--
+                        OPTIONAL HERO IMAGE
 
-                        <input
-                            type="checkbox"
+                        Later, if you have a real CampusHub hero image,
+                        you can replace the placeholder below with:
+
+                        <img
+                            src="./images/hero.png"
+                            alt="CampusHub community"
                         >
+                    -->
 
-                        <span>
-                            Remember me
+
+                    <div class="hero-image-placeholder">
+
+
+                        <!-- CAMPUSHUB CENTER LOGO -->
+
+                        <div class="hero-logo-circle">
+
+                            <div class="hero-logo-box">
+                                C
+                            </div>
+
+                            <span>
+                                CampusHub
+                            </span>
+
+                        </div>
+
+
+                        <!-- FLOATING ICON 1 -->
+
+                        <div class="floating-icon icon-one">
+
+                            <i class="fa-solid fa-graduation-cap"></i>
+
+                        </div>
+
+
+                        <!-- FLOATING ICON 2 -->
+
+                        <div class="floating-icon icon-two">
+
+                            <i class="fa-solid fa-users"></i>
+
+                        </div>
+
+
+                        <!-- FLOATING ICON 3 -->
+
+                        <div class="floating-icon icon-three">
+
+                            <i class="fa-solid fa-lightbulb"></i>
+
+                        </div>
+
+
+                        <!-- FLOATING ICON 4 -->
+
+                        <div class="floating-icon icon-four">
+
+                            <i class="fa-solid fa-handshake"></i>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COMMUNITY SECTION
+        ================================================== -->
+
+        <section
+            id="community"
+            class="community-section"
+        >
+
+
+            <div class="section-heading">
+
+
+                <div class="section-label">
+                    CAMPUSHUB COMMUNITY
+                </div>
+
+
+                <h2>
+
+                    Everything Your University
+                    <br>
+                    Community Needs
+
+                </h2>
+
+
+                <p>
+
+                    Connect with your university community,
+                    discover opportunities, and grow together.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- COMMUNITY CARDS -->
+
+            <div class="feature-grid">
+
+
+                <!-- CARD 1 -->
+
+                <a
+                    href="auth.html"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-users"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Communities
+                    </h3>
+
+
+                    <p>
+
+                        Connect with classmates,
+                        batches, clubs, and university communities.
+
+                    </p>
+
+
+                    <span class="feature-link">
+
+                        Explore
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </span>
+
+                </a>
+
+
+
+                <!-- CARD 2 -->
+
+                <a
+                    href="auth.html"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-book-open"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Notes & Resources
+                    </h3>
+
+
+                    <p>
+
+                        Share and discover useful academic
+                        notes, materials, and resources.
+
+                    </p>
+
+
+                    <span class="feature-link">
+
+                        Explore
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </span>
+
+                </a>
+
+
+
+                <!-- CARD 3 -->
+
+                <a
+                    href="auth.html"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-user-group"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Alumni Network
+                    </h3>
+
+
+                    <p>
+
+                        Build meaningful connections with
+                        graduates and experienced alumni.
+
+                    </p>
+
+
+                    <span class="feature-link">
+
+                        Explore
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </span>
+
+                </a>
+
+
+
+                <!-- CARD 4 -->
+
+                <a
+                    href="auth.html"
+                    class="feature-card"
+                >
+
+                    <div class="feature-icon">
+
+                        <i class="fa-solid fa-briefcase"></i>
+
+                    </div>
+
+
+                    <h3>
+                        Jobs & Internships
+                    </h3>
+
+
+                    <p>
+
+                        Discover career opportunities,
+                        internships, and professional connections.
+
+                    </p>
+
+
+                    <span class="feature-link">
+
+                        Explore
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </span>
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             ANNOUNCEMENTS SECTION
+        ================================================== -->
+
+        <section
+            id="about"
+            class="announcements-section"
+        >
+
+
+            <div class="section-heading">
+
+
+                <div class="section-label">
+                    STAY UPDATED
+                </div>
+
+
+                <h2>
+                    Latest Announcements
+                </h2>
+
+
+                <p>
+
+                    Stay informed about what's happening
+                    across the university community.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="announcement-list">
+
+
+                <!-- ANNOUNCEMENT 1 -->
+
+                <article class="announcement-card">
+
+
+                    <div class="announcement-icon">
+
+                        <i class="fa-solid fa-bullhorn"></i>
+
+                    </div>
+
+
+                    <div class="announcement-content">
+
+
+                        <span class="announcement-category">
+                            Academic
                         </span>
 
-                    </label>
+
+                        <h3>
+                            Final Examination Schedule
+                        </h3>
 
 
-                    <a href="#">
-                        Forgot password?
+                        <p>
+
+                            Check the latest examination
+                            schedule and important academic updates.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="announcement-arrow">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- ANNOUNCEMENT 2 -->
+
+                <article class="announcement-card">
+
+
+                    <div class="announcement-icon">
+
+                        <i class="fa-solid fa-award"></i>
+
+                    </div>
+
+
+                    <div class="announcement-content">
+
+
+                        <span class="announcement-category">
+                            Scholarship
+                        </span>
+
+
+                        <h3>
+                            Scholarship Applications Open
+                        </h3>
+
+
+                        <p>
+
+                            Explore available scholarship
+                            opportunities and application details.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="announcement-arrow">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- ANNOUNCEMENT 3 -->
+
+                <article class="announcement-card">
+
+
+                    <div class="announcement-icon">
+
+                        <i class="fa-solid fa-people-group"></i>
+
+                    </div>
+
+
+                    <div class="announcement-content">
+
+
+                        <span class="announcement-category">
+                            Alumni
+                        </span>
+
+
+                        <h3>
+                            Alumni Meet 2026
+                        </h3>
+
+
+                        <p>
+
+                            Registration is open for the upcoming
+                            university alumni gathering.
+
+                        </p>
+
+
+                    </div>
+
+
+                    <div class="announcement-arrow">
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             UPCOMING EVENTS
+        ================================================== -->
+
+        <section
+            id="events"
+            class="events-section"
+        >
+
+
+            <div class="section-heading">
+
+
+                <div class="section-label">
+                    WHAT'S HAPPENING
+                </div>
+
+
+                <h2>
+                    Upcoming Events
+                </h2>
+
+
+                <p>
+
+                    Discover events, activities, and opportunities
+                    happening around your university community.
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="events-grid">
+
+
+                <!-- EVENT 1 -->
+
+                <article class="event-card">
+
+
+                    <div class="event-date">
+
+                        <span>
+                            SEP
+                        </span>
+
+                        <strong>
+                            15
+                        </strong>
+
+                    </div>
+
+
+                    <div class="event-content">
+
+
+                        <span class="event-category">
+                            Career
+                        </span>
+
+
+                        <h3>
+                            Career Fair 2026
+                        </h3>
+
+
+                        <p>
+
+                            Connect with employers,
+                            explore career opportunities,
+                            and grow your professional network.
+
+                        </p>
+
+
+                        <div class="event-info">
+
+
+                            <span>
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                10:00 AM
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                University Campus
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- EVENT 2 -->
+
+                <article class="event-card">
+
+
+                    <div class="event-date">
+
+                        <span>
+                            SEP
+                        </span>
+
+                        <strong>
+                            22
+                        </strong>
+
+                    </div>
+
+
+                    <div class="event-content">
+
+
+                        <span class="event-category">
+                            Alumni
+                        </span>
+
+
+                        <h3>
+                            Alumni Networking Night
+                        </h3>
+
+
+                        <p>
+
+                            Meet alumni, exchange experiences,
+                            and discover new professional connections.
+
+                        </p>
+
+
+                        <div class="event-info">
+
+
+                            <span>
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                6:00 PM
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                Main Auditorium
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+
+                <!-- EVENT 3 -->
+
+                <article class="event-card">
+
+
+                    <div class="event-date">
+
+                        <span>
+                            OCT
+                        </span>
+
+                        <strong>
+                            05
+                        </strong>
+
+                    </div>
+
+
+                    <div class="event-content">
+
+
+                        <span class="event-category">
+                            Community
+                        </span>
+
+
+                        <h3>
+                            Student Community Meetup
+                        </h3>
+
+
+                        <p>
+
+                            Meet fellow students, join communities,
+                            and build new friendships.
+
+                        </p>
+
+
+                        <div class="event-info">
+
+
+                            <span>
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                3:00 PM
+
+                            </span>
+
+
+                            <span>
+
+                                <i class="fa-solid fa-location-dot"></i>
+
+                                Student Center
+
+                            </span>
+
+
+                        </div>
+
+
+                    </div>
+
+
+                </article>
+
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================================
+             CALL TO ACTION
+        ================================================== -->
+
+        <section
+            id="contact"
+            class="cta-section"
+        >
+
+
+            <div class="cta-content">
+
+
+                <div class="cta-icon">
+
+                    <i class="fa-solid fa-graduation-cap"></i>
+
+                </div>
+
+
+                <h2>
+
+                    Your University.
+                    <br>
+                    Your Community.
+
+                </h2>
+
+
+                <p>
+
+                    Join CampusHub and become part of
+                    a connected university community.
+
+                </p>
+
+
+                <a
+                    href="auth.html"
+                    class="primary-btn"
+                >
+
+                    Join CampusHub
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-container">
+
+
+            <!-- FOOTER BRAND -->
+
+            <div class="footer-brand">
+
+
+                <a
+                    href="index.html"
+                    class="logo"
+                >
+
+                    <div class="logo-box">
+                        C
+                    </div>
+
+                    <span>
+                        CampusHub
+                    </span>
+
+                </a>
+
+
+                <p>
+
+                    Connecting Premier University
+                    students and alumni in one community.
+
+                </p>
+
+
+            </div>
+
+
+
+            <!-- FOOTER PLATFORM LINKS -->
+
+            <div class="footer-links">
+
+
+                <h4>
+                    Platform
+                </h4>
+
+
+                <a href="#about">
+                    About
+                </a>
+
+
+                <a href="#events">
+                    Events
+                </a>
+
+
+                <a href="#community">
+                    Communities
+                </a>
+
+
+                <a href="auth.html">
+                    Resources
+                </a>
+
+
+            </div>
+
+
+
+            <!-- FOOTER SUPPORT -->
+
+            <div class="footer-links">
+
+
+                <h4>
+                    Support
+                </h4>
+
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+
+                <a href="#">
+                    Privacy
+                </a>
+
+
+                <a href="#">
+                    Terms
+                </a>
+
+
+            </div>
+
+
+
+            <!-- FOOTER SOCIAL -->
+
+            <div class="footer-social">
+
+
+                <h4>
+                    Connect
+                </h4>
+
+
+                <div class="social-icons">
+
+
+                    <a
+                        href="#"
+                        aria-label="Facebook"
+                    >
+
+                        <i class="fa-brands fa-facebook-f"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="Instagram"
+                    >
+
+                        <i class="fa-brands fa-instagram"></i>
+
+                    </a>
+
+
+                    <a
+                        href="#"
+                        aria-label="LinkedIn"
+                    >
+
+                        <i class="fa-brands fa-linkedin-in"></i>
+
                     </a>
 
 
                 </div>
 
 
-
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Login
-                </button>
-
-
-            </form>
-
-
-
-            <!-- =================================================
-                 DEMO LOGIN
-            ================================================== -->
-
-            <div class="demo-section">
-
-
-                <div class="demo-title">
-                    Quick login
-                </div>
-
-
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="student@premier.edu"
-                    data-password="student123"
-                >
-                    <i class="fa-solid fa-user-graduate"></i>
-                    Student Demo
-                </button>
-
-
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="alumni@premier.edu"
-                    data-password="alumni123"
-                >
-                    <i class="fa-solid fa-user-tie"></i>
-                    Alumni Demo
-                </button>
-
-
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="admin@premier.edu"
-                    data-password="admin123"
-                >
-                    <i class="fa-solid fa-user-shield"></i>
-                    Admin Demo
-                </button>
-
-
-            </div>
-
-
-
-            <!-- =================================================
-                 REGISTRATION LINKS
-            ================================================== -->
-
-            <div class="registration-links">
-
-
-                <p>
-                    Don't have an account?
-                </p>
-
-
-                <button
-                    type="button"
-                    id="studentButton"
-                >
-                    Student Registration
-                </button>
-
-
-                <button
-                    type="button"
-                    id="alumniButton"
-                >
-                    Alumni Registration
-                </button>
-
-
             </div>
 
 
         </div>
 
-    </section>
 
 
+        <!-- COPYRIGHT -->
 
-    <!-- =================================================
-         STUDENT REGISTRATION
-    ================================================== -->
-
-    <section
-        class="registration-panel student-panel"
-        id="studentPanel"
-    >
-
-        <div class="registration-content">
+        <div class="footer-bottom">
 
 
-            <div class="small-title">
-                PREMIER UNIVERSITY
-            </div>
+            <p>
 
+                © 2026 CampusHub. All rights reserved.
 
-            <h1>
-                Student Registration
-            </h1>
-
-
-            <p class="subtitle">
-                Create your student account
             </p>
 
 
-
-            <form id="studentForm">
-
-
-                <label>
-                    Full Name *
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Arif Rahman"
-                    required
-                >
-
-
-
-                <label>
-                    University Email *
-                </label>
-
-
-                <input
-                    type="email"
-                    placeholder="arif@premier.edu"
-                    required
-                >
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="studentPassword"
-                            placeholder="Password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Confirm Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="studentConfirmPassword"
-                            placeholder="Confirm"
-                            required
-                        >
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Department
-                        </label>
-
-                        <select required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option>
-                                Computer Science & Engineering
-                            </option>
-
-                            <option>
-                                Electrical & Electronic Engineering
-                            </option>
-
-                            <option>
-                                Electronics & Communication
-                            </option>
-
-                            <option>
-                                Business Administration
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Batch / Year
-                        </label>
-
-                        <select>
-
-                            <option>
-                                2026
-                            </option>
-
-                            <option>
-                                2025
-                            </option>
-
-                            <option>
-                                2024
-                            </option>
-
-                            <option>
-                                2023
-                            </option>
-
-                            <option>
-                                2022
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <label>
-                    Section
-                </label>
-
-
-                <select>
-
-                    <option>
-                        Section A
-                    </option>
-
-                    <option>
-                        Section B
-                    </option>
-
-                    <option>
-                        Section C
-                    </option>
-
-                </select>
-
-
-
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Create Student Account
-                </button>
-
-
-            </form>
-
-
-
-            <div class="back-login">
-
-                Already have an account?
-
-                <button
-                    type="button"
-                    class="backLoginButton"
-                >
-                    Sign in
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         ALUMNI REGISTRATION
-    ================================================== -->
-
-    <section
-        class="registration-panel alumni-panel"
-        id="alumniPanel"
-    >
-
-        <div class="registration-content">
-
-
-            <div class="small-title">
-                PREMIER UNIVERSITY
-            </div>
-
-
-            <h1>
-                Alumni Registration
-            </h1>
-
-
-            <p class="subtitle">
-                Join the Premier University alumni network
-            </p>
-
-
-
-            <form id="alumniForm">
-
-
-                <label>
-                    Full Name *
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Tanvir Ahmed"
-                    required
-                >
-
-
-
-                <label>
-                    Email *
-                </label>
-
-
-                <input
-                    type="email"
-                    placeholder="tanvir@company.com"
-                    required
-                >
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="alumniPassword"
-                            placeholder="Password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Confirm Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="alumniConfirmPassword"
-                            placeholder="Confirm"
-                            required
-                        >
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Department
-                        </label>
-
-                        <select required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option>
-                                Computer Science & Engineering
-                            </option>
-
-                            <option>
-                                Electrical & Electronic Engineering
-                            </option>
-
-                            <option>
-                                Electronics & Communication
-                            </option>
-
-                            <option>
-                                Business Administration
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Graduation Year
-                        </label>
-
-                        <select>
-
-                            <option>
-                                2023
-                            </option>
-
-                            <option>
-                                2022
-                            </option>
-
-                            <option>
-                                2021
-                            </option>
-
-                            <option>
-                                2020
-                            </option>
-
-                            <option>
-                                2019
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <label>
-                    Current Company
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Orbit Labs"
-                >
-
-
-
-                <label>
-                    Job Title
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Software Engineer"
-                >
-
-
-
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Create Alumni Account
-                </button>
-
-
-            </form>
-
-
-
-            <div class="back-login">
-
-                Already have an account?
-
-                <button
-                    type="button"
-                    class="backLoginButton"
-                >
-                    Sign in
-                </button>
-
-            </div>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- =================================================
-         FLIP COVER
-    ================================================== -->
-
-    <div
-        class="flip-cover"
-        id="flipCover"
-    >
-
-
-        <!-- FRONT -->
-
-        <div class="cover-face cover-front">
-
-
-            <div class="cover-content">
-
-
-                <i
-                    class="fa-solid fa-user-graduate cover-icon"
-                ></i>
-
-
-                <h2>
-                    Join CampusHub
-                </h2>
-
-
-                <p>
-                    Connect with students, alumni and
-                    the Premier University community.
-                </p>
-
-
-
-                <button
-                    type="button"
-                    id="coverStudentButton"
-                    class="cover-button"
-                >
-
-                    Student Registration
-
-                    <i
-                        class="fa-solid fa-arrow-right"
-                    ></i>
-
-                </button>
-
-
-
-                <button
-                    type="button"
-                    id="coverAlumniButton"
-                    class="cover-button"
-                >
-
-                    Alumni Registration
-
-                    <i
-                        class="fa-solid fa-arrow-right"
-                    ></i>
-
-                </button>
-
-
-            </div>
-
-
         </div>
 
 
-
-        <!-- BACK -->
-
-        <div class="cover-face cover-back">
-
-
-            <div class="cover-content">
-
-
-                <i
-                    class="fa-solid fa-right-to-bracket cover-icon dark"
-                ></i>
-
-
-                <h2>
-                    Welcome Back!
-                </h2>
-
-
-                <p>
-                    Already have an account?
-                    Sign in to continue.
-                </p>
+    </footer>
 
 
 
-                <button
-                    type="button"
-                    id="coverLoginButton"
-                    class="cover-button dark-button"
-                >
+    <!-- =====================================================
+         HOME PAGE JAVASCRIPT
+    ====================================================== -->
 
-                    <i
-                        class="fa-solid fa-arrow-left"
-                    ></i>
+    <script src="./home.js"></script>
 
-                    Back to Login
-
-                </button>
-
-
-            </div>
-
-
-        </div>
-
-
-    </div>
-
-
-</div>
-
-
-
-<script src="./script.js"></script>
 
 </body>
 
