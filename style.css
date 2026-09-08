@@ -1,0 +1,1015 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap'
+);
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+
+    margin: 0;
+
+    padding: 0;
+
+    box-sizing: border-box;
+
+}
+
+
+html,
+body {
+
+    width: 100%;
+
+    height: 100%;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    width: 100vw;
+
+    overflow: hidden;
+
+    font-family: "Montserrat", sans-serif;
+
+    background: #f4f3ef;
+
+    color: #202938;
+
+}
+
+
+/* =====================================================
+   LOGO
+===================================================== */
+
+.logo {
+
+    position: fixed;
+
+    top: 25px;
+
+    left: 30px;
+
+    z-index: 100;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+}
+
+
+.logo-box {
+
+    width: 35px;
+
+    height: 35px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 7px;
+
+    background: #1d3154;
+
+    color: white;
+
+    font-weight: 700;
+
+    font-size: 17px;
+
+}
+
+
+.logo span {
+
+    color: #1d3154;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 21px;
+
+    font-weight: 700;
+
+}
+
+
+/* =====================================================
+   AUTH CARD - FULL SCREEN
+===================================================== */
+
+.auth-card {
+
+    position: relative;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    overflow: hidden;
+
+    perspective: 1800px;
+
+}
+
+
+/* =====================================================
+   LOGIN PANEL
+===================================================== */
+
+.login-panel {
+
+    position: absolute;
+
+    left: 0;
+
+    top: 0;
+
+    width: 50vw;
+
+    height: 100vh;
+
+    background: #ffffff;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2;
+
+}
+
+
+/* =====================================================
+   LOGIN CONTENT
+===================================================== */
+
+.login-content {
+
+    width: 100%;
+
+    max-width: 460px;
+
+    padding: 40px;
+
+}
+
+
+.small-title {
+
+    color: #c69a35;
+
+    font-size: 10px;
+
+    font-weight: 700;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 10px;
+
+}
+
+
+h1 {
+
+    color: #192844;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 38px;
+
+    margin-bottom: 8px;
+
+}
+
+
+.subtitle {
+
+    color: #777d86;
+
+    font-size: 13px;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+
+}
+
+
+/* =====================================================
+   FORM
+===================================================== */
+
+form label {
+
+    display: block;
+
+    margin-top: 13px;
+
+    margin-bottom: 6px;
+
+    color: #303949;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+}
+
+
+input,
+select {
+
+    width: 100%;
+
+    height: 43px;
+
+    padding: 0 13px;
+
+    border: 1px solid #deded9;
+
+    border-radius: 7px;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #303949;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    transition: .2s;
+
+}
+
+
+input:focus,
+select:focus {
+
+    border-color: #1d3154;
+
+    box-shadow: 0 0 0 2px rgba(29,49,84,.06);
+
+}
+
+
+/* =====================================================
+   PASSWORD
+===================================================== */
+
+.password-box {
+
+    position: relative;
+
+}
+
+
+.password-box input {
+
+    padding-right: 60px;
+
+}
+
+
+#showPassword {
+
+    position: absolute;
+
+    right: 10px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    border: none;
+
+    background: transparent;
+
+    color: #68707a;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+}
+
+
+/* =====================================================
+   LOGIN OPTIONS
+===================================================== */
+
+.login-options {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    margin: 14px 0;
+
+}
+
+
+.remember {
+
+    display: flex !important;
+
+    align-items: center;
+
+    gap: 6px;
+
+    margin: 0 !important;
+
+}
+
+
+.remember input {
+
+    width: 13px;
+
+    height: 13px;
+
+}
+
+
+.remember span {
+
+    color: #777;
+
+    font-size: 10px;
+
+}
+
+
+.login-options a {
+
+    color: #1d3154;
+
+    text-decoration: none;
+
+    font-size: 10px;
+
+}
+
+
+/* =====================================================
+   MAIN BUTTON
+===================================================== */
+
+.main-button {
+
+    width: 100%;
+
+    height: 45px;
+
+    margin-top: 12px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #1d3154;
+
+    color: white;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background .2s,
+        transform .15s;
+
+}
+
+
+.main-button:hover {
+
+    background: #132440;
+
+}
+
+
+.main-button:active {
+
+    transform: scale(.98);
+
+}
+
+
+/* =====================================================
+   DEMO
+===================================================== */
+
+.demo-section {
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #eeeeea;
+
+}
+
+
+.demo-title {
+
+    color: #777;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    margin-bottom: 9px;
+
+}
+
+
+.demo-button {
+
+    width: 100%;
+
+    height: 35px;
+
+    margin: 4px 0;
+
+    border: 1px solid #deded9;
+
+    border-radius: 6px;
+
+    background: white;
+
+    color: #3e4650;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.demo-button i {
+
+    margin-right: 6px;
+
+    color: #1d3154;
+
+}
+
+
+.demo-button:hover {
+
+    background: #f5f5f2;
+
+}
+
+
+/* =====================================================
+   REGISTRATION LINKS
+===================================================== */
+
+.registration-links {
+
+    margin-top: 18px;
+
+    text-align: center;
+
+}
+
+
+.registration-links p {
+
+    color: #777;
+
+    font-size: 10px;
+
+    margin-bottom: 7px;
+
+}
+
+
+.registration-links button {
+
+    border: none;
+
+    background: transparent;
+
+    color: #1d3154;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    margin: 0 5px;
+
+}
+
+
+.registration-links button:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   REGISTRATION PANELS
+===================================================== */
+
+.registration-panel {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    width: 50vw;
+
+    height: 100vh;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow-y: auto;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    transition:
+        opacity .2s ease;
+
+}
+
+
+.registration-content {
+
+    width: 100%;
+
+    max-width: 600px;
+
+    padding: 40px 55px;
+
+}
+
+
+/* =====================================================
+   TWO COLUMNS
+===================================================== */
+
+.two-columns {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+}
+
+
+/* =====================================================
+   BACK LOGIN
+===================================================== */
+
+.back-login {
+
+    margin-top: 15px;
+
+    text-align: center;
+
+    color: #777;
+
+    font-size: 10px;
+
+}
+
+
+.backLoginButton {
+
+    border: none;
+
+    background: transparent;
+
+    color: #1d3154;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+}
+
+
+.backLoginButton:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   FLIP COVER
+===================================================== */
+
+.flip-cover {
+
+    position: absolute;
+
+    right: 0;
+
+    top: 0;
+
+    width: 50vw;
+
+    height: 100vh;
+
+    z-index: 20;
+
+    transform-style: preserve-3d;
+
+    transform-origin: left center;
+
+    transition:
+        transform .9s cubic-bezier(.65,.05,.36,1);
+
+}
+
+
+/* =====================================================
+   COVER FACES
+===================================================== */
+
+.cover-face {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 50px;
+
+    text-align: center;
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+}
+
+
+.cover-front {
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b2f52,
+            #2d4a75
+        );
+
+    border-radius: 0;
+
+}
+
+
+.cover-back {
+
+    background:
+        linear-gradient(
+            145deg,
+            #d4a63b,
+            #edc66e
+        );
+
+    transform: rotateY(180deg);
+
+    border-radius: 0;
+
+}
+
+
+/* =====================================================
+   COVER CONTENT
+===================================================== */
+
+.cover-content {
+
+    width: 100%;
+
+    max-width: 430px;
+
+}
+
+
+.cover-icon {
+
+    color: #ddb34e;
+
+    font-size: 55px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.cover-icon.dark {
+
+    color: #1b2f52;
+
+}
+
+
+.cover-content h2 {
+
+    color: white;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.cover-back h2 {
+
+    color: #1b2f52;
+
+}
+
+
+.cover-content p {
+
+    color: #dce5f0;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    margin-bottom: 30px;
+
+}
+
+
+.cover-back p {
+
+    color: #293954;
+
+}
+
+
+/* =====================================================
+   COVER BUTTON
+===================================================== */
+
+.cover-button {
+
+    width: 100%;
+
+    min-height: 48px;
+
+    margin: 7px 0;
+
+    border: 1px solid #ddb34e;
+
+    border-radius: 7px;
+
+    background: #ddb34e;
+
+    color: #192844;
+
+    font-family: "Montserrat", sans-serif;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: .2s;
+
+}
+
+
+.cover-button:hover {
+
+    background: #efc864;
+
+}
+
+
+.cover-button i {
+
+    margin-left: 7px;
+
+}
+
+
+.dark-button {
+
+    background: transparent;
+
+    border-color: #1b2f52;
+
+}
+
+
+/* =====================================================
+   STUDENT ACTIVE
+===================================================== */
+
+.auth-card.student-active
+.flip-cover {
+
+    transform:
+        rotateY(-180deg);
+
+}
+
+
+.auth-card.student-active
+.student-panel {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    z-index: 5;
+
+}
+
+
+/* =====================================================
+   ALUMNI ACTIVE
+===================================================== */
+
+.auth-card.alumni-active
+.flip-cover {
+
+    transform:
+        rotateY(-180deg);
+
+}
+
+
+.auth-card.alumni-active
+.alumni-panel {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    z-index: 5;
+
+}
+
+
+/* =====================================================
+   LOGIN ACTIVE
+===================================================== */
+
+.auth-card:not(.student-active):not(.alumni-active)
+.login-panel {
+
+    z-index: 5;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 800px) {
+
+    body {
+
+        overflow: auto;
+
+    }
+
+
+    .logo {
+
+        position: absolute;
+
+        top: 15px;
+
+        left: 15px;
+
+    }
+
+
+    .auth-card {
+
+        height: auto;
+
+        min-height: 100vh;
+
+    }
+
+
+    .login-panel {
+
+        position: relative;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        height: auto;
+
+        padding-top: 70px;
+
+    }
+
+
+    .registration-panel {
+
+        position: relative;
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        height: auto;
+
+    }
+
+
+    .flip-cover {
+
+        display: none;
+
+    }
+
+
+    .two-columns {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .login-content,
+    .registration-content {
+
+        padding: 30px;
+
+    }
+
+}
