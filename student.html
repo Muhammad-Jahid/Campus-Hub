@@ -1,1349 +1,1053 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>Student Dashboard | CampusHub</title>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Font Awesome -->
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    >
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
 
     <!-- Student Dashboard CSS -->
-    <link rel="stylesheet" href="./student.css">
-</head>
+    <link rel="stylesheet" href="./student.css" />
+  </head>
 
-<body>
-
+  <body>
     <!-- =========================
          DASHBOARD WRAPPER
     ========================== -->
     <div class="dashboard">
-
-        <!-- =========================
+      <!-- =========================
              SIDEBAR
         ========================== -->
-        <aside class="sidebar" id="sidebar">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+          <a href="#" class="dashboard-logo">
+            <span class="logo-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </span>
 
-            <div class="sidebar-header">
-                <a href="#" class="dashboard-logo">
-                    <span class="logo-box">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </span>
+            <span class="logo-text">Campus<span>Hub</span></span>
+          </a>
 
-                    <span class="logo-text">Campus<span>Hub</span></span>
-                </a>
+          <button
+            class="sidebar-close"
+            id="sidebarClose"
+            aria-label="Close sidebar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
 
-                <button
-                    class="sidebar-close"
-                    id="sidebarClose"
-                    aria-label="Close sidebar"
-                >
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
+        <!-- User Mini Profile -->
+        <div class="sidebar-profile">
+          <div class="profile-avatar" id="sidebarAvatar">AR</div>
+
+          <div class="sidebar-user-info">
+            <h4 id="sidebarUserName">Arif Rahman</h4>
+            <span>Student</span>
+          </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="sidebar-nav">
+          <p class="nav-label">MAIN</p>
+
+          <a href="#dashboard" class="nav-item active" data-section="dashboard">
+            <i class="fa-solid fa-grid-2"></i>
+            <span>Dashboard</span>
+          </a>
+
+          <a
+            href="#announcements"
+            class="nav-item"
+            data-section="announcements"
+          >
+            <i class="fa-solid fa-bullhorn"></i>
+            <span>Announcements</span>
+            <span class="nav-badge">3</span>
+          </a>
+
+          <a href="#events" class="nav-item" data-section="events">
+            <i class="fa-regular fa-calendar"></i>
+            <span>Events</span>
+          </a>
+
+          <a href="#resources" class="nav-item" data-section="resources">
+            <i class="fa-solid fa-book-open"></i>
+            <span>Academic Resources</span>
+          </a>
+
+          <a href="#communities" class="nav-item" data-section="communities">
+            <i class="fa-solid fa-users"></i>
+            <span>Communities</span>
+          </a>
+
+          <p class="nav-label">CAREER</p>
+
+          <a href="#jobs" class="nav-item" data-section="jobs">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Jobs & Internships</span>
+          </a>
+
+          <a href="#alumni" class="nav-item" data-section="alumni">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Alumni Network</span>
+          </a>
+
+          <p class="nav-label">ACCOUNT</p>
+
+          <a href="#profile" class="nav-item" data-section="profile">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+          </a>
+
+          <a
+            href="#notifications"
+            class="nav-item"
+            data-section="notifications"
+          >
+            <i class="fa-regular fa-bell"></i>
+            <span>Notifications</span>
+            <span class="nav-badge notification-count">4</span>
+          </a>
+
+          <a href="#settings" class="nav-item" data-section="settings">
+            <i class="fa-solid fa-gear"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <!-- Sidebar Bottom -->
+        <div class="sidebar-bottom">
+          <div class="sidebar-help">
+            <div class="help-icon">
+              <i class="fa-regular fa-circle-question"></i>
             </div>
 
+            <div>
+              <strong>Need Help?</strong>
+              <span>Contact CampusHub</span>
+            </div>
+          </div>
 
-            <!-- User Mini Profile -->
-            <div class="sidebar-profile">
+          <button class="logout-button" id="logoutButton">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </button>
+        </div>
+      </aside>
 
-                <div class="profile-avatar" id="sidebarAvatar">
-                    AR
-                </div>
+      <!-- Mobile Overlay -->
+      <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
-                <div class="sidebar-user-info">
-                    <h4 id="sidebarUserName">Arif Rahman</h4>
-                    <span>Student</span>
-                </div>
+      <!-- =========================
+             MAIN CONTENT
+        ========================== -->
+      <main class="main-content">
+        <!-- =========================
+                 TOPBAR
+            ========================== -->
+        <header class="topbar">
+          <div class="topbar-left">
+            <button
+              class="mobile-menu-button"
+              id="mobileMenuButton"
+              aria-label="Open menu"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
 
+            <div class="page-heading">
+              <span class="page-kicker">Student Portal</span>
+              <h1 id="pageTitle">Dashboard</h1>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <!-- Search -->
+            <div class="global-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="search"
+                id="globalSearch"
+                placeholder="Search CampusHub..."
+                autocomplete="off"
+              />
+
+              <span class="search-shortcut">⌘ K</span>
             </div>
 
+            <!-- Notification -->
+            <div class="topbar-action notification-wrapper">
+              <button
+                class="icon-button"
+                id="notificationButton"
+                aria-label="Notifications"
+              >
+                <i class="fa-regular fa-bell"></i>
+                <span class="notification-dot"></span>
+              </button>
 
-            <!-- Main Navigation -->
-            <nav class="sidebar-nav">
+              <div class="notification-dropdown" id="notificationDropdown">
+                <div class="dropdown-header">
+                  <div>
+                    <strong>Notifications</strong>
+                    <span>4 unread notifications</span>
+                  </div>
 
-                <p class="nav-label">MAIN</p>
+                  <button id="markNotificationsRead">Mark all read</button>
+                </div>
 
-                <a href="#dashboard" class="nav-item active" data-section="dashboard">
-                    <i class="fa-solid fa-grid-2"></i>
-                    <span>Dashboard</span>
-                </a>
-
-                <a href="#announcements" class="nav-item" data-section="announcements">
-                    <i class="fa-solid fa-bullhorn"></i>
-                    <span>Announcements</span>
-                    <span class="nav-badge">3</span>
-                </a>
-
-                <a href="#events" class="nav-item" data-section="events">
-                    <i class="fa-regular fa-calendar"></i>
-                    <span>Events</span>
-                </a>
-
-                <a href="#resources" class="nav-item" data-section="resources">
-                    <i class="fa-solid fa-book-open"></i>
-                    <span>Academic Resources</span>
-                </a>
-
-                <a href="#communities" class="nav-item" data-section="communities">
-                    <i class="fa-solid fa-users"></i>
-                    <span>Communities</span>
-                </a>
-
-
-                <p class="nav-label">CAREER</p>
-
-                <a href="#jobs" class="nav-item" data-section="jobs">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <span>Jobs & Internships</span>
-                </a>
-
-                <a href="#alumni" class="nav-item" data-section="alumni">
-                    <i class="fa-solid fa-user-group"></i>
-                    <span>Alumni Network</span>
-                </a>
-
-
-                <p class="nav-label">ACCOUNT</p>
-
-                <a href="#profile" class="nav-item" data-section="profile">
-                    <i class="fa-regular fa-user"></i>
-                    <span>My Profile</span>
-                </a>
-
-                <a href="#notifications" class="nav-item" data-section="notifications">
-                    <i class="fa-regular fa-bell"></i>
-                    <span>Notifications</span>
-                    <span class="nav-badge notification-count">4</span>
-                </a>
-
-                <a href="#settings" class="nav-item" data-section="settings">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Settings</span>
-                </a>
-
-            </nav>
-
-
-            <!-- Sidebar Bottom -->
-            <div class="sidebar-bottom">
-
-                <div class="sidebar-help">
-                    <div class="help-icon">
-                        <i class="fa-regular fa-circle-question"></i>
+                <div class="notification-list">
+                  <div class="notification-item unread">
+                    <div class="notification-icon gold">
+                      <i class="fa-solid fa-bullhorn"></i>
                     </div>
 
                     <div>
-                        <strong>Need Help?</strong>
-                        <span>Contact CampusHub</span>
+                      <strong>New announcement</strong>
+                      <p>Mid-term examination schedule has been published.</p>
+                      <span>10 minutes ago</span>
                     </div>
+                  </div>
+
+                  <div class="notification-item unread">
+                    <div class="notification-icon blue">
+                      <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div>
+                      <strong>Event reminder</strong>
+                      <p>Tech Career Fair starts tomorrow at 10:00 AM.</p>
+                      <span>1 hour ago</span>
+                    </div>
+                  </div>
+
+                  <div class="notification-item unread">
+                    <div class="notification-icon green">
+                      <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+                      <strong>Community update</strong>
+                      <p>New discussion in CSE Programming Club.</p>
+                      <span>3 hours ago</span>
+                    </div>
+                  </div>
+
+                  <div class="notification-item unread">
+                    <div class="notification-icon purple">
+                      <i class="fa-solid fa-briefcase"></i>
+                    </div>
+
+                    <div>
+                      <strong>New internship</strong>
+                      <p>
+                        Orbit Labs posted a Software Engineering internship.
+                      </p>
+                      <span>Yesterday</span>
+                    </div>
+                  </div>
                 </div>
 
-                <button class="logout-button" id="logoutButton">
-                    <i class="fa-solid fa-right-from-bracket"></i>
-                    <span>Logout</span>
-                </button>
-
+                <div class="dropdown-footer">
+                  <a href="#notifications">
+                    View all notifications
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
             </div>
 
-        </aside>
+            <!-- Profile -->
+            <div class="profile-wrapper">
+              <button class="topbar-profile" id="profileButton">
+                <div class="topbar-avatar" id="topbarAvatar">AR</div>
 
+                <div class="topbar-user">
+                  <strong id="topbarUserName">Arif Rahman</strong>
+                  <span>Student</span>
+                </div>
 
-        <!-- Mobile Overlay -->
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+                <i class="fa-solid fa-chevron-down"></i>
+              </button>
 
+              <div class="profile-dropdown" id="profileDropdown">
+                <div class="profile-dropdown-header">
+                  <div class="dropdown-avatar" id="dropdownAvatar">AR</div>
+
+                  <div>
+                    <strong id="dropdownUserName"> Arif Rahman </strong>
+
+                    <span id="dropdownUserEmail"> student@premier.edu </span>
+                  </div>
+                </div>
+
+                <div class="dropdown-divider"></div>
+
+                <a href="#profile">
+                  <i class="fa-regular fa-user"></i>
+                  My Profile
+                </a>
+
+                <a href="#settings">
+                  <i class="fa-solid fa-gear"></i>
+                  Account Settings
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <button id="dropdownLogout">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        </header>
 
         <!-- =========================
-             MAIN CONTENT
-        ========================== -->
-        <main class="main-content">
-
-
-            <!-- =========================
-                 TOPBAR
-            ========================== -->
-            <header class="topbar">
-
-                <div class="topbar-left">
-
-                    <button
-                        class="mobile-menu-button"
-                        id="mobileMenuButton"
-                        aria-label="Open menu"
-                    >
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-
-                    <div class="page-heading">
-                        <span class="page-kicker">Student Portal</span>
-                        <h1 id="pageTitle">Dashboard</h1>
-                    </div>
-
-                </div>
-
-
-                <div class="topbar-right">
-
-                    <!-- Search -->
-                    <div class="global-search">
-
-                        <i class="fa-solid fa-magnifying-glass"></i>
-
-                        <input
-                            type="search"
-                            id="globalSearch"
-                            placeholder="Search CampusHub..."
-                            autocomplete="off"
-                        >
-
-                        <span class="search-shortcut">⌘ K</span>
-
-                    </div>
-
-
-                    <!-- Notification -->
-                    <div class="topbar-action notification-wrapper">
-
-                        <button
-                            class="icon-button"
-                            id="notificationButton"
-                            aria-label="Notifications"
-                        >
-                            <i class="fa-regular fa-bell"></i>
-                            <span class="notification-dot"></span>
-                        </button>
-
-
-                        <div
-                            class="notification-dropdown"
-                            id="notificationDropdown"
-                        >
-
-                            <div class="dropdown-header">
-                                <div>
-                                    <strong>Notifications</strong>
-                                    <span>4 unread notifications</span>
-                                </div>
-
-                                <button id="markNotificationsRead">
-                                    Mark all read
-                                </button>
-                            </div>
-
-
-                            <div class="notification-list">
-
-                                <div class="notification-item unread">
-                                    <div class="notification-icon gold">
-                                        <i class="fa-solid fa-bullhorn"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>New announcement</strong>
-                                        <p>Mid-term examination schedule has been published.</p>
-                                        <span>10 minutes ago</span>
-                                    </div>
-                                </div>
-
-
-                                <div class="notification-item unread">
-                                    <div class="notification-icon blue">
-                                        <i class="fa-solid fa-calendar-check"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>Event reminder</strong>
-                                        <p>Tech Career Fair starts tomorrow at 10:00 AM.</p>
-                                        <span>1 hour ago</span>
-                                    </div>
-                                </div>
-
-
-                                <div class="notification-item unread">
-                                    <div class="notification-icon green">
-                                        <i class="fa-solid fa-users"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>Community update</strong>
-                                        <p>New discussion in CSE Programming Club.</p>
-                                        <span>3 hours ago</span>
-                                    </div>
-                                </div>
-
-
-                                <div class="notification-item unread">
-                                    <div class="notification-icon purple">
-                                        <i class="fa-solid fa-briefcase"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>New internship</strong>
-                                        <p>Orbit Labs posted a Software Engineering internship.</p>
-                                        <span>Yesterday</span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="dropdown-footer">
-                                <a href="#notifications">
-                                    View all notifications
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Profile -->
-                    <div class="profile-wrapper">
-
-                        <button
-                            class="topbar-profile"
-                            id="profileButton"
-                        >
-
-                            <div class="topbar-avatar" id="topbarAvatar">
-                                AR
-                            </div>
-
-                            <div class="topbar-user">
-                                <strong id="topbarUserName">Arif Rahman</strong>
-                                <span>Student</span>
-                            </div>
-
-                            <i class="fa-solid fa-chevron-down"></i>
-
-                        </button>
-
-
-                        <div
-                            class="profile-dropdown"
-                            id="profileDropdown"
-                        >
-
-                            <div class="profile-dropdown-header">
-
-                                <div
-                                    class="dropdown-avatar"
-                                    id="dropdownAvatar"
-                                >
-                                    AR
-                                </div>
-
-                                <div>
-                                    <strong id="dropdownUserName">
-                                        Arif Rahman
-                                    </strong>
-
-                                    <span id="dropdownUserEmail">
-                                        student@premier.edu
-                                    </span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="dropdown-divider"></div>
-
-
-                            <a href="#profile">
-                                <i class="fa-regular fa-user"></i>
-                                My Profile
-                            </a>
-
-                            <a href="#settings">
-                                <i class="fa-solid fa-gear"></i>
-                                Account Settings
-                            </a>
-
-                            <div class="dropdown-divider"></div>
-
-                            <button id="dropdownLogout">
-                                <i class="fa-solid fa-right-from-bracket"></i>
-                                Logout
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </header>
-
-
-            <!-- =========================
                  DASHBOARD PAGE
             ========================== -->
-            <section
-                class="dashboard-page content-section active-section"
-                id="dashboardSection"
-            >
+        <section
+          class="dashboard-page content-section active-section"
+          id="dashboardSection"
+        >
+          <!-- Welcome Banner -->
+          <div class="welcome-banner">
+            <div class="welcome-content">
+              <span class="welcome-label">
+                <i class="fa-regular fa-sun"></i>
+                Welcome back
+              </span>
 
-                <!-- Welcome Banner -->
-                <div class="welcome-banner">
+              <h2>Hello, <span id="welcomeName">Arif</span>!</h2>
 
-                    <div class="welcome-content">
+              <p>Here's what's happening around Premier University today.</p>
+            </div>
 
-                        <span class="welcome-label">
-                            <i class="fa-regular fa-sun"></i>
-                            Welcome back
-                        </span>
+            <div class="welcome-decoration">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+          </div>
 
-                        <h2>
-                            Hello, <span id="welcomeName">Arif</span>!
-                        </h2>
-
-                        <p>
-                            Here's what's happening around Premier University today.
-                        </p>
-
-                    </div>
-
-
-                    <div class="welcome-decoration">
-                        <i class="fa-solid fa-graduation-cap"></i>
-                    </div>
-
-                </div>
-
-
-                <!-- =========================
+          <!-- =========================
                      STATS
                 ========================== -->
-                <div class="stats-grid">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon blue">
+                <i class="fa-solid fa-book-open"></i>
+              </div>
 
-                    <div class="stat-card">
+              <div class="stat-info">
+                <span>Current Courses</span>
+                <strong>6</strong>
+                <small>
+                  <i class="fa-solid fa-arrow-up"></i>
+                  2 this semester
+                </small>
+              </div>
+            </div>
 
-                        <div class="stat-icon blue">
-                            <i class="fa-solid fa-book-open"></i>
-                        </div>
+            <div class="stat-card">
+              <div class="stat-icon gold">
+                <i class="fa-solid fa-chart-line"></i>
+              </div>
 
-                        <div class="stat-info">
-                            <span>Current Courses</span>
-                            <strong>6</strong>
-                            <small>
-                                <i class="fa-solid fa-arrow-up"></i>
-                                2 this semester
-                            </small>
-                        </div>
+              <div class="stat-info">
+                <span>Current CGPA</span>
+                <strong>3.72</strong>
+                <small class="positive">
+                  <i class="fa-solid fa-arrow-up"></i>
+                  0.12 this semester
+                </small>
+              </div>
+            </div>
 
-                    </div>
+            <div class="stat-card">
+              <div class="stat-icon green">
+                <i class="fa-solid fa-calendar-check"></i>
+              </div>
 
+              <div class="stat-info">
+                <span>Upcoming Events</span>
+                <strong>4</strong>
+                <small> Next: Tomorrow </small>
+              </div>
+            </div>
 
-                    <div class="stat-card">
+            <div class="stat-card">
+              <div class="stat-icon purple">
+                <i class="fa-solid fa-users"></i>
+              </div>
 
-                        <div class="stat-icon gold">
-                            <i class="fa-solid fa-chart-line"></i>
-                        </div>
+              <div class="stat-info">
+                <span>Communities</span>
+                <strong>7</strong>
+                <small> 2 new updates </small>
+              </div>
+            </div>
+          </div>
 
-                        <div class="stat-info">
-                            <span>Current CGPA</span>
-                            <strong>3.72</strong>
-                            <small class="positive">
-                                <i class="fa-solid fa-arrow-up"></i>
-                                0.12 this semester
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-icon green">
-                            <i class="fa-solid fa-calendar-check"></i>
-                        </div>
-
-                        <div class="stat-info">
-                            <span>Upcoming Events</span>
-                            <strong>4</strong>
-                            <small>
-                                Next: Tomorrow
-                            </small>
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat-card">
-
-                        <div class="stat-icon purple">
-                            <i class="fa-solid fa-users"></i>
-                        </div>
-
-                        <div class="stat-info">
-                            <span>Communities</span>
-                            <strong>7</strong>
-                            <small>
-                                2 new updates
-                            </small>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- =========================
+          <!-- =========================
                      MAIN DASHBOARD GRID
                 ========================== -->
-                <div class="dashboard-grid">
-
-
-                    <!-- Announcements -->
-                    <div class="dashboard-card announcements-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">Campus News</span>
-                                <h3>Latest Announcements</h3>
-                            </div>
-
-                            <a href="#announcements" class="view-all">
-                                View all
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="announcement-list">
-
-                            <article class="announcement-item">
-
-                                <div class="announcement-date">
-                                    <strong>18</strong>
-                                    <span>SEP</span>
-                                </div>
-
-                                <div class="announcement-content">
-                                    <span class="announcement-tag academic">
-                                        Academic
-                                    </span>
-
-                                    <h4>
-                                        Mid-Term Examination Schedule Published
-                                    </h4>
-
-                                    <p>
-                                        The examination schedule for the Fall 2026
-                                        semester is now available.
-                                    </p>
-
-                                    <span class="announcement-meta">
-                                        <i class="fa-regular fa-clock"></i>
-                                        2 hours ago
-                                    </span>
-                                </div>
-
-                            </article>
-
-
-                            <article class="announcement-item">
-
-                                <div class="announcement-date">
-                                    <strong>17</strong>
-                                    <span>SEP</span>
-                                </div>
-
-                                <div class="announcement-content">
-                                    <span class="announcement-tag event">
-                                        Event
-                                    </span>
-
-                                    <h4>
-                                        Annual Tech Career Fair 2026
-                                    </h4>
-
-                                    <p>
-                                        Register now to meet recruiters from leading
-                                        technology companies.
-                                    </p>
-
-                                    <span class="announcement-meta">
-                                        <i class="fa-regular fa-clock"></i>
-                                        Yesterday
-                                    </span>
-                                </div>
-
-                            </article>
-
-
-                            <article class="announcement-item">
-
-                                <div class="announcement-date">
-                                    <strong>16</strong>
-                                    <span>SEP</span>
-                                </div>
-
-                                <div class="announcement-content">
-                                    <span class="announcement-tag general">
-                                        General
-                                    </span>
-
-                                    <h4>
-                                        Campus Library Extended Hours
-                                    </h4>
-
-                                    <p>
-                                        The central library will remain open until
-                                        10:00 PM during examination preparation week.
-                                    </p>
-
-                                    <span class="announcement-meta">
-                                        <i class="fa-regular fa-clock"></i>
-                                        2 days ago
-                                    </span>
-                                </div>
-
-                            </article>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Upcoming Events -->
-                    <div class="dashboard-card events-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">What's Coming</span>
-                                <h3>Upcoming Events</h3>
-                            </div>
-
-                            <a href="#events" class="view-all">
-                                View all
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="event-list">
-
-                            <article class="event-item">
-
-                                <div class="event-date">
-                                    <span>SEP</span>
-                                    <strong>23</strong>
-                                </div>
-
-                                <div class="event-content">
-
-                                    <span class="event-type">
-                                        Career
-                                    </span>
-
-                                    <h4>Tech Career Fair 2026</h4>
-
-                                    <p>
-                                        <i class="fa-regular fa-clock"></i>
-                                        10:00 AM — 4:00 PM
-                                    </p>
-
-                                    <span class="event-location">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        University Auditorium
-                                    </span>
-
-                                </div>
-
-                            </article>
-
-
-                            <article class="event-item">
-
-                                <div class="event-date">
-                                    <span>SEP</span>
-                                    <strong>25</strong>
-                                </div>
-
-                                <div class="event-content">
-
-                                    <span class="event-type">
-                                        Workshop
-                                    </span>
-
-                                    <h4>Introduction to AI & ML</h4>
-
-                                    <p>
-                                        <i class="fa-regular fa-clock"></i>
-                                        2:00 PM — 4:00 PM
-                                    </p>
-
-                                    <span class="event-location">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        CSE Lab 03
-                                    </span>
-
-                                </div>
-
-                            </article>
-
-
-                            <article class="event-item">
-
-                                <div class="event-date">
-                                    <span>SEP</span>
-                                    <strong>28</strong>
-                                </div>
-
-                                <div class="event-content">
-
-                                    <span class="event-type">
-                                        Community
-                                    </span>
-
-                                    <h4>Programming Club Meetup</h4>
-
-                                    <p>
-                                        <i class="fa-regular fa-clock"></i>
-                                        5:00 PM — 7:00 PM
-                                    </p>
-
-                                    <span class="event-location">
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        Innovation Hub
-                                    </span>
-
-                                </div>
-
-                            </article>
-
-                        </div>
-
-                    </div>
-
-
+          <div class="dashboard-grid">
+            <!-- Announcements -->
+            <div class="dashboard-card announcements-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">Campus News</span>
+                  <h3>Latest Announcements</h3>
                 </div>
 
+                <a href="#announcements" class="view-all">
+                  View all
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
 
-                <!-- =========================
+              <div class="announcement-list">
+                <article class="announcement-item">
+                  <div class="announcement-date">
+                    <strong>18</strong>
+                    <span>SEP</span>
+                  </div>
+
+                  <div class="announcement-content">
+                    <span class="announcement-tag academic"> Academic </span>
+
+                    <h4>Mid-Term Examination Schedule Published</h4>
+
+                    <p>
+                      The examination schedule for the Fall 2026 semester is now
+                      available.
+                    </p>
+
+                    <span class="announcement-meta">
+                      <i class="fa-regular fa-clock"></i>
+                      2 hours ago
+                    </span>
+                  </div>
+                </article>
+
+                <article class="announcement-item">
+                  <div class="announcement-date">
+                    <strong>17</strong>
+                    <span>SEP</span>
+                  </div>
+
+                  <div class="announcement-content">
+                    <span class="announcement-tag event"> Event </span>
+
+                    <h4>Annual Tech Career Fair 2026</h4>
+
+                    <p>
+                      Register now to meet recruiters from leading technology
+                      companies.
+                    </p>
+
+                    <span class="announcement-meta">
+                      <i class="fa-regular fa-clock"></i>
+                      Yesterday
+                    </span>
+                  </div>
+                </article>
+
+                <article class="announcement-item">
+                  <div class="announcement-date">
+                    <strong>16</strong>
+                    <span>SEP</span>
+                  </div>
+
+                  <div class="announcement-content">
+                    <span class="announcement-tag general"> General </span>
+
+                    <h4>Campus Library Extended Hours</h4>
+
+                    <p>
+                      The central library will remain open until 10:00 PM during
+                      examination preparation week.
+                    </p>
+
+                    <span class="announcement-meta">
+                      <i class="fa-regular fa-clock"></i>
+                      2 days ago
+                    </span>
+                  </div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Upcoming Events -->
+            <div class="dashboard-card events-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">What's Coming</span>
+                  <h3>Upcoming Events</h3>
+                </div>
+
+                <a href="#events" class="view-all">
+                  View all
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <div class="event-list">
+                <article class="event-item">
+                  <div class="event-date">
+                    <span>SEP</span>
+                    <strong>23</strong>
+                  </div>
+
+                  <div class="event-content">
+                    <span class="event-type"> Career </span>
+
+                    <h4>Tech Career Fair 2026</h4>
+
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      10:00 AM — 4:00 PM
+                    </p>
+
+                    <span class="event-location">
+                      <i class="fa-solid fa-location-dot"></i>
+                      University Auditorium
+                    </span>
+                  </div>
+                </article>
+
+                <article class="event-item">
+                  <div class="event-date">
+                    <span>SEP</span>
+                    <strong>25</strong>
+                  </div>
+
+                  <div class="event-content">
+                    <span class="event-type"> Workshop </span>
+
+                    <h4>Introduction to AI & ML</h4>
+
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      2:00 PM — 4:00 PM
+                    </p>
+
+                    <span class="event-location">
+                      <i class="fa-solid fa-location-dot"></i>
+                      CSE Lab 03
+                    </span>
+                  </div>
+                </article>
+
+                <article class="event-item">
+                  <div class="event-date">
+                    <span>SEP</span>
+                    <strong>28</strong>
+                  </div>
+
+                  <div class="event-content">
+                    <span class="event-type"> Community </span>
+
+                    <h4>Programming Club Meetup</h4>
+
+                    <p>
+                      <i class="fa-regular fa-clock"></i>
+                      5:00 PM — 7:00 PM
+                    </p>
+
+                    <span class="event-location">
+                      <i class="fa-solid fa-location-dot"></i>
+                      Innovation Hub
+                    </span>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
                      LOWER DASHBOARD GRID
                 ========================== -->
-                <div class="dashboard-grid lower-grid">
-
-
-                    <!-- Academic Resources -->
-                    <div class="dashboard-card resources-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">Study</span>
-                                <h3>Academic Resources</h3>
-                            </div>
-
-                            <a href="#resources" class="view-all">
-                                Explore
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="resource-grid">
-
-                            <a href="#resources" class="resource-item">
-
-                                <div class="resource-icon">
-                                    <i class="fa-solid fa-book"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Course Materials</strong>
-                                    <span>Lecture notes & slides</span>
-                                </div>
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </a>
-
-
-                            <a href="#resources" class="resource-item">
-
-                                <div class="resource-icon">
-                                    <i class="fa-solid fa-file-lines"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Past Questions</strong>
-                                    <span>Previous exam papers</span>
-                                </div>
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </a>
-
-
-                            <a href="#resources" class="resource-item">
-
-                                <div class="resource-icon">
-                                    <i class="fa-solid fa-video"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Video Lectures</strong>
-                                    <span>Recorded classes</span>
-                                </div>
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </a>
-
-
-                            <a href="#resources" class="resource-item">
-
-                                <div class="resource-icon">
-                                    <i class="fa-solid fa-book-bookmark"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Digital Library</strong>
-                                    <span>Books & research papers</span>
-                                </div>
-
-                                <i class="fa-solid fa-chevron-right"></i>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Jobs -->
-                    <div class="dashboard-card jobs-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">Career</span>
-                                <h3>Jobs & Internships</h3>
-                            </div>
-
-                            <a href="#jobs" class="view-all">
-                                View all
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="job-list">
-
-                            <article class="job-item">
-
-                                <div class="company-logo">
-                                    OL
-                                </div>
-
-                                <div class="job-info">
-
-                                    <span class="job-type">
-                                        Internship
-                                    </span>
-
-                                    <h4>Software Engineering Intern</h4>
-
-                                    <p>Orbit Labs</p>
-
-                                    <span>
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        Dhaka · Hybrid
-                                    </span>
-
-                                </div>
-
-                                <button class="save-job" aria-label="Save job">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-
-                            </article>
-
-
-                            <article class="job-item">
-
-                                <div class="company-logo">
-                                    TS
-                                </div>
-
-                                <div class="job-info">
-
-                                    <span class="job-type">
-                                        Part-time
-                                    </span>
-
-                                    <h4>Junior Web Developer</h4>
-
-                                    <p>TechSphere</p>
-
-                                    <span>
-                                        <i class="fa-solid fa-location-dot"></i>
-                                        Remote
-                                    </span>
-
-                                </div>
-
-                                <button class="save-job" aria-label="Save job">
-                                    <i class="fa-regular fa-bookmark"></i>
-                                </button>
-
-                            </article>
-
-                        </div>
-
-                    </div>
-
-
+          <div class="dashboard-grid lower-grid">
+            <!-- Academic Resources -->
+            <div class="dashboard-card resources-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">Study</span>
+                  <h3>Academic Resources</h3>
                 </div>
 
+                <a href="#resources" class="view-all">
+                  Explore
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
 
-                <!-- =========================
+              <div class="resource-grid">
+                <a href="#resources" class="resource-item">
+                  <div class="resource-icon">
+                    <i class="fa-solid fa-book"></i>
+                  </div>
+
+                  <div>
+                    <strong>Course Materials</strong>
+                    <span>Lecture notes & slides</span>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+                <a href="#resources" class="resource-item">
+                  <div class="resource-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                  </div>
+
+                  <div>
+                    <strong>Past Questions</strong>
+                    <span>Previous exam papers</span>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+                <a href="#resources" class="resource-item">
+                  <div class="resource-icon">
+                    <i class="fa-solid fa-video"></i>
+                  </div>
+
+                  <div>
+                    <strong>Video Lectures</strong>
+                    <span>Recorded classes</span>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right"></i>
+                </a>
+
+                <a href="#resources" class="resource-item">
+                  <div class="resource-icon">
+                    <i class="fa-solid fa-book-bookmark"></i>
+                  </div>
+
+                  <div>
+                    <strong>Digital Library</strong>
+                    <span>Books & research papers</span>
+                  </div>
+
+                  <i class="fa-solid fa-chevron-right"></i>
+                </a>
+              </div>
+            </div>
+
+            <!-- Jobs -->
+            <div class="dashboard-card jobs-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">Career</span>
+                  <h3>Jobs & Internships</h3>
+                </div>
+
+                <a href="#jobs" class="view-all">
+                  View all
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <div class="job-list">
+                <article class="job-item">
+                  <div class="company-logo">OL</div>
+
+                  <div class="job-info">
+                    <span class="job-type"> Internship </span>
+
+                    <h4>Software Engineering Intern</h4>
+
+                    <p>Orbit Labs</p>
+
+                    <span>
+                      <i class="fa-solid fa-location-dot"></i>
+                      Dhaka · Hybrid
+                    </span>
+                  </div>
+
+                  <button class="save-job" aria-label="Save job">
+                    <i class="fa-regular fa-bookmark"></i>
+                  </button>
+                </article>
+
+                <article class="job-item">
+                  <div class="company-logo">TS</div>
+
+                  <div class="job-info">
+                    <span class="job-type"> Part-time </span>
+
+                    <h4>Junior Web Developer</h4>
+
+                    <p>TechSphere</p>
+
+                    <span>
+                      <i class="fa-solid fa-location-dot"></i>
+                      Remote
+                    </span>
+                  </div>
+
+                  <button class="save-job" aria-label="Save job">
+                    <i class="fa-regular fa-bookmark"></i>
+                  </button>
+                </article>
+              </div>
+            </div>
+          </div>
+
+          <!-- =========================
                      COMMUNITIES + ACTIVITY
                 ========================== -->
-                <div class="dashboard-grid bottom-grid">
-
-
-                    <!-- Communities -->
-                    <div class="dashboard-card communities-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">Connect</span>
-                                <h3>My Communities</h3>
-                            </div>
-
-                            <a href="#communities" class="view-all">
-                                Explore
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="community-list">
-
-                            <a href="#communities" class="community-item">
-
-                                <div class="community-avatar">
-                                    <i class="fa-solid fa-code"></i>
-                                </div>
-
-                                <div>
-                                    <strong>CSE Programming Club</strong>
-                                    <span>1,248 members</span>
-                                </div>
-
-                                <span class="community-status">
-                                    2 new
-                                </span>
-
-                            </a>
-
-
-                            <a href="#communities" class="community-item">
-
-                                <div class="community-avatar">
-                                    <i class="fa-solid fa-robot"></i>
-                                </div>
-
-                                <div>
-                                    <strong>AI & Robotics Society</strong>
-                                    <span>683 members</span>
-                                </div>
-
-                                <span class="community-status">
-                                    5 new
-                                </span>
-
-                            </a>
-
-
-                            <a href="#communities" class="community-item">
-
-                                <div class="community-avatar">
-                                    <i class="fa-solid fa-camera"></i>
-                                </div>
-
-                                <div>
-                                    <strong>Photography Club</strong>
-                                    <span>427 members</span>
-                                </div>
-
-                                <span class="community-status">
-                                    New
-                                </span>
-
-                            </a>
-
-                        </div>
-
-                    </div>
-
-
-                    <!-- Recent Activity -->
-                    <div class="dashboard-card activity-card">
-
-                        <div class="card-header">
-
-                            <div>
-                                <span class="card-kicker">Your Activity</span>
-                                <h3>Recent Activity</h3>
-                            </div>
-
-                            <a href="#profile" class="view-all">
-                                View profile
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-
-                        </div>
-
-
-                        <div class="activity-list">
-
-                            <div class="activity-item">
-
-                                <div class="activity-icon">
-                                    <i class="fa-solid fa-comment"></i>
-                                </div>
-
-                                <div>
-                                    <strong>You joined a discussion</strong>
-                                    <p>AI & Robotics Society</p>
-                                    <span>Today, 4:32 PM</span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="activity-item">
-
-                                <div class="activity-icon">
-                                    <i class="fa-solid fa-calendar-plus"></i>
-                                </div>
-
-                                <div>
-                                    <strong>You registered for an event</strong>
-                                    <p>Tech Career Fair 2026</p>
-                                    <span>Yesterday</span>
-                                </div>
-
-                            </div>
-
-
-                            <div class="activity-item">
-
-                                <div class="activity-icon">
-                                    <i class="fa-solid fa-bookmark"></i>
-                                </div>
-
-                                <div>
-                                    <strong>You saved a resource</strong>
-                                    <p>Data Structures — Lecture 08</p>
-                                    <span>2 days ago</span>
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+          <div class="dashboard-grid bottom-grid">
+            <!-- Communities -->
+            <div class="dashboard-card communities-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">Connect</span>
+                  <h3>My Communities</h3>
                 </div>
 
-            </section>
+                <a href="#communities" class="view-all">
+                  Explore
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
 
+              <div class="community-list">
+                <a href="#communities" class="community-item">
+                  <div class="community-avatar">
+                    <i class="fa-solid fa-code"></i>
+                  </div>
 
-            <!-- =========================
+                  <div>
+                    <strong>CSE Programming Club</strong>
+                    <span>1,248 members</span>
+                  </div>
+
+                  <span class="community-status"> 2 new </span>
+                </a>
+
+                <a href="#communities" class="community-item">
+                  <div class="community-avatar">
+                    <i class="fa-solid fa-robot"></i>
+                  </div>
+
+                  <div>
+                    <strong>AI & Robotics Society</strong>
+                    <span>683 members</span>
+                  </div>
+
+                  <span class="community-status"> 5 new </span>
+                </a>
+
+                <a href="#communities" class="community-item">
+                  <div class="community-avatar">
+                    <i class="fa-solid fa-camera"></i>
+                  </div>
+
+                  <div>
+                    <strong>Photography Club</strong>
+                    <span>427 members</span>
+                  </div>
+
+                  <span class="community-status"> New </span>
+                </a>
+              </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="dashboard-card activity-card">
+              <div class="card-header">
+                <div>
+                  <span class="card-kicker">Your Activity</span>
+                  <h3>Recent Activity</h3>
+                </div>
+
+                <a href="#profile" class="view-all">
+                  View profile
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
+              </div>
+
+              <div class="activity-list">
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-comment"></i>
+                  </div>
+
+                  <div>
+                    <strong>You joined a discussion</strong>
+                    <p>AI & Robotics Society</p>
+                    <span>Today, 4:32 PM</span>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-calendar-plus"></i>
+                  </div>
+
+                  <div>
+                    <strong>You registered for an event</strong>
+                    <p>Tech Career Fair 2026</p>
+                    <span>Yesterday</span>
+                  </div>
+                </div>
+
+                <div class="activity-item">
+                  <div class="activity-icon">
+                    <i class="fa-solid fa-bookmark"></i>
+                  </div>
+
+                  <div>
+                    <strong>You saved a resource</strong>
+                    <p>Data Structures — Lecture 08</p>
+                    <span>2 days ago</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =========================
                  ANNOUNCEMENTS SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="announcementsSection"
-            >
+        <section class="content-section" id="announcementsSection">
+          <div class="section-header">
+            <div>
+              <h2>Announcements</h2>
+              <p>Latest updates from Premier University.</p>
+            </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Campus News</span>
-                    <h2>Announcements</h2>
-                    <p>Stay updated with the latest news and notices from Premier University.</p>
-                </div>
+            <input
+              type="search"
+              id="announcementSearch"
+              class="section-search"
+              placeholder="Search announcements..."
+            />
+          </div>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-bullhorn"></i>
-                    <h3>Announcements</h3>
-                    <p>Detailed announcements will appear here.</p>
-                </div>
+          <div id="announcementsList"></div>
+        </section>
 
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  EVENTS SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="eventsSection"
-            >
+        <section class="content-section" id="eventsSection">
+          <div class="section-header">
+            <div>
+              <h2>Events</h2>
+              <p>Upcoming activities and university events.</p>
+            </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Campus Life</span>
-                    <h2>Events</h2>
-                    <p>Discover workshops, seminars, competitions and campus activities.</p>
-                </div>
+            <div class="event-filters">
+              <button
+                type="button"
+                class="event-filter active"
+                data-filter="all"
+              >
+                All
+              </button>
 
-                <div class="placeholder-content">
-                    <i class="fa-regular fa-calendar"></i>
-                    <h3>Upcoming Events</h3>
-                    <p>Event listings will appear here.</p>
-                </div>
+              <button type="button" class="event-filter" data-filter="upcoming">
+                Upcoming
+              </button>
+            </div>
+          </div>
 
-            </section>
+          <div id="eventsList"></div>
+        </section>
 
-
-            <!-- =========================
+        <!-- =========================
                  RESOURCES SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="resourcesSection"
-            >
+        <section class="content-section" id="resourcesSection">
+          <div class="section-header">
+            <div>
+              <h2>Academic Resources</h2>
+              <p>Study materials, notes, slides and exam resources.</p>
+            </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Study</span>
-                    <h2>Academic Resources</h2>
-                    <p>Access course materials, past questions, videos and digital resources.</p>
-                </div>
+            <input
+              type="search"
+              id="resourceSearch"
+              class="section-search"
+              placeholder="Search resources..."
+            />
+          </div>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-book-open"></i>
-                    <h3>Academic Resources</h3>
-                    <p>Resource library will appear here.</p>
-                </div>
+          <div id="resourcesList"></div>
+        </section>
 
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  COMMUNITIES SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="communitiesSection"
-            >
+        <section class="content-section" id="communitiesSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Connect</span>
+            <h2>Communities</h2>
+            <p>Join student clubs, societies and interest-based communities.</p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Connect</span>
-                    <h2>Communities</h2>
-                    <p>Join student clubs, societies and interest-based communities.</p>
-                </div>
+          <div class="placeholder-content">
+            <i class="fa-solid fa-users"></i>
+            <h3>Student Communities</h3>
+            <p>Community listings will appear here.</p>
+          </div>
+        </section>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-users"></i>
-                    <h3>Student Communities</h3>
-                    <p>Community listings will appear here.</p>
-                </div>
-
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  JOBS SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="jobsSection"
-            >
+        <section class="content-section" id="jobsSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Career</span>
+            <h2>Jobs & Internships</h2>
+            <p>
+              Explore career opportunities shared with the Premier University
+              community.
+            </p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Career</span>
-                    <h2>Jobs & Internships</h2>
-                    <p>Explore career opportunities shared with the Premier University community.</p>
-                </div>
+          <div class="placeholder-content">
+            <i class="fa-solid fa-briefcase"></i>
+            <h3>Career Opportunities</h3>
+            <p>Jobs and internship listings will appear here.</p>
+          </div>
+        </section>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-briefcase"></i>
-                    <h3>Career Opportunities</h3>
-                    <p>Jobs and internship listings will appear here.</p>
-                </div>
-
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  ALUMNI SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="alumniSection"
-            >
+        <section class="content-section" id="alumniSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Network</span>
+            <h2>Alumni Network</h2>
+            <p>
+              Connect with graduates and professionals from Premier University.
+            </p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Network</span>
-                    <h2>Alumni Network</h2>
-                    <p>Connect with graduates and professionals from Premier University.</p>
-                </div>
+          <div class="placeholder-content">
+            <i class="fa-solid fa-user-group"></i>
+            <h3>Alumni Directory</h3>
+            <p>Alumni profiles will appear here.</p>
+          </div>
+        </section>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-user-group"></i>
-                    <h3>Alumni Directory</h3>
-                    <p>Alumni profiles will appear here.</p>
-                </div>
-
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  PROFILE SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="profileSection"
-            >
+        <section class="content-section" id="profileSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Account</span>
+            <h2>My Profile</h2>
+            <p>View and manage your CampusHub profile.</p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Account</span>
-                    <h2>My Profile</h2>
-                    <p>View and manage your CampusHub profile.</p>
+          <div class="profile-page-card">
+            <div class="large-profile-avatar" id="profileAvatar">AR</div>
+
+            <div class="profile-details">
+              <h3 id="profileName">Arif Rahman</h3>
+
+              <p id="profileEmail">student@premier.edu</p>
+
+              <div class="profile-meta-grid">
+                <div>
+                  <span>Department</span>
+                  <strong id="profileDepartment">
+                    Computer Science & Engineering
+                  </strong>
                 </div>
 
-                <div class="profile-page-card">
-
-                    <div class="large-profile-avatar" id="profileAvatar">
-                        AR
-                    </div>
-
-                    <div class="profile-details">
-
-                        <h3 id="profileName">Arif Rahman</h3>
-
-                        <p id="profileEmail">
-                            student@premier.edu
-                        </p>
-
-                        <div class="profile-meta-grid">
-
-                            <div>
-                                <span>Department</span>
-                                <strong id="profileDepartment">
-                                    Computer Science & Engineering
-                                </strong>
-                            </div>
-
-                            <div>
-                                <span>Batch</span>
-                                <strong id="profileBatch">
-                                    2026
-                                </strong>
-                            </div>
-
-                            <div>
-                                <span>Section</span>
-                                <strong id="profileSection">
-                                    Section A
-                                </strong>
-                            </div>
-
-                            <div>
-                                <span>Role</span>
-                                <strong>Student</strong>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                <div>
+                  <span>Batch</span>
+                  <strong id="profileBatch"> 2026 </strong>
                 </div>
 
-            </section>
+                <div>
+                  <span>Section</span>
+                  <strong id="profileSection"> Section A </strong>
+                </div>
 
+                <div>
+                  <span>Role</span>
+                  <strong>Student</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-            <!-- =========================
+        <!-- =========================
                  NOTIFICATIONS SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="notificationsSection"
-            >
+        <section class="content-section" id="notificationsSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Updates</span>
+            <h2>Notifications</h2>
+            <p>Keep track of important CampusHub updates.</p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Updates</span>
-                    <h2>Notifications</h2>
-                    <p>Keep track of important CampusHub updates.</p>
-                </div>
+          <div class="placeholder-content">
+            <i class="fa-regular fa-bell"></i>
+            <h3>Your Notifications</h3>
+            <p>Notification history will appear here.</p>
+          </div>
+        </section>
 
-                <div class="placeholder-content">
-                    <i class="fa-regular fa-bell"></i>
-                    <h3>Your Notifications</h3>
-                    <p>Notification history will appear here.</p>
-                </div>
-
-            </section>
-
-
-            <!-- =========================
+        <!-- =========================
                  SETTINGS SECTION
             ========================== -->
-            <section
-                class="content-section"
-                id="settingsSection"
-            >
+        <section class="content-section" id="settingsSection">
+          <div class="section-page-header">
+            <span class="page-kicker">Account</span>
+            <h2>Settings</h2>
+            <p>Manage your CampusHub preferences.</p>
+          </div>
 
-                <div class="section-page-header">
-                    <span class="page-kicker">Account</span>
-                    <h2>Settings</h2>
-                    <p>Manage your CampusHub preferences.</p>
-                </div>
+          <div class="placeholder-content">
+            <i class="fa-solid fa-gear"></i>
+            <h3>Account Settings</h3>
+            <p>Settings will be added here.</p>
+          </div>
+        </section>
 
-                <div class="placeholder-content">
-                    <i class="fa-solid fa-gear"></i>
-                    <h3>Account Settings</h3>
-                    <p>Settings will be added here.</p>
-                </div>
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+          <p>© 2026 CampusHub · Premier University</p>
 
-            </section>
-
-
-            <!-- Footer -->
-            <footer class="dashboard-footer">
-
-                <p>
-                    © 2026 CampusHub · Premier University
-                </p>
-
-                <div class="footer-links">
-                    <a href="#">Privacy</a>
-                    <a href="#">Help</a>
-                    <a href="#">Contact</a>
-                </div>
-
-            </footer>
-
-        </main>
-
+          <div class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Help</a>
+            <a href="#">Contact</a>
+          </div>
+        </footer>
+      </main>
     </div>
-
 
     <!-- Student Dashboard JavaScript -->
     <script src="./student.js"></script>
-
-</body>
+  </body>
 </html>
