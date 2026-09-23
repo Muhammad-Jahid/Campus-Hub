@@ -473,31 +473,33 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* =========================================================
-       LOGOUT
-    ========================================================= */
+   LOGOUT — ALUMNI
+========================================================= */
 
-  function logout() {
-    const confirmed = confirm("Are you sure you want to log out of CampusHub?");
-
-    if (!confirmed) return;
-
-    localStorage.removeItem(SESSION_KEY);
-
-    window.location.href = "./index.html";
+  function logoutAlumni() {
+    localStorage.removeItem("campusHubCurrentUser");
+    window.location.replace("./index.html");
   }
 
-  const logoutButton = document.getElementById("logoutButton");
+  const alumniLogoutButton = document.getElementById("logoutButton");
 
-  const dropdownLogout = document.getElementById("dropdownLogout");
+  const alumniDropdownLogout = document.getElementById("dropdownLogout");
 
-  if (logoutButton) {
-    logoutButton.addEventListener("click", logout);
+  if (alumniLogoutButton) {
+    alumniLogoutButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      logoutAlumni();
+    });
   }
 
-  if (dropdownLogout) {
-    dropdownLogout.addEventListener("click", logout);
+  if (alumniDropdownLogout) {
+    alumniDropdownLogout.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
+      logoutAlumni();
+    });
   }
-
   /* =========================================================
        EVENTS
     ========================================================= */

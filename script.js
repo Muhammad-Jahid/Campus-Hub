@@ -223,7 +223,9 @@ document.addEventListener("DOMContentLoaded", function () {
        DEMO LOGIN BUTTONS
     ===================================================== */
 
-  const demoButtons = document.querySelectorAll(".demo-button");
+  const demoButtons = document.querySelectorAll(
+    ".demo-button, button[data-email][data-password]",
+  );
 
   demoButtons.forEach(function (button) {
     button.addEventListener("click", function (event) {

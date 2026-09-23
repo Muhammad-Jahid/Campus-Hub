@@ -440,28 +440,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // =====================================================
   // 15. LOGOUT
   // =====================================================
+  /* =========================================================
+   LOGOUT — STUDENT ONLY
+========================================================= */
 
   function logout() {
-    const confirmed = window.confirm(
-      "Are you sure you want to log out of CampusHub?",
-    );
-
-    if (!confirmed) {
-      return;
-    }
-
-    localStorage.removeItem(SESSION_KEY);
-
+    localStorage.removeItem("campusHubCurrentUser");
     window.location.href = "./index.html";
   }
 
-  if (logoutButton) {
-    logoutButton.addEventListener("click", logout);
-  }
+  document
+    .getElementById("logoutButton")
+    ?.addEventListener("click", function (event) {
+      event.preventDefault();
+      logout();
+    });
 
-  if (dropdownLogout) {
-    dropdownLogout.addEventListener("click", logout);
-  }
+  document
+    .getElementById("dropdownLogout")
+    ?.addEventListener("click", function (event) {
+      event.preventDefault();
+      logout();
+    });
 
   // =====================================================
   // 16. SEARCH

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusHub — Admin Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="./admin.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="admin-dashboard">
+
+    <!-- SIDEBAR -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">CH</div>
+
+            <div>
+                <h2>CampusHub</h2>
+                <span>Admin Portal</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+
+            <div
+                id="sidebarAvatar"
+                class="sidebar-avatar"
+            >
+                CA
+            </div>
+
+            <div>
+                <strong id="sidebarUserName">
+                    CampusHub Admin
+                </strong>
+
+                <span>Administrator</span>
+            </div>
+
+            <button
+                type="button"
+                id="sidebarClose"
+                class="sidebar-close"
+                aria-label="Close menu"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-label">MAIN</div>
+
+            <button
+                type="button"
+                class="nav-item active"
+                data-section="dashboard"
+            >
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="users"
+            >
+                <i class="fa-solid fa-users"></i>
+                <span>Users</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="announcements"
+            >
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Announcements</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="events"
+            >
+                <i class="fa-regular fa-calendar"></i>
+                <span>Events</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="resources"
+            >
+                <i class="fa-solid fa-book-open"></i>
+                <span>Resources</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="communities"
+            >
+                <i class="fa-solid fa-user-group"></i>
+                <span>Communities</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="jobs"
+            >
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Jobs & Internships</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="alumni"
+            >
+                <i class="fa-solid fa-address-book"></i>
+                <span>Alumni</span>
+            </button>
+
+        </nav>
+
+        <button
+            type="button"
+            id="logoutButton"
+            class="sidebar-logout"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </button>
+
+    </aside>
+
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
+
+    <!-- MAIN -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="mobile-menu-button"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <span class="topbar-eyebrow">
+                        ADMINISTRATION
+                    </span>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="topbar-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        id="globalSearch"
+                        type="search"
+                        placeholder="Search current page..."
+                    >
+                </div>
+
+                <div class="profile-menu">
+
+                    <button
+                        type="button"
+                        id="profileButton"
+                        class="profile-button"
+                    >
+                        <span
+                            id="topbarAvatar"
+                            class="topbar-avatar"
+                        >
+                            CA
+                        </span>
+
+                        <span id="topbarUserName">
+                            Admin
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+
+                    <div
+                        id="profileDropdown"
+                        class="profile-dropdown"
+                    >
+                        <div class="profile-dropdown-header">
+
+                            <div
+                                id="dropdownAvatar"
+                                class="dropdown-avatar"
+                            >
+                                CA
+                            </div>
+
+                            <div>
+                                <strong>
+                                    CampusHub Admin
+                                </strong>
+
+                                <span id="dropdownUserEmail">
+                                    admin@premier.edu
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            data-section-link="dashboard"
+                        >
+                            <i class="fa-solid fa-house"></i>
+                            Dashboard
+                        </button>
+
+                        <div class="dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            id="dropdownLogout"
+                            class="dropdown-danger"
+                        >
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="page-container">
+
+            <!-- DASHBOARD -->
+
+            <section
+                id="dashboardSection"
+                class="content-section active"
+            >
+
+                <div class="admin-welcome">
+
+                    <div>
+                        <span>ADMIN CONTROL CENTER</span>
+
+                        <h2>
+                            Welcome back,
+                            <strong id="welcomeName">
+                                Admin
+                            </strong>
+                        </h2>
+
+                        <p>
+                            Manage CampusHub users, content,
+                            opportunities, events, and communities.
+                        </p>
+                    </div>
+
+                    <div class="admin-welcome-icon">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div>
+                            <span>Total Users</span>
+                            <strong id="statUsers">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+
+                        <div>
+                            <span>Announcements</span>
+                            <strong id="statAnnouncements">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+
+                        <div>
+                            <span>Events</span>
+                            <strong id="statEvents">0</strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <div>
+                            <span>Opportunities</span>
+                            <strong id="statJobs">0</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="admin-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span>CONTENT</span>
+                                <h3>Quick Management</h3>
+                            </div>
+                        </div>
+
+                        <div class="quick-management">
+
+                            <button
+                                type="button"
+                                data-section-link="announcements"
+                            >
+                                <span>
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                </span>
+                                <div>
+                                    <strong>Manage Announcements</strong>
+                                    <small>Edit university updates</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-section-link="events"
+                            >
+                                <span>
+                                    <i class="fa-regular fa-calendar"></i>
+                                </span>
+                                <div>
+                                    <strong>Manage Events</strong>
+                                    <small>Create and update events</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-section-link="jobs"
+                            >
+                                <span>
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </span>
+                                <div>
+                                    <strong>Manage Opportunities</strong>
+                                    <small>Jobs and internships</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-section-link="resources"
+                            >
+                                <span>
+                                    <i class="fa-solid fa-book-open"></i>
+                                </span>
+                                <div>
+                                    <strong>Manage Resources</strong>
+                                    <small>Academic materials</small>
+                                </div>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <div class="admin-panel">
+
+                        <div class="panel-heading">
+                            <div>
+                                <span>OVERVIEW</span>
+                                <h3>User Breakdown</h3>
+                            </div>
+                        </div>
+
+                        <div class="role-breakdown">
+
+                            <div>
+                                <span class="role-student">
+                                    <i class="fa-solid fa-user"></i>
+                                </span>
+
+                                <div>
+                                    <strong id="studentCount">
+                                        0
+                                    </strong>
+                                    <small>Students</small>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="role-alumni">
+                                    <i class="fa-solid fa-user-graduate"></i>
+                                </span>
+
+                                <div>
+                                    <strong id="alumniCount">
+                                        0
+                                    </strong>
+                                    <small>Alumni</small>
+                                </div>
+                            </div>
+
+                            <div>
+                                <span class="role-admin">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                </span>
+
+                                <div>
+                                    <strong id="adminCount">
+                                        0
+                                    </strong>
+                                    <small>Admins</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- USERS -->
+
+            <section
+                id="usersSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>ADMINISTRATION</span>
+                        <h2>Users</h2>
+                        <p>
+                            Manage registered CampusHub accounts.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addUserButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add User
+                    </button>
+                </div>
+
+                <div class="filter-toolbar">
+
+                    <div class="admin-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            id="userSearch"
+                            type="search"
+                            placeholder="Search users..."
+                        >
+                    </div>
+
+                    <select id="userRoleFilter">
+                        <option value="all">All Roles</option>
+                        <option value="student">Students</option>
+                        <option value="alumni">Alumni</option>
+                        <option value="admin">Admins</option>
+                    </select>
+
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="admin-table">
+
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="usersTableBody"></tbody>
+
+                    </table>
+                </div>
+
+            </section>
+
+            <!-- ANNOUNCEMENTS -->
+
+            <section
+                id="announcementsSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>CONTENT MANAGEMENT</span>
+                        <h2>Announcements</h2>
+                        <p>
+                            Publish and manage university announcements.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addAnnouncementButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Announcement
+                    </button>
+                </div>
+
+                <div class="admin-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        id="announcementAdminSearch"
+                        type="search"
+                        placeholder="Search announcements..."
+                    >
+                </div>
+
+                <div
+                    id="announcementsAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+            <!-- EVENTS -->
+
+            <section
+                id="eventsSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>CONTENT MANAGEMENT</span>
+                        <h2>Events</h2>
+                        <p>
+                            Create and manage CampusHub events.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addEventButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Event
+                    </button>
+                </div>
+
+                <div
+                    id="eventsAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+            <!-- RESOURCES -->
+
+            <section
+                id="resourcesSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>ACADEMIC MANAGEMENT</span>
+                        <h2>Resources</h2>
+                        <p>
+                            Manage academic materials available to students.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addResourceButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Resource
+                    </button>
+                </div>
+
+                <div
+                    id="resourcesAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+            <!-- COMMUNITIES -->
+
+            <section
+                id="communitiesSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>COMMUNITY MANAGEMENT</span>
+                        <h2>Communities</h2>
+                        <p>
+                            Manage clubs, societies, and student communities.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addCommunityButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Community
+                    </button>
+                </div>
+
+                <div
+                    id="communitiesAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+            <!-- JOBS -->
+
+            <section
+                id="jobsSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>CAREER MANAGEMENT</span>
+                        <h2>Jobs & Internships</h2>
+                        <p>
+                            Publish and manage career opportunities.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addJobButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Opportunity
+                    </button>
+                </div>
+
+                <div
+                    id="jobsAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+            <!-- ALUMNI -->
+
+            <section
+                id="alumniSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span>NETWORK MANAGEMENT</span>
+                        <h2>Alumni</h2>
+                        <p>
+                            Manage alumni profiles shown in the directory.
+                        </p>
+                    </div>
+
+                    <button
+                        type="button"
+                        class="primary-action"
+                        id="addAlumniButton"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        Add Alumni
+                    </button>
+                </div>
+
+                <div
+                    id="alumniAdminList"
+                    class="admin-card-grid"
+                ></div>
+
+            </section>
+
+        </div>
+
+        <footer class="admin-footer">
+            <span>© 2026 CampusHub — Premier University</span>
+            <span>Administrator Portal</span>
+        </footer>
+
+    </main>
+
+</div>
+
+<!-- =========================================================
+     UNIVERSAL MODAL
+========================================================= -->
+
+<div
+    id="adminModal"
+    class="modal-backdrop"
+>
+
+    <div class="admin-modal">
+
+        <div class="modal-header">
+
+            <div>
+                <span id="modalEyebrow">
+                    MANAGEMENT
+                </span>
+
+                <h3 id="modalTitle">
+                    Add Item
+                </h3>
+            </div>
+
+            <button
+                type="button"
+                id="modalClose"
+                class="modal-close"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <form id="adminModalForm">
+
+            <div
+                id="modalFields"
+                class="modal-fields"
+            ></div>
+
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    id="modalCancel"
+                    class="secondary-action"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-action"
+                >
+                    Save Changes
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<script src="./admin.js"></script>
+
+</body>
+</html>

@@ -1769,3 +1769,169 @@ body.compact-mode .stats-grid {
     overflow: hidden;
   }
 }
+
+/* =========================================================
+   CAMPUSHUB VISUAL POLISH — ALUMNI
+   CSS ONLY — NO FUNCTIONAL CHANGES
+========================================================= */
+
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+button,
+input,
+select,
+textarea {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Scrollbars */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cfd4dc transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #cfd4dc;
+  border-radius: 999px;
+}
+
+/* Page entrance */
+
+.page-container {
+  animation: campusPageIn 0.28s ease both;
+}
+
+@keyframes campusPageIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Topbar */
+
+.topbar {
+  min-height: 80px;
+}
+
+.topbar h1,
+.section-header h2 {
+  letter-spacing: -0.02em;
+}
+
+/* Cards */
+
+.stat-card,
+.dashboard-panel,
+.profile-card,
+.settings-card,
+.event-card,
+.opportunity-card,
+.community-card,
+.alumni-card {
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.stat-card:hover,
+.dashboard-panel:hover,
+.profile-card:hover,
+.settings-card:hover {
+  border-color: rgba(200, 169, 81, 0.28);
+  box-shadow: 0 10px 28px rgba(23, 32, 51, 0.07);
+}
+
+/* Buttons */
+
+.primary-button,
+.small-button,
+.apply-button,
+.join-button,
+.view-button,
+.section-pill,
+.profile-button {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.primary-button:hover,
+.apply-button:hover,
+.join-button:hover,
+.view-button:hover,
+.small-button:hover {
+  transform: translateY(-1px);
+}
+
+/* Controls */
+
+.directory-search input,
+.topbar-search input,
+.directory-filters select,
+.form-group input,
+.form-group select,
+.section-pill {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* Footer */
+
+.dashboard-footer {
+  margin-top: 8px;
+  border-top: 1px solid rgba(223, 227, 232, 0.8);
+}
+
+/* Mobile */
+
+@media (max-width: 850px) {
+  .page-container {
+    padding: 18px;
+  }
+
+  .section-header {
+    gap: 14px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page-container {
+    padding: 14px;
+  }
+
+  .welcome-banner {
+    margin-bottom: 16px;
+  }
+}
