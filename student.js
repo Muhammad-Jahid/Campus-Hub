@@ -1230,3 +1230,372 @@ document.addEventListener("DOMContentLoaded", function () {
 
   renderResources();
 });
+
+/* =========================================================
+   ALUMNI DIRECTORY
+   ISOLATED FUNCTIONAL MODULE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ALUMNI_KEY = "campusHubAlumniDirectory";
+
+  /* =====================================================
+       DEFAULT ALUMNI DATA
+    ===================================================== */
+
+  const defaultAlumni = [
+    {
+      id: "alumni-001",
+      name: "Tanvir Ahmed",
+      department: "Computer Science & Engineering",
+      graduationYear: "2020",
+      company: "Orbit Labs",
+      jobTitle: "Software Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "alumni@premier.edu",
+      skills: ["JavaScript", "React", "Node.js"],
+      bio: "Software engineer focused on building scalable web applications and developer tools.",
+      avatar: "TA",
+    },
+    {
+      id: "alumni-002",
+      name: "Nusrat Jahan",
+      department: "Business Administration",
+      graduationYear: "2021",
+      company: "Grameen Digital",
+      jobTitle: "Product Marketing Manager",
+      location: "Dhaka, Bangladesh",
+      email: "nusrat.jahan@alumni.premier.edu",
+      skills: ["Marketing", "Strategy", "Brand Management"],
+      bio: "Product marketing professional with experience in digital growth, customer research, and brand strategy.",
+      avatar: "NJ",
+    },
+    {
+      id: "alumni-003",
+      name: "Sabbir Hossain",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2022",
+      company: "Walton",
+      jobTitle: "Embedded Systems Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "sabbir.hossain@alumni.premier.edu",
+      skills: ["Embedded Systems", "IoT", "C/C++"],
+      bio: "Engineer working on embedded systems, connected devices, and hardware-software integration.",
+      avatar: "SH",
+    },
+    {
+      id: "alumni-004",
+      name: "Farzana Karim",
+      department: "English",
+      graduationYear: "2023",
+      company: "The Daily Star",
+      jobTitle: "Content Editor",
+      location: "Dhaka, Bangladesh",
+      email: "farzana.karim@alumni.premier.edu",
+      skills: ["Writing", "Editing", "Content Strategy"],
+      bio: "Editor and writer interested in journalism, storytelling, digital media, and communications.",
+      avatar: "FK",
+    },
+    {
+      id: "alumni-005",
+      name: "Mahin Chowdhury",
+      department: "Architecture",
+      graduationYear: "2024",
+      company: "UrbanForm Studio",
+      jobTitle: "Junior Architect",
+      location: "Chattogram, Bangladesh",
+      email: "mahin.chowdhury@alumni.premier.edu",
+      skills: ["AutoCAD", "3D Modeling", "Urban Design"],
+      bio: "Architect working on residential, commercial, and urban design projects.",
+      avatar: "MC",
+    },
+    {
+      id: "alumni-006",
+      name: "Rafiul Islam",
+      department: "Computer Science & Engineering",
+      graduationYear: "2025",
+      company: "Pathao",
+      jobTitle: "Associate Software Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "rafiul.islam@alumni.premier.edu",
+      skills: ["Python", "Django", "PostgreSQL"],
+      bio: "Backend-focused software engineer interested in APIs, distributed systems, and data-driven applications.",
+      avatar: "RI",
+    },
+    {
+      id: "alumni-007",
+      name: "Samira Rahman",
+      department: "Business Administration",
+      graduationYear: "2022",
+      company: "bKash",
+      jobTitle: "Business Analyst",
+      location: "Dhaka, Bangladesh",
+      email: "samira.rahman@alumni.premier.edu",
+      skills: ["Business Analysis", "Excel", "Data Visualization"],
+      bio: "Business analyst working across operations, reporting, and data-driven decision making.",
+      avatar: "SR",
+    },
+    {
+      id: "alumni-008",
+      name: "Adnan Kabir",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2021",
+      company: "Robi Axiata",
+      jobTitle: "Network Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "adnan.kabir@alumni.premier.edu",
+      skills: ["Networking", "Telecommunications", "Linux"],
+      bio: "Telecommunications professional working on network operations and infrastructure.",
+      avatar: "AK",
+    },
+  ];
+
+  /* =====================================================
+       STORAGE
+    ===================================================== */
+
+  function getAlumni() {
+    try {
+      const data = JSON.parse(localStorage.getItem(ALUMNI_KEY));
+
+      return Array.isArray(data) ? data : defaultAlumni;
+    } catch {
+      return defaultAlumni;
+    }
+  }
+
+  if (!localStorage.getItem(ALUMNI_KEY)) {
+    localStorage.setItem(ALUMNI_KEY, JSON.stringify(defaultAlumni));
+  }
+
+  /* =====================================================
+       HELPERS
+    ===================================================== */
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function getInitials(name) {
+    return String(name)
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  }
+
+  /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+  const alumniList = document.getElementById("alumniList");
+
+  const alumniSearch = document.getElementById("alumniSearch");
+
+  const departmentFilter = document.getElementById("alumniDepartmentFilter");
+
+  const yearFilter = document.getElementById("alumniYearFilter");
+
+  const resultCount = document.getElementById("alumniResultCount");
+
+  /* =====================================================
+       RENDER
+    ===================================================== */
+
+  function renderAlumni() {
+    if (!alumniList) return;
+
+    const alumni = getAlumni();
+
+    const search = alumniSearch?.value?.toLowerCase().trim() || "";
+
+    const department = departmentFilter?.value || "all";
+
+    const year = yearFilter?.value || "all";
+
+    const filtered = alumni.filter((person) => {
+      const searchMatch =
+        !search ||
+        person.name.toLowerCase().includes(search) ||
+        person.company.toLowerCase().includes(search) ||
+        person.jobTitle.toLowerCase().includes(search) ||
+        person.department.toLowerCase().includes(search) ||
+        person.location.toLowerCase().includes(search);
+
+      const departmentMatch =
+        department === "all" || person.department === department;
+
+      const yearMatch = year === "all" || person.graduationYear === year;
+
+      return searchMatch && departmentMatch && yearMatch;
+    });
+
+    if (resultCount) {
+      resultCount.textContent = filtered.length;
+    }
+
+    if (!filtered.length) {
+      alumniList.innerHTML = `
+                <div class="alumni-empty-state">
+                    <div class="alumni-empty-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+
+                    <h3>No alumni found</h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+                </div>
+            `;
+
+      return;
+    }
+
+    alumniList.innerHTML = filtered
+      .map(
+        (person) => `
+            <article class="alumni-functional-card">
+
+                <div class="alumni-card-top">
+
+                    <div class="alumni-avatar">
+                        ${escapeHTML(person.avatar || getInitials(person.name))}
+                    </div>
+
+                    <div class="alumni-basic-info">
+
+                        <span class="alumni-year-badge">
+                            Class of ${escapeHTML(person.graduationYear)}
+                        </span>
+
+                        <h3>
+                            ${escapeHTML(person.name)}
+                        </h3>
+
+                        <p class="alumni-job-title">
+                            ${escapeHTML(person.jobTitle)}
+                        </p>
+
+                        <p class="alumni-company">
+                            <i class="fa-regular fa-building"></i>
+                            ${escapeHTML(person.company)}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="alumni-card-divider"></div>
+
+                <div class="alumni-card-details">
+
+                    <div class="alumni-detail-item">
+                        <span class="alumni-detail-label">
+                            Department
+                        </span>
+
+                        <span class="alumni-detail-value">
+                            ${escapeHTML(person.department)}
+                        </span>
+                    </div>
+
+                    <div class="alumni-detail-item">
+                        <span class="alumni-detail-label">
+                            Location
+                        </span>
+
+                        <span class="alumni-detail-value">
+                            <i class="fa-solid fa-location-dot"></i>
+                            ${escapeHTML(person.location)}
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="alumni-skill-list">
+                    ${person.skills
+                      .map(
+                        (skill) => `
+                        <span class="alumni-skill">
+                            ${escapeHTML(skill)}
+                        </span>
+                    `,
+                      )
+                      .join("")}
+                </div>
+
+                <div class="alumni-card-footer">
+
+                    <button
+                        type="button"
+                        class="alumni-view-button"
+                        data-alumni-view="${escapeHTML(person.id)}"
+                    >
+                        View Profile
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </article>
+        `,
+      )
+      .join("");
+  }
+
+  /* =====================================================
+       FILTER EVENTS
+    ===================================================== */
+
+  if (alumniSearch) {
+    alumniSearch.addEventListener("input", renderAlumni);
+  }
+
+  if (departmentFilter) {
+    departmentFilter.addEventListener("change", renderAlumni);
+  }
+
+  if (yearFilter) {
+    yearFilter.addEventListener("change", renderAlumni);
+  }
+
+  /* =====================================================
+       VIEW PROFILE
+    ===================================================== */
+
+  if (alumniList) {
+    alumniList.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-alumni-view]");
+
+      if (!button) return;
+
+      const alumni = getAlumni().find(
+        (person) => person.id === button.dataset.alumniView,
+      );
+
+      if (!alumni) return;
+
+      const skillText = alumni.skills.join(" • ");
+
+      alert(
+        `${alumni.name}\n\n` +
+          `${alumni.jobTitle} at ${alumni.company}\n\n` +
+          `Class of ${alumni.graduationYear}\n` +
+          `${alumni.department}\n` +
+          `${alumni.location}\n\n` +
+          `Skills: ${skillText}\n\n` +
+          `${alumni.bio}\n\n` +
+          `Email: ${alumni.email}`,
+      );
+    });
+  }
+
+  renderAlumni();
+});

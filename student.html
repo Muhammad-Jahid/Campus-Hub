@@ -940,19 +940,61 @@
                  ALUMNI SECTION
             ========================== -->
         <section class="content-section" id="alumniSection">
-          <div class="section-page-header">
-            <span class="page-kicker">Network</span>
-            <h2>Alumni Network</h2>
-            <p>
-              Connect with graduates and professionals from Premier University.
-            </p>
+          <div class="section-header alumni-directory-header">
+            <div>
+              <h2>Alumni Directory</h2>
+              <p>
+                Connect with Premier University graduates and explore their
+                professional journeys.
+              </p>
+            </div>
           </div>
 
-          <div class="placeholder-content">
-            <i class="fa-solid fa-user-group"></i>
-            <h3>Alumni Directory</h3>
-            <p>Alumni profiles will appear here.</p>
+          <div class="alumni-filter-bar">
+            <div class="alumni-search-wrapper">
+              <i class="fa-solid fa-magnifying-glass"></i>
+
+              <input
+                type="search"
+                id="alumniSearch"
+                placeholder="Search by name, company, role..."
+              />
+            </div>
+
+            <select id="alumniDepartmentFilter" class="alumni-filter-select">
+              <option value="all">All Departments</option>
+              <option value="Computer Science & Engineering">
+                Computer Science & Engineering
+              </option>
+              <option value="Business Administration">
+                Business Administration
+              </option>
+              <option value="Electrical & Electronic Engineering">
+                Electrical & Electronic Engineering
+              </option>
+              <option value="English">English</option>
+              <option value="Architecture">Architecture</option>
+            </select>
+
+            <select id="alumniYearFilter" class="alumni-filter-select">
+              <option value="all">All Graduation Years</option>
+              <option value="2025">2025</option>
+              <option value="2024">2024</option>
+              <option value="2023">2023</option>
+              <option value="2022">2022</option>
+              <option value="2021">2021</option>
+              <option value="2020">2020</option>
+            </select>
           </div>
+
+          <div class="alumni-directory-summary">
+            <span>
+              <strong id="alumniResultCount">0</strong>
+              alumni found
+            </span>
+          </div>
+
+          <div id="alumniList"></div>
         </section>
 
         <!-- =========================
