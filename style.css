@@ -1235,6 +1235,12 @@ img {
 }
 /* Allow Home page to scroll */
 
+@media (max-width: 700px) {
+    .navbar .nav-links {
+        display: none;
+    }
+}
+
 html,
 body {
     overflow-x: hidden;
