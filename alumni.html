@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>CampusHub — Alumni Dashboard</title>
+
+    <link
+        rel="stylesheet"
+        href="./alumni.css"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<div class="alumni-dashboard">
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside id="sidebar" class="sidebar">
+
+        <div class="sidebar-brand">
+            <div class="brand-mark">
+                CH
+            </div>
+
+            <div>
+                <h2>CampusHub</h2>
+                <span>Premier University</span>
+            </div>
+        </div>
+
+        <div class="sidebar-user">
+
+            <div
+                id="sidebarAvatar"
+                class="sidebar-avatar"
+            >
+                TA
+            </div>
+
+            <div>
+                <strong id="sidebarUserName">
+                    Alumni
+                </strong>
+
+                <span>
+                    Alumni
+                </span>
+            </div>
+
+            <button
+                type="button"
+                id="sidebarClose"
+                class="sidebar-close"
+                aria-label="Close menu"
+            >
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <div class="nav-label">
+                MAIN
+            </div>
+
+            <button
+                type="button"
+                class="nav-item active"
+                data-section="dashboard"
+            >
+                <i class="fa-solid fa-house"></i>
+                <span>Dashboard</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="events"
+            >
+                <i class="fa-regular fa-calendar"></i>
+                <span>Events</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="opportunities"
+            >
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Opportunities</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="communities"
+            >
+                <i class="fa-solid fa-users"></i>
+                <span>Communities</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="directory"
+            >
+                <i class="fa-solid fa-address-book"></i>
+                <span>Alumni Directory</span>
+            </button>
+
+            <div class="nav-label">
+                ACCOUNT
+            </div>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="profile"
+            >
+                <i class="fa-regular fa-user"></i>
+                <span>My Profile</span>
+            </button>
+
+            <button
+                type="button"
+                class="nav-item"
+                data-section="settings"
+            >
+                <i class="fa-solid fa-gear"></i>
+                <span>Settings</span>
+            </button>
+
+        </nav>
+
+        <button
+            type="button"
+            id="logoutButton"
+            class="sidebar-logout"
+        >
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+        </button>
+
+    </aside>
+
+    <div
+        id="sidebarOverlay"
+        class="sidebar-overlay"
+    ></div>
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-content">
+
+        <header class="topbar">
+
+            <div class="topbar-left">
+
+                <button
+                    type="button"
+                    id="mobileMenuButton"
+                    class="mobile-menu-button"
+                    aria-label="Open menu"
+                >
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+
+                <div>
+                    <span class="topbar-eyebrow">
+                        Alumni Portal
+                    </span>
+
+                    <h1 id="pageTitle">
+                        Dashboard
+                    </h1>
+                </div>
+
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="topbar-search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        id="globalSearch"
+                        type="search"
+                        placeholder="Search..."
+                    >
+                </div>
+
+                <div class="profile-menu">
+
+                    <button
+                        type="button"
+                        id="profileButton"
+                        class="profile-button"
+                    >
+                        <span
+                            id="topbarAvatar"
+                            class="topbar-avatar"
+                        >
+                            TA
+                        </span>
+
+                        <span
+                            id="topbarUserName"
+                            class="topbar-user-name"
+                        >
+                            Alumni
+                        </span>
+
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </button>
+
+                    <div
+                        id="profileDropdown"
+                        class="profile-dropdown"
+                    >
+                        <div class="profile-dropdown-header">
+
+                            <div
+                                id="dropdownAvatar"
+                                class="dropdown-avatar"
+                            >
+                                TA
+                            </div>
+
+                            <div>
+                                <strong id="dropdownUserName">
+                                    Alumni
+                                </strong>
+
+                                <span id="dropdownUserEmail">
+                                    alumni@premier.edu
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button
+                            type="button"
+                            data-profile-section="profile"
+                        >
+                            <i class="fa-regular fa-user"></i>
+                            My Profile
+                        </button>
+
+                        <button
+                            type="button"
+                            data-profile-section="settings"
+                        >
+                            <i class="fa-solid fa-gear"></i>
+                            Settings
+                        </button>
+
+                        <div class="dropdown-divider"></div>
+
+                        <button
+                            type="button"
+                            id="dropdownLogout"
+                            class="dropdown-danger"
+                        >
+                            <i class="fa-solid fa-right-from-bracket"></i>
+                            Logout
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <div class="page-container">
+
+            <!-- =================================================
+                 DASHBOARD
+            ================================================== -->
+
+            <section
+                id="dashboardSection"
+                class="content-section active"
+            >
+
+                <div class="welcome-banner">
+
+                    <div>
+                        <span class="welcome-label">
+                            WELCOME BACK
+                        </span>
+
+                        <h2>
+                            Good to see you,
+                            <span id="welcomeName">
+                                Tanvir
+                            </span>.
+                        </h2>
+
+                        <p>
+                            Stay connected with your university
+                            community and discover new opportunities.
+                        </p>
+                    </div>
+
+                    <div class="welcome-decoration">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-user-group"></i>
+                        </div>
+
+                        <div>
+                            <span>Connections</span>
+                            <strong id="statConnections">
+                                128
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-regular fa-calendar"></i>
+                        </div>
+
+                        <div>
+                            <span>Upcoming Events</span>
+                            <strong id="statEvents">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-briefcase"></i>
+                        </div>
+
+                        <div>
+                            <span>Opportunities</span>
+                            <strong id="statJobs">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fa-solid fa-users"></i>
+                        </div>
+
+                        <div>
+                            <span>Communities</span>
+                            <strong id="statCommunities">
+                                0
+                            </strong>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-panel large-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">
+                                    CAMPUS UPDATE
+                                </span>
+
+                                <h3>Latest Announcements</h3>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="panel-link"
+                                data-section-link="events"
+                            >
+                                Explore
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+
+                        <div id="dashboardAnnouncements">
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">
+                                    CALENDAR
+                                </span>
+
+                                <h3>Upcoming Events</h3>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="panel-link"
+                                data-section-link="events"
+                            >
+                                View all
+                            </button>
+                        </div>
+
+                        <div id="dashboardEvents">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">
+                                    CAREER
+                                </span>
+
+                                <h3>Latest Opportunities</h3>
+                            </div>
+
+                            <button
+                                type="button"
+                                class="panel-link"
+                                data-section-link="opportunities"
+                            >
+                                View all
+                            </button>
+                        </div>
+
+                        <div id="dashboardJobs">
+                        </div>
+
+                    </div>
+
+                    <div class="dashboard-panel quick-actions-panel">
+
+                        <div class="panel-header">
+                            <div>
+                                <span class="panel-eyebrow">
+                                    CAMPUSHUB
+                                </span>
+
+                                <h3>Quick Actions</h3>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions">
+
+                            <button
+                                type="button"
+                                data-section-link="profile"
+                            >
+                                <span>
+                                    <i class="fa-regular fa-user"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Update Profile</strong>
+                                    <small>Keep your professional profile current</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-section-link="directory"
+                            >
+                                <span>
+                                    <i class="fa-solid fa-address-book"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Explore Alumni</strong>
+                                    <small>Reconnect with university graduates</small>
+                                </div>
+                            </button>
+
+                            <button
+                                type="button"
+                                data-section-link="opportunities"
+                            >
+                                <span>
+                                    <i class="fa-solid fa-briefcase"></i>
+                                </span>
+
+                                <div>
+                                    <strong>Find Opportunities</strong>
+                                    <small>Browse jobs and internships</small>
+                                </div>
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+                 EVENTS
+            ================================================== -->
+
+            <section
+                id="eventsSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            CAMPUS LIFE
+                        </span>
+
+                        <h2>Events</h2>
+
+                        <p>
+                            Stay connected with university activities,
+                            networking sessions, and alumni events.
+                        </p>
+                    </div>
+
+                    <div class="section-pills">
+                        <button
+                            type="button"
+                            class="section-pill active"
+                            data-event-filter="all"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            type="button"
+                            class="section-pill"
+                            data-event-filter="upcoming"
+                        >
+                            Upcoming
+                        </button>
+                    </div>
+                </div>
+
+                <div id="eventsList"></div>
+
+            </section>
+
+            <!-- =================================================
+                 OPPORTUNITIES
+            ================================================== -->
+
+            <section
+                id="opportunitiesSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            CAREER
+                        </span>
+
+                        <h2>Opportunities</h2>
+
+                        <p>
+                            Discover jobs and internships shared
+                            across the CampusHub network.
+                        </p>
+                    </div>
+
+                    <div class="directory-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="jobSearch"
+                            placeholder="Search opportunities..."
+                        >
+                    </div>
+                </div>
+
+                <div class="section-pills opportunity-pills">
+
+                    <button
+                        type="button"
+                        class="section-pill active"
+                        data-job-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="section-pill"
+                        data-job-filter="Internship"
+                    >
+                        Internships
+                    </button>
+
+                    <button
+                        type="button"
+                        class="section-pill"
+                        data-job-filter="Full-time"
+                    >
+                        Full-time
+                    </button>
+
+                    <button
+                        type="button"
+                        class="section-pill"
+                        data-job-filter="Remote"
+                    >
+                        Remote
+                    </button>
+
+                </div>
+
+                <div id="jobsList"></div>
+
+            </section>
+
+            <!-- =================================================
+                 COMMUNITIES
+            ================================================== -->
+
+            <section
+                id="communitiesSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            NETWORK
+                        </span>
+
+                        <h2>Communities</h2>
+
+                        <p>
+                            Stay involved with clubs, communities,
+                            and university initiatives.
+                        </p>
+                    </div>
+
+                    <div class="directory-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="communitySearch"
+                            placeholder="Search communities..."
+                        >
+                    </div>
+                </div>
+
+                <div id="communitiesList"></div>
+
+            </section>
+
+            <!-- =================================================
+                 ALUMNI DIRECTORY
+            ================================================== -->
+
+            <section
+                id="directorySection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            NETWORK
+                        </span>
+
+                        <h2>Alumni Directory</h2>
+
+                        <p>
+                            Find alumni by name, company,
+                            department, or graduation year.
+                        </p>
+                    </div>
+
+                    <div class="directory-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                        <input
+                            type="search"
+                            id="alumniSearch"
+                            placeholder="Search alumni..."
+                        >
+                    </div>
+                </div>
+
+                <div class="directory-filters">
+
+                    <select id="alumniDepartmentFilter">
+                        <option value="all">
+                            All Departments
+                        </option>
+
+                        <option value="Computer Science & Engineering">
+                            Computer Science & Engineering
+                        </option>
+
+                        <option value="Business Administration">
+                            Business Administration
+                        </option>
+
+                        <option value="Electrical & Electronic Engineering">
+                            Electrical & Electronic Engineering
+                        </option>
+
+                        <option value="English">
+                            English
+                        </option>
+
+                        <option value="Architecture">
+                            Architecture
+                        </option>
+                    </select>
+
+                    <select id="alumniYearFilter">
+                        <option value="all">
+                            All Years
+                        </option>
+
+                        <option value="2025">2025</option>
+                        <option value="2024">2024</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                    </select>
+
+                    <span class="result-count">
+                        <strong id="alumniResultCount">
+                            0
+                        </strong>
+                        alumni
+                    </span>
+
+                </div>
+
+                <div id="alumniList"></div>
+
+            </section>
+
+            <!-- =================================================
+                 PROFILE
+            ================================================== -->
+
+            <section
+                id="profileSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            ACCOUNT
+                        </span>
+
+                        <h2>My Profile</h2>
+
+                        <p>
+                            Keep your professional information
+                            up to date.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="profile-layout">
+
+                    <div class="profile-card profile-identity-card">
+
+                        <div
+                            id="profileAvatar"
+                            class="profile-large-avatar"
+                        >
+                            TA
+                        </div>
+
+                        <h3 id="profileName">
+                            Tanvir Ahmed
+                        </h3>
+
+                        <p id="profileJobTitle">
+                            Software Engineer
+                        </p>
+
+                        <span class="profile-role-badge">
+                            Alumni
+                        </span>
+
+                    </div>
+
+                    <div class="profile-card">
+
+                        <div class="profile-card-heading">
+                            <div>
+                                <span class="section-eyebrow">
+                                    PROFESSIONAL
+                                </span>
+
+                                <h3>Profile Information</h3>
+                            </div>
+                        </div>
+
+                        <form id="profileForm">
+
+                            <div class="profile-form-grid">
+
+                                <div class="form-group">
+                                    <label for="profileEditName">
+                                        Full Name
+                                    </label>
+
+                                    <input
+                                        id="profileEditName"
+                                        type="text"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEditEmail">
+                                        Email
+                                    </label>
+
+                                    <input
+                                        id="profileEditEmail"
+                                        type="email"
+                                        disabled
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEditDepartment">
+                                        Department
+                                    </label>
+
+                                    <select
+                                        id="profileEditDepartment"
+                                    >
+                                        <option>
+                                            Computer Science & Engineering
+                                        </option>
+
+                                        <option>
+                                            Business Administration
+                                        </option>
+
+                                        <option>
+                                            Electrical & Electronic Engineering
+                                        </option>
+
+                                        <option>
+                                            English
+                                        </option>
+
+                                        <option>
+                                            Architecture
+                                        </option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEditYear">
+                                        Graduation Year
+                                    </label>
+
+                                    <input
+                                        id="profileEditYear"
+                                        type="number"
+                                        min="1990"
+                                        max="2035"
+                                        required
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEditCompany">
+                                        Company
+                                    </label>
+
+                                    <input
+                                        id="profileEditCompany"
+                                        type="text"
+                                    >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileEditJobTitle">
+                                        Job Title
+                                    </label>
+
+                                    <input
+                                        id="profileEditJobTitle"
+                                        type="text"
+                                    >
+                                </div>
+
+                            </div>
+
+                            <div class="profile-form-footer">
+
+                                <span
+                                    id="profileSaveMessage"
+                                    class="profile-save-message"
+                                ></span>
+
+                                <button
+                                    type="submit"
+                                    class="primary-button"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <!-- =================================================
+                 SETTINGS
+            ================================================== -->
+
+            <section
+                id="settingsSection"
+                class="content-section"
+            >
+
+                <div class="section-header">
+                    <div>
+                        <span class="section-eyebrow">
+                            ACCOUNT
+                        </span>
+
+                        <h2>Settings</h2>
+
+                        <p>
+                            Manage your CampusHub preferences.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="settings-card">
+
+                    <div class="setting-row">
+
+                        <div class="setting-copy">
+                            <strong>Show profile to alumni</strong>
+
+                            <p>
+                                Allow your profile to appear in
+                                the alumni directory.
+                            </p>
+                        </div>
+
+                        <label class="switch">
+                            <input
+                                id="profileVisibilityToggle"
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                    <div class="setting-row">
+
+                        <div class="setting-copy">
+                            <strong>Compact dashboard cards</strong>
+
+                            <p>
+                                Use a denser layout for dashboard
+                                content.
+                            </p>
+                        </div>
+
+                        <label class="switch">
+                            <input
+                                id="compactModeToggle"
+                                type="checkbox"
+                            >
+
+                            <span class="slider"></span>
+                        </label>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+        <footer class="dashboard-footer">
+            <span>
+                © 2026 CampusHub — Premier University
+            </span>
+
+            <span>
+                Alumni Portal
+            </span>
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="./alumni.js"></script>
+
+</body>
+</html>

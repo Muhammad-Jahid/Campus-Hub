@@ -1,0 +1,1601 @@
+// =========================================================
+// CAMPUSHUB STUDENT DASHBOARD
+// student.js
+// =========================================================
+
+document.addEventListener("DOMContentLoaded", () => {
+  // =====================================================
+  // 1. CONFIGURATION
+  // =====================================================
+
+  const SESSION_KEY = "campusHubCurrentUser";
+
+  // =====================================================
+  // 2. GET CURRENT USER
+  // =====================================================
+
+  function getCurrentUser() {
+    const session = localStorage.getItem(SESSION_KEY);
+
+    if (!session) {
+      return null;
+    }
+
+    try {
+      return JSON.parse(session);
+    } catch (error) {
+      console.error("Invalid CampusHub session:", error);
+      localStorage.removeItem(SESSION_KEY);
+      return null;
+    }
+  }
+
+  const currentUser = getCurrentUser();
+
+  // =====================================================
+  // 3. AUTHENTICATION CHECK
+  // =====================================================
+
+  if (!currentUser) {
+    window.location.href = "./index.html";
+    return;
+  }
+
+  /*
+        A student should only access student.html.
+
+        If another role somehow reaches this page,
+        redirect them to the correct dashboard.
+    */
+
+  if (currentUser.role !== "student") {
+    if (currentUser.role === "alumni") {
+      window.location.href = "./alumni.html";
+      return;
+    }
+
+    if (currentUser.role === "admin") {
+      window.location.href = "./admin.html";
+      return;
+    }
+
+    localStorage.removeItem(SESSION_KEY);
+    window.location.href = "./index.html";
+    return;
+  }
+
+  // =====================================================
+  // 4. HELPER FUNCTIONS
+  // =====================================================
+
+  function getInitials(name) {
+    if (!name) {
+      return "ST";
+    }
+
+    const words = name.trim().split(/\s+/).filter(Boolean);
+
+    if (words.length === 1) {
+      return words[0].substring(0, 2).toUpperCase();
+    }
+
+    return (
+      words[0].charAt(0) + words[words.length - 1].charAt(0)
+    ).toUpperCase();
+  }
+
+  function getFirstName(name) {
+    if (!name) {
+      return "Student";
+    }
+
+    return name.trim().split(/\s+/)[0];
+  }
+
+  function setText(id, value) {
+    const element = document.getElementById(id);
+
+    if (element) {
+      element.textContent = value || "";
+    }
+  }
+
+  // =====================================================
+  // 5. LOAD STUDENT INFORMATION
+  // =====================================================
+
+  const fullName = currentUser.name || "Student";
+  const firstName = getFirstName(fullName);
+  const email = currentUser.email || "student@premier.edu";
+  const avatar = currentUser.avatar || getInitials(fullName);
+
+  const department = currentUser.department || "Computer Science & Engineering";
+
+  const batch = currentUser.batch || "2026";
+
+  const section = currentUser.section || "Section A";
+
+  // Sidebar
+  setText("sidebarUserName", fullName);
+  setText("sidebarAvatar", avatar);
+
+  // Topbar
+  setText("topbarUserName", fullName);
+  setText("topbarAvatar", avatar);
+
+  // Profile dropdown
+  setText("dropdownUserName", fullName);
+  setText("dropdownUserEmail", email);
+  setText("dropdownAvatar", avatar);
+
+  // Welcome banner
+  setText("welcomeName", firstName);
+
+  // Profile page
+  setText("profileName", fullName);
+  setText("profileEmail", email);
+  setText("profileAvatar", avatar);
+  setText("profileDepartment", department);
+  setText("profileBatch", batch);
+  setText("profileSection", section);
+
+  // =====================================================
+  // 6. DOM ELEMENTS
+  // =====================================================
+
+  const sidebar = document.getElementById("sidebar");
+  const sidebarOverlay = document.getElementById("sidebarOverlay");
+  const mobileMenuButton = document.getElementById("mobileMenuButton");
+  const sidebarClose = document.getElementById("sidebarClose");
+
+  const notificationButton = document.getElementById("notificationButton");
+
+  const notificationDropdown = document.getElementById("notificationDropdown");
+
+  const profileButton = document.getElementById("profileButton");
+
+  const profileDropdown = document.getElementById("profileDropdown");
+
+  const logoutButton = document.getElementById("logoutButton");
+
+  const dropdownLogout = document.getElementById("dropdownLogout");
+
+  const markNotificationsRead = document.getElementById(
+    "markNotificationsRead",
+  );
+
+  const globalSearch = document.getElementById("globalSearch");
+
+  const pageTitle = document.getElementById("pageTitle");
+
+  // =====================================================
+  // 7. SIDEBAR MOBILE CONTROLS
+  // =====================================================
+
+  function openSidebar() {
+    if (!sidebar) {
+      return;
+    }
+
+    sidebar.classList.add("mobile-open");
+
+    if (sidebarOverlay) {
+      sidebarOverlay.classList.add("show");
+    }
+  }
+
+  function closeSidebar() {
+    if (!sidebar) {
+      return;
+    }
+
+    sidebar.classList.remove("mobile-open");
+
+    if (sidebarOverlay) {
+      sidebarOverlay.classList.remove("show");
+    }
+  }
+
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener("click", openSidebar);
+  }
+
+  if (sidebarClose) {
+    sidebarClose.addEventListener("click", closeSidebar);
+  }
+
+  if (sidebarOverlay) {
+    sidebarOverlay.addEventListener("click", closeSidebar);
+  }
+
+  // =====================================================
+  // 8. PAGE SECTION NAVIGATION
+  // =====================================================
+
+  const navItems = document.querySelectorAll(".nav-item");
+  const contentSections = document.querySelectorAll(".content-section");
+
+  const sectionMap = {
+    dashboard: "dashboardSection",
+    announcements: "announcementsSection",
+    events: "eventsSection",
+    resources: "resourcesSection",
+    communities: "communitiesSection",
+    jobs: "jobsSection",
+    alumni: "alumniSection",
+    profile: "profileSection",
+    notifications: "notificationsSection",
+    settings: "settingsSection",
+  };
+
+  const pageTitles = {
+    dashboard: "Dashboard",
+    announcements: "Announcements",
+    events: "Events",
+    resources: "Academic Resources",
+    communities: "Communities",
+    jobs: "Jobs & Internships",
+    alumni: "Alumni Network",
+    profile: "My Profile",
+    notifications: "Notifications",
+    settings: "Settings",
+  };
+
+  function showSection(sectionName, updateHash = true) {
+    const targetId = sectionMap[sectionName];
+
+    if (!targetId) {
+      sectionName = "dashboard";
+    }
+
+    const finalTargetId = sectionMap[sectionName] || sectionMap.dashboard;
+
+    contentSections.forEach((section) => {
+      section.classList.remove("active-section");
+    });
+
+    const targetSection = document.getElementById(finalTargetId);
+
+    if (targetSection) {
+      targetSection.classList.add("active-section");
+    }
+
+    navItems.forEach((item) => {
+      item.classList.remove("active");
+
+      if (item.dataset.section === sectionName) {
+        item.classList.add("active");
+      }
+    });
+
+    if (pageTitle) {
+      pageTitle.textContent = pageTitles[sectionName] || "Dashboard";
+    }
+
+    if (updateHash) {
+      history.replaceState(null, "", `#${sectionName}`);
+    }
+
+    closeSidebar();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const sectionName = item.dataset.section;
+
+      showSection(sectionName);
+    });
+  });
+
+  // =====================================================
+  // 9. HASH NAVIGATION
+  // =====================================================
+
+  function loadSectionFromHash() {
+    const hash = window.location.hash.replace("#", "").trim();
+
+    if (hash && sectionMap[hash]) {
+      showSection(hash, false);
+    } else {
+      showSection("dashboard", false);
+    }
+  }
+
+  loadSectionFromHash();
+
+  window.addEventListener("hashchange", () => {
+    loadSectionFromHash();
+  });
+
+  // =====================================================
+  // 10. CLOSE DROPDOWNS
+  // =====================================================
+
+  function closeDropdowns() {
+    if (notificationDropdown) {
+      notificationDropdown.classList.remove("show");
+    }
+
+    if (profileDropdown) {
+      profileDropdown.classList.remove("show");
+    }
+  }
+
+  // =====================================================
+  // 11. NOTIFICATION DROPDOWN
+  // =====================================================
+
+  if (notificationButton) {
+    notificationButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      if (profileDropdown) {
+        profileDropdown.classList.remove("show");
+      }
+
+      notificationDropdown.classList.toggle("show");
+    });
+  }
+
+  // =====================================================
+  // 12. PROFILE DROPDOWN
+  // =====================================================
+
+  if (profileButton) {
+    profileButton.addEventListener("click", (event) => {
+      event.stopPropagation();
+
+      if (notificationDropdown) {
+        notificationDropdown.classList.remove("show");
+      }
+
+      profileDropdown.classList.toggle("show");
+    });
+  }
+
+  // Prevent dropdown click from closing itself
+  if (notificationDropdown) {
+    notificationDropdown.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  }
+
+  if (profileDropdown) {
+    profileDropdown.addEventListener("click", (event) => {
+      event.stopPropagation();
+    });
+  }
+
+  document.addEventListener("click", () => {
+    closeDropdowns();
+  });
+
+  // =====================================================
+  // 13. MARK NOTIFICATIONS AS READ
+  // =====================================================
+
+  if (markNotificationsRead) {
+    markNotificationsRead.addEventListener("click", () => {
+      const unreadItems = document.querySelectorAll(
+        ".notification-item.unread",
+      );
+
+      unreadItems.forEach((item) => {
+        item.classList.remove("unread");
+      });
+
+      const notificationDot = document.querySelector(".notification-dot");
+
+      if (notificationDot) {
+        notificationDot.style.display = "none";
+      }
+
+      const notificationCount = document.querySelector(".notification-count");
+
+      if (notificationCount) {
+        notificationCount.textContent = "0";
+      }
+
+      const headerCount = document.querySelector(".dropdown-header span");
+
+      if (headerCount) {
+        headerCount.textContent = "You're all caught up";
+      }
+    });
+  }
+
+  // =====================================================
+  // 14. PROFILE DROPDOWN LINKS
+  // =====================================================
+
+  const profileLinks = profileDropdown
+    ? profileDropdown.querySelectorAll("a")
+    : [];
+
+  profileLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const href = link.getAttribute("href");
+
+      if (href && href.startsWith("#")) {
+        const section = href.substring(1);
+
+        if (sectionMap[section]) {
+          showSection(section);
+        }
+      }
+
+      closeDropdowns();
+    });
+  });
+
+  // =====================================================
+  // 15. LOGOUT
+  // =====================================================
+  /* =========================================================
+   LOGOUT — STUDENT ONLY
+========================================================= */
+
+  function logout() {
+    localStorage.removeItem("campusHubCurrentUser");
+    window.location.href = "./index.html";
+  }
+
+  document
+    .getElementById("logoutButton")
+    ?.addEventListener("click", function (event) {
+      event.preventDefault();
+      logout();
+    });
+
+  document
+    .getElementById("dropdownLogout")
+    ?.addEventListener("click", function (event) {
+      event.preventDefault();
+      logout();
+    });
+
+  // =====================================================
+  // 16. SEARCH
+  // =====================================================
+
+  const searchableElements = document.querySelectorAll(
+    ".dashboard-card, .announcement-item, .event-item, " +
+      ".resource-item, .job-item, .community-item, " +
+      ".activity-item",
+  );
+
+  function clearSearchHighlights() {
+    searchableElements.forEach((element) => {
+      element.classList.remove("search-highlight");
+    });
+  }
+
+  function performSearch(query) {
+    clearSearchHighlights();
+
+    const cleanQuery = query.trim().toLowerCase();
+
+    if (!cleanQuery) {
+      return;
+    }
+
+    let firstMatch = null;
+
+    searchableElements.forEach((element) => {
+      const text = element.textContent.toLowerCase();
+
+      if (text.includes(cleanQuery)) {
+        element.classList.add("search-highlight");
+
+        if (!firstMatch) {
+          firstMatch = element;
+        }
+      }
+    });
+
+    if (firstMatch) {
+      firstMatch.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+    }
+  }
+
+  if (globalSearch) {
+    globalSearch.addEventListener("input", (event) => {
+      performSearch(event.target.value);
+    });
+
+    globalSearch.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        globalSearch.value = "";
+
+        clearSearchHighlights();
+
+        globalSearch.blur();
+      }
+    });
+  }
+
+  // =====================================================
+  // 17. SEARCH SHORTCUT
+  // =====================================================
+
+  document.addEventListener("keydown", (event) => {
+    const isShortcut =
+      (event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "k";
+
+    if (isShortcut) {
+      event.preventDefault();
+
+      if (globalSearch) {
+        globalSearch.focus();
+      }
+    }
+  });
+
+  // =====================================================
+  // 18. SAVED JOBS
+  // =====================================================
+
+  const SAVED_JOBS_KEY = "campusHubSavedJobs";
+
+  function getSavedJobs() {
+    const saved = localStorage.getItem(SAVED_JOBS_KEY);
+
+    if (!saved) {
+      return [];
+    }
+
+    try {
+      return JSON.parse(saved);
+    } catch (error) {
+      return [];
+    }
+  }
+
+  function saveSavedJobs(jobs) {
+    localStorage.setItem(SAVED_JOBS_KEY, JSON.stringify(jobs));
+  }
+
+  const saveJobButtons = document.querySelectorAll(".save-job");
+
+  saveJobButtons.forEach((button, index) => {
+    const jobId = `student-job-${index + 1}`;
+
+    const savedJobs = getSavedJobs();
+
+    if (savedJobs.includes(jobId)) {
+      button.classList.add("saved");
+
+      const icon = button.querySelector("i");
+
+      if (icon) {
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid");
+      }
+    }
+
+    button.addEventListener("click", () => {
+      let jobs = getSavedJobs();
+
+      const icon = button.querySelector("i");
+
+      if (jobs.includes(jobId)) {
+        jobs = jobs.filter((id) => id !== jobId);
+
+        button.classList.remove("saved");
+
+        if (icon) {
+          icon.classList.remove("fa-solid");
+          icon.classList.add("fa-regular");
+        }
+      } else {
+        jobs.push(jobId);
+
+        button.classList.add("saved");
+
+        if (icon) {
+          icon.classList.remove("fa-regular");
+          icon.classList.add("fa-solid");
+        }
+      }
+
+      saveSavedJobs(jobs);
+    });
+  });
+
+  // =====================================================
+  // 19. "VIEW ALL" LINKS
+  // =====================================================
+
+  const viewAllLinks = document.querySelectorAll(".view-all[href^='#']");
+
+  viewAllLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      const href = link.getAttribute("href");
+
+      if (!href) {
+        return;
+      }
+
+      const section = href.substring(1);
+
+      if (sectionMap[section]) {
+        showSection(section);
+      }
+    });
+  });
+
+  // =====================================================
+  // 20. RESOURCE LINKS
+  // =====================================================
+
+  const resourceLinks = document.querySelectorAll(".resource-item[href^='#']");
+
+  resourceLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      showSection("resources");
+    });
+  });
+
+  // =====================================================
+  // 21. COMMUNITY LINKS
+  // =====================================================
+
+  const communityLinks = document.querySelectorAll(
+    ".community-item[href^='#']",
+  );
+
+  communityLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+
+      showSection("communities");
+    });
+  });
+
+  // =====================================================
+  // 22. PREVENT EMPTY FOOTER LINKS
+  // =====================================================
+
+  const emptyLinks = document.querySelectorAll('.dashboard-footer a[href="#"]');
+
+  emptyLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+    });
+  });
+
+  // =====================================================
+  // 23. SAVE SESSION HELPER
+  // =====================================================
+
+  window.getCampusHubStudent = function () {
+    return getCurrentUser();
+  };
+
+  // =====================================================
+  // 24. LOGOUT GLOBAL HELPER
+  // =====================================================
+
+  window.logoutCampusHub = function () {
+    localStorage.removeItem(SESSION_KEY);
+
+    window.location.href = "./index.html";
+  };
+
+  // =====================================================
+  // 25. DEBUG INFORMATION
+  // =====================================================
+
+  console.log("CampusHub Student Dashboard loaded.");
+
+  console.log("Logged in student:", currentUser);
+});
+
+/* =========================================================
+   ANNOUNCEMENTS / EVENTS / RESOURCES
+   ISOLATED FUNCTIONAL MODULE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ANNOUNCEMENTS_KEY = "campusHubAnnouncements";
+  const EVENTS_KEY = "campusHubEvents";
+  const RESOURCES_KEY = "campusHubResources";
+  const RSVP_KEY = "campusHubEventRSVPs";
+
+  const defaultAnnouncements = [
+    {
+      id: "a1",
+      title: "Mid-Term Examination Schedule Published",
+      category: "Academic",
+      date: "2026-09-18",
+      description:
+        "The mid-term examination schedule has been published. Students should check their department notice board for room assignments.",
+    },
+    {
+      id: "a2",
+      title: "CampusHub Community Registration Open",
+      category: "Community",
+      date: "2026-09-16",
+      description:
+        "Students can now join academic, cultural, technical and recreational communities through CampusHub.",
+    },
+    {
+      id: "a3",
+      title: "Library Extended Hours",
+      category: "Library",
+      date: "2026-09-14",
+      description:
+        "The university library will remain open until 10:00 PM during the examination preparation period.",
+    },
+    {
+      id: "a4",
+      title: "Career Development Workshop",
+      category: "Career",
+      date: "2026-09-12",
+      description:
+        "A workshop covering CV preparation, interviews and professional networking will be held this month.",
+    },
+  ];
+
+  const defaultEvents = [
+    {
+      id: "e1",
+      title: "Campus Career Fair 2026",
+      date: "2026-09-28",
+      time: "10:00 AM - 4:00 PM",
+      location: "University Auditorium",
+      category: "Career",
+      description:
+        "Meet recruiters from leading companies and explore internship and graduate opportunities.",
+    },
+    {
+      id: "e2",
+      title: "Inter-University Programming Contest",
+      date: "2026-10-03",
+      time: "9:00 AM - 5:00 PM",
+      location: "CSE Department Lab",
+      category: "Academic",
+      description: "A competitive programming event for university students.",
+    },
+    {
+      id: "e3",
+      title: "Alumni Networking Evening",
+      date: "2026-10-10",
+      time: "5:30 PM - 8:00 PM",
+      location: "University Conference Hall",
+      category: "Networking",
+      description:
+        "Connect with alumni and learn about careers and professional opportunities.",
+    },
+    {
+      id: "e4",
+      title: "Freshers Cultural Night",
+      date: "2026-10-17",
+      time: "6:00 PM - 9:30 PM",
+      location: "Central Auditorium",
+      category: "Cultural",
+      description:
+        "An evening of music, performances, games and student activities.",
+    },
+  ];
+
+  const defaultResources = [
+    {
+      id: "r1",
+      title: "Database Management Systems",
+      course: "CSE 311",
+      type: "Lecture Notes",
+      date: "2026-09-15",
+    },
+    {
+      id: "r2",
+      title: "Data Structures & Algorithms",
+      course: "CSE 221",
+      type: "Study Guide",
+      date: "2026-09-13",
+    },
+    {
+      id: "r3",
+      title: "Computer Networks — Chapter 1-5",
+      course: "CSE 331",
+      type: "Lecture Slides",
+      date: "2026-09-11",
+    },
+    {
+      id: "r4",
+      title: "Software Engineering Previous Questions",
+      course: "CSE 341",
+      type: "Previous Questions",
+      date: "2026-09-09",
+    },
+    {
+      id: "r5",
+      title: "Operating Systems Lab Manual",
+      course: "CSE 321",
+      type: "Lab Manual",
+      date: "2026-09-07",
+    },
+  ];
+
+  function getData(key, fallback) {
+    try {
+      const data = JSON.parse(localStorage.getItem(key));
+
+      if (Array.isArray(data)) {
+        return data;
+      }
+
+      return fallback;
+    } catch {
+      return fallback;
+    }
+  }
+
+  function setData(key, data) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function formatDate(date) {
+    return new Date(date).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  }
+
+  /* Create demo data only once */
+
+  if (!localStorage.getItem(ANNOUNCEMENTS_KEY)) {
+    setData(ANNOUNCEMENTS_KEY, defaultAnnouncements);
+  }
+
+  if (!localStorage.getItem(EVENTS_KEY)) {
+    setData(EVENTS_KEY, defaultEvents);
+  }
+
+  if (!localStorage.getItem(RESOURCES_KEY)) {
+    setData(RESOURCES_KEY, defaultResources);
+  }
+
+  if (!localStorage.getItem(RSVP_KEY)) {
+    setData(RSVP_KEY, {});
+  }
+
+  /* =====================================================
+       ANNOUNCEMENTS
+    ===================================================== */
+
+  const announcementsList = document.getElementById("announcementsList");
+
+  const announcementSearch = document.getElementById("announcementSearch");
+
+  function renderAnnouncements(search = "") {
+    if (!announcementsList) return;
+
+    const announcements = getData(ANNOUNCEMENTS_KEY, defaultAnnouncements);
+
+    const query = search.toLowerCase().trim();
+
+    const filtered = announcements.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.category.toLowerCase().includes(query) ||
+        item.description.toLowerCase().includes(query)
+      );
+    });
+
+    if (filtered.length === 0) {
+      announcementsList.innerHTML = `
+                <div class="empty-state">
+                    <h3>No announcements found</h3>
+                    <p>Try another search.</p>
+                </div>
+            `;
+      return;
+    }
+
+    announcementsList.innerHTML = filtered
+      .map(
+        (item) => `
+            <article class="functional-card announcement-functional-card">
+
+                <div class="functional-card-top">
+                    <span class="functional-tag">
+                        ${escapeHTML(item.category)}
+                    </span>
+
+                    <span class="functional-date">
+                        ${formatDate(item.date)}
+                    </span>
+                </div>
+
+                <h3>${escapeHTML(item.title)}</h3>
+
+                <p>${escapeHTML(item.description)}</p>
+
+                <button
+                    type="button"
+                    class="functional-link"
+                    data-announcement-id="${escapeHTML(item.id)}"
+                >
+                    Read more
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </article>
+        `,
+      )
+      .join("");
+  }
+
+  if (announcementSearch) {
+    announcementSearch.addEventListener("input", function () {
+      renderAnnouncements(this.value);
+    });
+  }
+
+  if (announcementsList) {
+    announcementsList.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-announcement-id]");
+
+      if (!button) return;
+
+      const announcements = getData(ANNOUNCEMENTS_KEY, defaultAnnouncements);
+
+      const item = announcements.find(
+        (announcement) => announcement.id === button.dataset.announcementId,
+      );
+
+      if (!item) return;
+
+      alert(
+        `${item.title}\n\n${item.description}\n\nPublished: ${formatDate(item.date)}`,
+      );
+    });
+  }
+
+  renderAnnouncements();
+
+  /* =====================================================
+       EVENTS
+    ===================================================== */
+
+  const eventsList = document.getElementById("eventsList");
+
+  function getRSVPs() {
+    try {
+      return JSON.parse(localStorage.getItem(RSVP_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+
+  function renderEvents(filter = "all") {
+    if (!eventsList) return;
+
+    const events = getData(EVENTS_KEY, defaultEvents);
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let filteredEvents = events;
+
+    if (filter === "upcoming") {
+      filteredEvents = events.filter((event) => {
+        return new Date(event.date) >= today;
+      });
+    }
+
+    const rsvps = getRSVPs();
+
+    eventsList.innerHTML = filteredEvents
+      .map((event) => {
+        const eventDate = new Date(event.date);
+
+        const confirmed = Boolean(rsvps[event.id]);
+
+        return `
+                <article class="functional-card event-functional-card">
+
+                    <div class="event-functional-date">
+                        <span>
+                            ${eventDate.toLocaleDateString("en-US", {
+                              month: "short",
+                            })}
+                        </span>
+
+                        <strong>
+                            ${eventDate.getDate()}
+                        </strong>
+                    </div>
+
+                    <div class="event-functional-content">
+
+                        <span class="functional-tag">
+                            ${escapeHTML(event.category)}
+                        </span>
+
+                        <h3>${escapeHTML(event.title)}</h3>
+
+                        <p>${escapeHTML(event.description)}</p>
+
+                        <div class="functional-meta">
+                            <span>
+                                <i class="fa-regular fa-clock"></i>
+                                ${escapeHTML(event.time)}
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-location-dot"></i>
+                                ${escapeHTML(event.location)}
+                            </span>
+                        </div>
+
+                        <button
+                            type="button"
+                            class="rsvp-button ${confirmed ? "confirmed" : ""}"
+                            data-event-id="${escapeHTML(event.id)}"
+                        >
+                            ${
+                              confirmed
+                                ? '<i class="fa-solid fa-check"></i> RSVP Confirmed'
+                                : "RSVP"
+                            }
+                        </button>
+
+                    </div>
+                </article>
+            `;
+      })
+      .join("");
+  }
+
+  document.querySelectorAll(".event-filter").forEach((button) => {
+    button.addEventListener("click", function () {
+      document.querySelectorAll(".event-filter").forEach((item) => {
+        item.classList.remove("active");
+      });
+
+      this.classList.add("active");
+
+      renderEvents(this.dataset.filter);
+    });
+  });
+
+  if (eventsList) {
+    eventsList.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-event-id]");
+
+      if (!button) return;
+
+      const id = button.dataset.eventId;
+
+      const rsvps = getRSVPs();
+
+      if (rsvps[id]) {
+        delete rsvps[id];
+
+        setData(RSVP_KEY, rsvps);
+
+        renderEvents(
+          document.querySelector(".event-filter.active")?.dataset.filter ||
+            "all",
+        );
+
+        return;
+      }
+
+      rsvps[id] = {
+        userId:
+          JSON.parse(localStorage.getItem("campusHubCurrentUser"))?.id ||
+          "student",
+        date: new Date().toISOString(),
+      };
+
+      setData(RSVP_KEY, rsvps);
+
+      renderEvents(
+        document.querySelector(".event-filter.active")?.dataset.filter || "all",
+      );
+    });
+  }
+
+  renderEvents();
+
+  /* =====================================================
+       ACADEMIC RESOURCES
+    ===================================================== */
+
+  const resourcesList = document.getElementById("resourcesList");
+
+  const resourceSearch = document.getElementById("resourceSearch");
+
+  function renderResources(search = "") {
+    if (!resourcesList) return;
+
+    const resources = getData(RESOURCES_KEY, defaultResources);
+
+    const query = search.toLowerCase().trim();
+
+    const filtered = resources.filter((item) => {
+      return (
+        item.title.toLowerCase().includes(query) ||
+        item.course.toLowerCase().includes(query) ||
+        item.type.toLowerCase().includes(query)
+      );
+    });
+
+    if (filtered.length === 0) {
+      resourcesList.innerHTML = `
+                <div class="empty-state">
+                    <h3>No resources found</h3>
+                    <p>Try another course or keyword.</p>
+                </div>
+            `;
+      return;
+    }
+
+    resourcesList.innerHTML = filtered
+      .map(
+        (item) => `
+            <article class="functional-card resource-functional-card">
+
+                <div class="resource-functional-icon">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+
+                <div class="resource-functional-content">
+
+                    <span class="functional-tag">
+                        ${escapeHTML(item.type)}
+                    </span>
+
+                    <h3>${escapeHTML(item.title)}</h3>
+
+                    <p class="resource-course">
+                        ${escapeHTML(item.course)}
+                    </p>
+
+                    <span class="functional-date">
+                        Added ${formatDate(item.date)}
+                    </span>
+
+                    <button
+                        type="button"
+                        class="functional-link"
+                        data-resource-id="${escapeHTML(item.id)}"
+                    >
+                        View Resource
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </article>
+        `,
+      )
+      .join("");
+  }
+
+  if (resourceSearch) {
+    resourceSearch.addEventListener("input", function () {
+      renderResources(this.value);
+    });
+  }
+
+  if (resourcesList) {
+    resourcesList.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-resource-id]");
+
+      if (!button) return;
+
+      const resources = getData(RESOURCES_KEY, defaultResources);
+
+      const item = resources.find(
+        (resource) => resource.id === button.dataset.resourceId,
+      );
+
+      if (!item) return;
+
+      alert(
+        `${item.title}\n\nCourse: ${item.course}\nType: ${item.type}\n\nThis is a demo resource in the frontend prototype.`,
+      );
+    });
+  }
+
+  renderResources();
+});
+
+/* =========================================================
+   ALUMNI DIRECTORY
+   ISOLATED FUNCTIONAL MODULE
+========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const ALUMNI_KEY = "campusHubAlumniDirectory";
+
+  /* =====================================================
+       DEFAULT ALUMNI DATA
+    ===================================================== */
+
+  const defaultAlumni = [
+    {
+      id: "alumni-001",
+      name: "Tanvir Ahmed",
+      department: "Computer Science & Engineering",
+      graduationYear: "2020",
+      company: "Orbit Labs",
+      jobTitle: "Software Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "alumni@premier.edu",
+      skills: ["JavaScript", "React", "Node.js"],
+      bio: "Software engineer focused on building scalable web applications and developer tools.",
+      avatar: "TA",
+    },
+    {
+      id: "alumni-002",
+      name: "Nusrat Jahan",
+      department: "Business Administration",
+      graduationYear: "2021",
+      company: "Grameen Digital",
+      jobTitle: "Product Marketing Manager",
+      location: "Dhaka, Bangladesh",
+      email: "nusrat.jahan@alumni.premier.edu",
+      skills: ["Marketing", "Strategy", "Brand Management"],
+      bio: "Product marketing professional with experience in digital growth, customer research, and brand strategy.",
+      avatar: "NJ",
+    },
+    {
+      id: "alumni-003",
+      name: "Sabbir Hossain",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2022",
+      company: "Walton",
+      jobTitle: "Embedded Systems Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "sabbir.hossain@alumni.premier.edu",
+      skills: ["Embedded Systems", "IoT", "C/C++"],
+      bio: "Engineer working on embedded systems, connected devices, and hardware-software integration.",
+      avatar: "SH",
+    },
+    {
+      id: "alumni-004",
+      name: "Farzana Karim",
+      department: "English",
+      graduationYear: "2023",
+      company: "The Daily Star",
+      jobTitle: "Content Editor",
+      location: "Dhaka, Bangladesh",
+      email: "farzana.karim@alumni.premier.edu",
+      skills: ["Writing", "Editing", "Content Strategy"],
+      bio: "Editor and writer interested in journalism, storytelling, digital media, and communications.",
+      avatar: "FK",
+    },
+    {
+      id: "alumni-005",
+      name: "Mahin Chowdhury",
+      department: "Architecture",
+      graduationYear: "2024",
+      company: "UrbanForm Studio",
+      jobTitle: "Junior Architect",
+      location: "Chattogram, Bangladesh",
+      email: "mahin.chowdhury@alumni.premier.edu",
+      skills: ["AutoCAD", "3D Modeling", "Urban Design"],
+      bio: "Architect working on residential, commercial, and urban design projects.",
+      avatar: "MC",
+    },
+    {
+      id: "alumni-006",
+      name: "Rafiul Islam",
+      department: "Computer Science & Engineering",
+      graduationYear: "2025",
+      company: "Pathao",
+      jobTitle: "Associate Software Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "rafiul.islam@alumni.premier.edu",
+      skills: ["Python", "Django", "PostgreSQL"],
+      bio: "Backend-focused software engineer interested in APIs, distributed systems, and data-driven applications.",
+      avatar: "RI",
+    },
+    {
+      id: "alumni-007",
+      name: "Samira Rahman",
+      department: "Business Administration",
+      graduationYear: "2022",
+      company: "bKash",
+      jobTitle: "Business Analyst",
+      location: "Dhaka, Bangladesh",
+      email: "samira.rahman@alumni.premier.edu",
+      skills: ["Business Analysis", "Excel", "Data Visualization"],
+      bio: "Business analyst working across operations, reporting, and data-driven decision making.",
+      avatar: "SR",
+    },
+    {
+      id: "alumni-008",
+      name: "Adnan Kabir",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2021",
+      company: "Robi Axiata",
+      jobTitle: "Network Engineer",
+      location: "Dhaka, Bangladesh",
+      email: "adnan.kabir@alumni.premier.edu",
+      skills: ["Networking", "Telecommunications", "Linux"],
+      bio: "Telecommunications professional working on network operations and infrastructure.",
+      avatar: "AK",
+    },
+  ];
+
+  /* =====================================================
+       STORAGE
+    ===================================================== */
+
+  function getAlumni() {
+    try {
+      const data = JSON.parse(localStorage.getItem(ALUMNI_KEY));
+
+      return Array.isArray(data) ? data : defaultAlumni;
+    } catch {
+      return defaultAlumni;
+    }
+  }
+
+  if (!localStorage.getItem(ALUMNI_KEY)) {
+    localStorage.setItem(ALUMNI_KEY, JSON.stringify(defaultAlumni));
+  }
+
+  /* =====================================================
+       HELPERS
+    ===================================================== */
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function getInitials(name) {
+    return String(name)
+      .trim()
+      .split(/\s+/)
+      .slice(0, 2)
+      .map((word) => word.charAt(0).toUpperCase())
+      .join("");
+  }
+
+  /* =====================================================
+       ELEMENTS
+    ===================================================== */
+
+  const alumniList = document.getElementById("alumniList");
+
+  const alumniSearch = document.getElementById("alumniSearch");
+
+  const departmentFilter = document.getElementById("alumniDepartmentFilter");
+
+  const yearFilter = document.getElementById("alumniYearFilter");
+
+  const resultCount = document.getElementById("alumniResultCount");
+
+  /* =====================================================
+       RENDER
+    ===================================================== */
+
+  function renderAlumni() {
+    if (!alumniList) return;
+
+    const alumni = getAlumni();
+
+    const search = alumniSearch?.value?.toLowerCase().trim() || "";
+
+    const department = departmentFilter?.value || "all";
+
+    const year = yearFilter?.value || "all";
+
+    const filtered = alumni.filter((person) => {
+      const searchMatch =
+        !search ||
+        person.name.toLowerCase().includes(search) ||
+        person.company.toLowerCase().includes(search) ||
+        person.jobTitle.toLowerCase().includes(search) ||
+        person.department.toLowerCase().includes(search) ||
+        person.location.toLowerCase().includes(search);
+
+      const departmentMatch =
+        department === "all" || person.department === department;
+
+      const yearMatch = year === "all" || person.graduationYear === year;
+
+      return searchMatch && departmentMatch && yearMatch;
+    });
+
+    if (resultCount) {
+      resultCount.textContent = filtered.length;
+    }
+
+    if (!filtered.length) {
+      alumniList.innerHTML = `
+                <div class="alumni-empty-state">
+                    <div class="alumni-empty-icon">
+                        <i class="fa-solid fa-user-group"></i>
+                    </div>
+
+                    <h3>No alumni found</h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+                </div>
+            `;
+
+      return;
+    }
+
+    alumniList.innerHTML = filtered
+      .map(
+        (person) => `
+            <article class="alumni-functional-card">
+
+                <div class="alumni-card-top">
+
+                    <div class="alumni-avatar">
+                        ${escapeHTML(person.avatar || getInitials(person.name))}
+                    </div>
+
+                    <div class="alumni-basic-info">
+
+                        <span class="alumni-year-badge">
+                            Class of ${escapeHTML(person.graduationYear)}
+                        </span>
+
+                        <h3>
+                            ${escapeHTML(person.name)}
+                        </h3>
+
+                        <p class="alumni-job-title">
+                            ${escapeHTML(person.jobTitle)}
+                        </p>
+
+                        <p class="alumni-company">
+                            <i class="fa-regular fa-building"></i>
+                            ${escapeHTML(person.company)}
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="alumni-card-divider"></div>
+
+                <div class="alumni-card-details">
+
+                    <div class="alumni-detail-item">
+                        <span class="alumni-detail-label">
+                            Department
+                        </span>
+
+                        <span class="alumni-detail-value">
+                            ${escapeHTML(person.department)}
+                        </span>
+                    </div>
+
+                    <div class="alumni-detail-item">
+                        <span class="alumni-detail-label">
+                            Location
+                        </span>
+
+                        <span class="alumni-detail-value">
+                            <i class="fa-solid fa-location-dot"></i>
+                            ${escapeHTML(person.location)}
+                        </span>
+                    </div>
+
+                </div>
+
+                <div class="alumni-skill-list">
+                    ${person.skills
+                      .map(
+                        (skill) => `
+                        <span class="alumni-skill">
+                            ${escapeHTML(skill)}
+                        </span>
+                    `,
+                      )
+                      .join("")}
+                </div>
+
+                <div class="alumni-card-footer">
+
+                    <button
+                        type="button"
+                        class="alumni-view-button"
+                        data-alumni-view="${escapeHTML(person.id)}"
+                    >
+                        View Profile
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+
+                </div>
+
+            </article>
+        `,
+      )
+      .join("");
+  }
+
+  /* =====================================================
+       FILTER EVENTS
+    ===================================================== */
+
+  if (alumniSearch) {
+    alumniSearch.addEventListener("input", renderAlumni);
+  }
+
+  if (departmentFilter) {
+    departmentFilter.addEventListener("change", renderAlumni);
+  }
+
+  if (yearFilter) {
+    yearFilter.addEventListener("change", renderAlumni);
+  }
+
+  /* =====================================================
+       VIEW PROFILE
+    ===================================================== */
+
+  if (alumniList) {
+    alumniList.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-alumni-view]");
+
+      if (!button) return;
+
+      const alumni = getAlumni().find(
+        (person) => person.id === button.dataset.alumniView,
+      );
+
+      if (!alumni) return;
+
+      const skillText = alumni.skills.join(" • ");
+
+      alert(
+        `${alumni.name}\n\n` +
+          `${alumni.jobTitle} at ${alumni.company}\n\n` +
+          `Class of ${alumni.graduationYear}\n` +
+          `${alumni.department}\n` +
+          `${alumni.location}\n\n` +
+          `Skills: ${skillText}\n\n` +
+          `${alumni.bio}\n\n` +
+          `Email: ${alumni.email}`,
+      );
+    });
+  }
+
+  renderAlumni();
+});

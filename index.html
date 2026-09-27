@@ -1,246 +1,146 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
 
-<head>
-
-    <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>CampusHub | Premier University</title>
-
 
     <!-- =====================================================
          GOOGLE FONTS
     ====================================================== -->
 
     <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
-        rel="stylesheet"
-    >
-
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- =====================================================
          FONT AWESOME
     ====================================================== -->
 
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
-    >
-
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
 
     <!-- =====================================================
          EXISTING AUTH / MAIN CSS
     ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="./style.css"
-    >
-
+    <link rel="stylesheet" href="./style.css" />
 
     <!-- =====================================================
          HOME PAGE CSS
     ====================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="./home.css"
-    >
+    <link rel="stylesheet" href="./style.css" />
+  </head>
 
-</head>
-
-
-<body>
-
-
+  <body>
     <!-- =====================================================
          NAVBAR
     ====================================================== -->
 
     <header class="navbar">
+      <div class="nav-container">
+        <!-- LOGO -->
 
-        <div class="nav-container">
+        <a href="/" class="logo">
+          <div class="logo-box">C</div>
 
+          <span> CampusHub </span>
+        </a>
 
-            <!-- LOGO -->
+        <!-- NAVIGATION -->
 
-            <a
-                href="index.html"
-                class="logo"
-            >
+        <nav class="nav-links">
+          <a href="index.html" class="active"> Home </a>
 
-                <div class="logo-box">
-                    C
-                </div>
+          <a href="#about"> About </a>
 
-                <span>
-                    CampusHub
-                </span>
+          <a href="#events"> Events </a>
 
-            </a>
+          <a href="#contact"> Contact </a>
+        </nav>
 
+        <!-- LOGIN / REGISTER -->
 
-            <!-- NAVIGATION -->
+        <div class="nav-auth">
+          <a href="auth.html" class="login-link"> Login </a>
 
-            <nav class="nav-links">
-
-                <a
-                    href="index.html"
-                    class="active"
-                >
-                    Home
-                </a>
-
-                <a href="#about">
-                    About
-                </a>
-
-                <a href="#events">
-                    Events
-                </a>
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-            </nav>
-
-
-            <!-- LOGIN / REGISTER -->
-
-            <div class="nav-auth">
-
-                <a
-                    href="auth.html"
-                    class="login-link"
-                >
-                    Login
-                </a>
-
-                <a
-                    href="auth.html"
-                    class="register-btn"
-                >
-                    Register
-                </a>
-
-            </div>
-
-
+          <a href="auth.html" class="register-btn"> Register </a>
         </div>
-
+      </div>
     </header>
-
-
 
     <!-- =====================================================
          MAIN CONTENT
     ====================================================== -->
 
     <main>
-
-
-        <!-- =================================================
+      <!-- =================================================
              HERO SECTION
         ================================================== -->
 
-        <section class="hero">
+      <section class="hero">
+        <div class="hero-container">
+          <!-- HERO LEFT CONTENT -->
 
-            <div class="hero-container">
+          <div class="hero-content">
+            <!-- SMALL BADGE -->
 
+            <div class="hero-badge">
+              <i class="fa-solid fa-star"></i>
 
-                <!-- HERO LEFT CONTENT -->
+              Premier University • Official Platform
+            </div>
 
-                <div class="hero-content">
+            <!-- MAIN HEADING -->
 
+            <h1>
+              Connect. Learn.
+              <br />
 
-                    <!-- SMALL BADGE -->
+              Grow.
+              <span>Together.</span>
+            </h1>
 
-                    <div class="hero-badge">
+            <!-- DESCRIPTION -->
 
-                        <i class="fa-solid fa-star"></i>
+            <p>
+              A digital community connecting Premier University students,
+              alumni, and opportunities — all in one place.
+            </p>
 
-                        Premier University • Official Platform
+            <!-- HERO BUTTONS -->
 
-                    </div>
+            <div class="hero-buttons">
+              <!-- GET STARTED -->
 
+              <a href="auth.html" class="primary-btn">
+                Get Started
 
-                    <!-- MAIN HEADING -->
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
 
-                    <h1>
+              <!-- EXPLORE COMMUNITY -->
 
-                        Connect. Learn.
-                        <br>
+              <a href="#community" class="secondary-btn">
+                Explore Community
 
-                        Grow.
-                        <span>Together.</span>
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+            </div>
+          </div>
 
-                    </h1>
-
-
-                    <!-- DESCRIPTION -->
-
-                    <p>
-
-                        A digital community connecting Premier University
-                        students, alumni, and opportunities — all in one place.
-
-                    </p>
-
-
-                    <!-- HERO BUTTONS -->
-
-                    <div class="hero-buttons">
-
-
-                        <!-- GET STARTED -->
-
-                        <a
-                            href="auth.html"
-                            class="primary-btn"
-                        >
-
-                            Get Started
-
-                            <i class="fa-solid fa-arrow-right"></i>
-
-                        </a>
-
-
-                        <!-- EXPLORE COMMUNITY -->
-
-                        <a
-                            href="#community"
-                            class="secondary-btn"
-                        >
-
-                            Explore Community
-
-                            <i class="fa-solid fa-arrow-down"></i>
-
-                        </a>
-
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- =================================================
+          <!-- =================================================
                      HERO VISUAL
                 ================================================== -->
 
-                <div class="hero-visual">
-
-
-                    <!--
+          <div class="hero-visual">
+            <!--
                         OPTIONAL HERO IMAGE
 
                         Later, if you have a real CampusHub hero image,
@@ -252,963 +152,471 @@
                         >
                     -->
 
+            <div class="hero-image-placeholder">
+              <!-- CAMPUSHUB CENTER LOGO -->
 
-                    <div class="hero-image-placeholder">
+              <div class="hero-logo-circle">
+                <div class="hero-logo-box">C</div>
 
+                <span> CampusHub </span>
+              </div>
 
-                        <!-- CAMPUSHUB CENTER LOGO -->
+              <!-- FLOATING ICON 1 -->
 
-                        <div class="hero-logo-circle">
+              <div class="floating-icon icon-one">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
 
-                            <div class="hero-logo-box">
-                                C
-                            </div>
+              <!-- FLOATING ICON 2 -->
 
-                            <span>
-                                CampusHub
-                            </span>
+              <div class="floating-icon icon-two">
+                <i class="fa-solid fa-users"></i>
+              </div>
 
-                        </div>
+              <!-- FLOATING ICON 3 -->
 
+              <div class="floating-icon icon-three">
+                <i class="fa-solid fa-lightbulb"></i>
+              </div>
 
-                        <!-- FLOATING ICON 1 -->
+              <!-- FLOATING ICON 4 -->
 
-                        <div class="floating-icon icon-one">
-
-                            <i class="fa-solid fa-graduation-cap"></i>
-
-                        </div>
-
-
-                        <!-- FLOATING ICON 2 -->
-
-                        <div class="floating-icon icon-two">
-
-                            <i class="fa-solid fa-users"></i>
-
-                        </div>
-
-
-                        <!-- FLOATING ICON 3 -->
-
-                        <div class="floating-icon icon-three">
-
-                            <i class="fa-solid fa-lightbulb"></i>
-
-                        </div>
-
-
-                        <!-- FLOATING ICON 4 -->
-
-                        <div class="floating-icon icon-four">
-
-                            <i class="fa-solid fa-handshake"></i>
-
-                        </div>
-
-
-                    </div>
-
-
-                </div>
-
-
+              <div class="floating-icon icon-four">
+                <i class="fa-solid fa-handshake"></i>
+              </div>
             </div>
+          </div>
+        </div>
+      </section>
 
-        </section>
-
-
-
-        <!-- =================================================
+      <!-- =================================================
              COMMUNITY SECTION
         ================================================== -->
 
-        <section
-            id="community"
-            class="community-section"
-        >
+      <section id="community" class="community-section">
+        <div class="section-heading">
+          <div class="section-label">CAMPUSHUB COMMUNITY</div>
 
+          <h2>
+            Everything Your University
+            <br />
+            Community Needs
+          </h2>
 
-            <div class="section-heading">
+          <p>
+            Connect with your university community, discover opportunities, and
+            grow together.
+          </p>
+        </div>
 
+        <!-- COMMUNITY CARDS -->
 
-                <div class="section-label">
-                    CAMPUSHUB COMMUNITY
-                </div>
+        <div class="feature-grid">
+          <!-- CARD 1 -->
 
-
-                <h2>
-
-                    Everything Your University
-                    <br>
-                    Community Needs
-
-                </h2>
-
-
-                <p>
-
-                    Connect with your university community,
-                    discover opportunities, and grow together.
-
-                </p>
-
-
+          <a href="auth.html" class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-users"></i>
             </div>
 
+            <h3>Communities</h3>
 
+            <p>
+              Connect with classmates, batches, clubs, and university
+              communities.
+            </p>
 
-            <!-- COMMUNITY CARDS -->
+            <span class="feature-link">
+              Explore
 
-            <div class="feature-grid">
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </a>
 
+          <!-- CARD 2 -->
 
-                <!-- CARD 1 -->
-
-                <a
-                    href="auth.html"
-                    class="feature-card"
-                >
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-users"></i>
-
-                    </div>
-
-
-                    <h3>
-                        Communities
-                    </h3>
-
-
-                    <p>
-
-                        Connect with classmates,
-                        batches, clubs, and university communities.
-
-                    </p>
-
-
-                    <span class="feature-link">
-
-                        Explore
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </span>
-
-                </a>
-
-
-
-                <!-- CARD 2 -->
-
-                <a
-                    href="auth.html"
-                    class="feature-card"
-                >
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-book-open"></i>
-
-                    </div>
-
-
-                    <h3>
-                        Notes & Resources
-                    </h3>
-
-
-                    <p>
-
-                        Share and discover useful academic
-                        notes, materials, and resources.
-
-                    </p>
-
-
-                    <span class="feature-link">
-
-                        Explore
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </span>
-
-                </a>
-
-
-
-                <!-- CARD 3 -->
-
-                <a
-                    href="auth.html"
-                    class="feature-card"
-                >
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-user-group"></i>
-
-                    </div>
-
-
-                    <h3>
-                        Alumni Network
-                    </h3>
-
-
-                    <p>
-
-                        Build meaningful connections with
-                        graduates and experienced alumni.
-
-                    </p>
-
-
-                    <span class="feature-link">
-
-                        Explore
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </span>
-
-                </a>
-
-
-
-                <!-- CARD 4 -->
-
-                <a
-                    href="auth.html"
-                    class="feature-card"
-                >
-
-                    <div class="feature-icon">
-
-                        <i class="fa-solid fa-briefcase"></i>
-
-                    </div>
-
-
-                    <h3>
-                        Jobs & Internships
-                    </h3>
-
-
-                    <p>
-
-                        Discover career opportunities,
-                        internships, and professional connections.
-
-                    </p>
-
-
-                    <span class="feature-link">
-
-                        Explore
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </span>
-
-                </a>
-
-
+          <a href="auth.html" class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-book-open"></i>
             </div>
 
+            <h3>Notes & Resources</h3>
 
-        </section>
+            <p>
+              Share and discover useful academic notes, materials, and
+              resources.
+            </p>
 
+            <span class="feature-link">
+              Explore
 
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </a>
 
-        <!-- =================================================
+          <!-- CARD 3 -->
+
+          <a href="auth.html" class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-user-group"></i>
+            </div>
+
+            <h3>Alumni Network</h3>
+
+            <p>
+              Build meaningful connections with graduates and experienced
+              alumni.
+            </p>
+
+            <span class="feature-link">
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </a>
+
+          <!-- CARD 4 -->
+
+          <a href="auth.html" class="feature-card">
+            <div class="feature-icon">
+              <i class="fa-solid fa-briefcase"></i>
+            </div>
+
+            <h3>Jobs & Internships</h3>
+
+            <p>
+              Discover career opportunities, internships, and professional
+              connections.
+            </p>
+
+            <span class="feature-link">
+              Explore
+
+              <i class="fa-solid fa-arrow-right"></i>
+            </span>
+          </a>
+        </div>
+      </section>
+
+      <!-- =================================================
              ANNOUNCEMENTS SECTION
         ================================================== -->
 
-        <section
-            id="about"
-            class="announcements-section"
-        >
+      <section id="about" class="announcements-section">
+        <div class="section-heading">
+          <div class="section-label">STAY UPDATED</div>
 
+          <h2>Latest Announcements</h2>
 
-            <div class="section-heading">
+          <p>
+            Stay informed about what's happening across the university
+            community.
+          </p>
+        </div>
 
+        <div class="announcement-list">
+          <!-- ANNOUNCEMENT 1 -->
 
-                <div class="section-label">
-                    STAY UPDATED
-                </div>
-
-
-                <h2>
-                    Latest Announcements
-                </h2>
-
-
-                <p>
-
-                    Stay informed about what's happening
-                    across the university community.
-
-                </p>
-
-
+          <article class="announcement-card">
+            <div class="announcement-icon">
+              <i class="fa-solid fa-bullhorn"></i>
             </div>
 
-
-
-            <div class="announcement-list">
-
-
-                <!-- ANNOUNCEMENT 1 -->
-
-                <article class="announcement-card">
-
-
-                    <div class="announcement-icon">
-
-                        <i class="fa-solid fa-bullhorn"></i>
-
-                    </div>
-
-
-                    <div class="announcement-content">
-
-
-                        <span class="announcement-category">
-                            Academic
-                        </span>
-
-
-                        <h3>
-                            Final Examination Schedule
-                        </h3>
-
-
-                        <p>
-
-                            Check the latest examination
-                            schedule and important academic updates.
-
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="announcement-arrow">
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- ANNOUNCEMENT 2 -->
-
-                <article class="announcement-card">
-
-
-                    <div class="announcement-icon">
-
-                        <i class="fa-solid fa-award"></i>
-
-                    </div>
-
-
-                    <div class="announcement-content">
-
-
-                        <span class="announcement-category">
-                            Scholarship
-                        </span>
-
-
-                        <h3>
-                            Scholarship Applications Open
-                        </h3>
-
-
-                        <p>
-
-                            Explore available scholarship
-                            opportunities and application details.
-
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="announcement-arrow">
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- ANNOUNCEMENT 3 -->
-
-                <article class="announcement-card">
-
-
-                    <div class="announcement-icon">
-
-                        <i class="fa-solid fa-people-group"></i>
-
-                    </div>
-
-
-                    <div class="announcement-content">
-
-
-                        <span class="announcement-category">
-                            Alumni
-                        </span>
-
-
-                        <h3>
-                            Alumni Meet 2026
-                        </h3>
-
-
-                        <p>
-
-                            Registration is open for the upcoming
-                            university alumni gathering.
-
-                        </p>
-
-
-                    </div>
-
-
-                    <div class="announcement-arrow">
-
-                        <i class="fa-solid fa-arrow-right"></i>
-
-                    </div>
-
-
-                </article>
-
-
+            <div class="announcement-content">
+              <span class="announcement-category"> Academic </span>
+
+              <h3>Final Examination Schedule</h3>
+
+              <p>
+                Check the latest examination schedule and important academic
+                updates.
+              </p>
             </div>
 
+            <div class="announcement-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </article>
 
-        </section>
+          <!-- ANNOUNCEMENT 2 -->
 
+          <article class="announcement-card">
+            <div class="announcement-icon">
+              <i class="fa-solid fa-award"></i>
+            </div>
 
+            <div class="announcement-content">
+              <span class="announcement-category"> Scholarship </span>
 
-        <!-- =================================================
+              <h3>Scholarship Applications Open</h3>
+
+              <p>
+                Explore available scholarship opportunities and application
+                details.
+              </p>
+            </div>
+
+            <div class="announcement-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </article>
+
+          <!-- ANNOUNCEMENT 3 -->
+
+          <article class="announcement-card">
+            <div class="announcement-icon">
+              <i class="fa-solid fa-people-group"></i>
+            </div>
+
+            <div class="announcement-content">
+              <span class="announcement-category"> Alumni </span>
+
+              <h3>Alumni Meet 2026</h3>
+
+              <p>
+                Registration is open for the upcoming university alumni
+                gathering.
+              </p>
+            </div>
+
+            <div class="announcement-arrow">
+              <i class="fa-solid fa-arrow-right"></i>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================
              UPCOMING EVENTS
         ================================================== -->
 
-        <section
-            id="events"
-            class="events-section"
-        >
+      <section id="events" class="events-section">
+        <div class="section-heading">
+          <div class="section-label">WHAT'S HAPPENING</div>
 
+          <h2>Upcoming Events</h2>
 
-            <div class="section-heading">
+          <p>
+            Discover events, activities, and opportunities happening around your
+            university community.
+          </p>
+        </div>
 
+        <div class="events-grid">
+          <!-- EVENT 1 -->
 
-                <div class="section-label">
-                    WHAT'S HAPPENING
-                </div>
+          <article class="event-card">
+            <div class="event-date">
+              <span> SEP </span>
 
-
-                <h2>
-                    Upcoming Events
-                </h2>
-
-
-                <p>
-
-                    Discover events, activities, and opportunities
-                    happening around your university community.
-
-                </p>
-
-
+              <strong> 15 </strong>
             </div>
 
+            <div class="event-content">
+              <span class="event-category"> Career </span>
 
+              <h3>Career Fair 2026</h3>
 
-            <div class="events-grid">
+              <p>
+                Connect with employers, explore career opportunities, and grow
+                your professional network.
+              </p>
 
+              <div class="event-info">
+                <span>
+                  <i class="fa-regular fa-clock"></i>
 
-                <!-- EVENT 1 -->
+                  10:00 AM
+                </span>
 
-                <article class="event-card">
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
 
+                  University Campus
+                </span>
+              </div>
+            </div>
+          </article>
 
-                    <div class="event-date">
+          <!-- EVENT 2 -->
 
-                        <span>
-                            SEP
-                        </span>
+          <article class="event-card">
+            <div class="event-date">
+              <span> SEP </span>
 
-                        <strong>
-                            15
-                        </strong>
-
-                    </div>
-
-
-                    <div class="event-content">
-
-
-                        <span class="event-category">
-                            Career
-                        </span>
-
-
-                        <h3>
-                            Career Fair 2026
-                        </h3>
-
-
-                        <p>
-
-                            Connect with employers,
-                            explore career opportunities,
-                            and grow your professional network.
-
-                        </p>
-
-
-                        <div class="event-info">
-
-
-                            <span>
-
-                                <i class="fa-regular fa-clock"></i>
-
-                                10:00 AM
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                                University Campus
-
-                            </span>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- EVENT 2 -->
-
-                <article class="event-card">
-
-
-                    <div class="event-date">
-
-                        <span>
-                            SEP
-                        </span>
-
-                        <strong>
-                            22
-                        </strong>
-
-                    </div>
-
-
-                    <div class="event-content">
-
-
-                        <span class="event-category">
-                            Alumni
-                        </span>
-
-
-                        <h3>
-                            Alumni Networking Night
-                        </h3>
-
-
-                        <p>
-
-                            Meet alumni, exchange experiences,
-                            and discover new professional connections.
-
-                        </p>
-
-
-                        <div class="event-info">
-
-
-                            <span>
-
-                                <i class="fa-regular fa-clock"></i>
-
-                                6:00 PM
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                                Main Auditorium
-
-                            </span>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </article>
-
-
-
-                <!-- EVENT 3 -->
-
-                <article class="event-card">
-
-
-                    <div class="event-date">
-
-                        <span>
-                            OCT
-                        </span>
-
-                        <strong>
-                            05
-                        </strong>
-
-                    </div>
-
-
-                    <div class="event-content">
-
-
-                        <span class="event-category">
-                            Community
-                        </span>
-
-
-                        <h3>
-                            Student Community Meetup
-                        </h3>
-
-
-                        <p>
-
-                            Meet fellow students, join communities,
-                            and build new friendships.
-
-                        </p>
-
-
-                        <div class="event-info">
-
-
-                            <span>
-
-                                <i class="fa-regular fa-clock"></i>
-
-                                3:00 PM
-
-                            </span>
-
-
-                            <span>
-
-                                <i class="fa-solid fa-location-dot"></i>
-
-                                Student Center
-
-                            </span>
-
-
-                        </div>
-
-
-                    </div>
-
-
-                </article>
-
-
+              <strong> 22 </strong>
             </div>
 
+            <div class="event-content">
+              <span class="event-category"> Alumni </span>
 
-        </section>
+              <h3>Alumni Networking Night</h3>
 
+              <p>
+                Meet alumni, exchange experiences, and discover new professional
+                connections.
+              </p>
 
+              <div class="event-info">
+                <span>
+                  <i class="fa-regular fa-clock"></i>
 
-        <!-- =================================================
+                  6:00 PM
+                </span>
+
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  Main Auditorium
+                </span>
+              </div>
+            </div>
+          </article>
+
+          <!-- EVENT 3 -->
+
+          <article class="event-card">
+            <div class="event-date">
+              <span> OCT </span>
+
+              <strong> 05 </strong>
+            </div>
+
+            <div class="event-content">
+              <span class="event-category"> Community </span>
+
+              <h3>Student Community Meetup</h3>
+
+              <p>
+                Meet fellow students, join communities, and build new
+                friendships.
+              </p>
+
+              <div class="event-info">
+                <span>
+                  <i class="fa-regular fa-clock"></i>
+
+                  3:00 PM
+                </span>
+
+                <span>
+                  <i class="fa-solid fa-location-dot"></i>
+
+                  Student Center
+                </span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- =================================================
              CALL TO ACTION
         ================================================== -->
 
-        <section
-            id="contact"
-            class="cta-section"
-        >
+      <section id="contact" class="cta-section">
+        <div class="cta-content">
+          <div class="cta-icon">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
 
+          <h2>
+            Your University.
+            <br />
+            Your Community.
+          </h2>
 
-            <div class="cta-content">
+          <p>
+            Join CampusHub and become part of a connected university community.
+          </p>
 
+          <a href="auth.html" class="primary-btn">
+            Join CampusHub
 
-                <div class="cta-icon">
-
-                    <i class="fa-solid fa-graduation-cap"></i>
-
-                </div>
-
-
-                <h2>
-
-                    Your University.
-                    <br>
-                    Your Community.
-
-                </h2>
-
-
-                <p>
-
-                    Join CampusHub and become part of
-                    a connected university community.
-
-                </p>
-
-
-                <a
-                    href="auth.html"
-                    class="primary-btn"
-                >
-
-                    Join CampusHub
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-
-            </div>
-
-
-        </section>
-
-
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+        </div>
+      </section>
     </main>
-
-
 
     <!-- =====================================================
          FOOTER
     ====================================================== -->
 
     <footer class="footer">
-
-
-        <div class="footer-container">
-
-
-            <!-- FOOTER BRAND -->
-
-            <div class="footer-brand">
-
-
-                <a
-                    href="index.html"
-                    class="logo"
-                >
-
-                    <div class="logo-box">
-                        C
-                    </div>
-
-                    <span>
-                        CampusHub
-                    </span>
-
-                </a>
-
-
-                <p>
-
-                    Connecting Premier University
-                    students and alumni in one community.
-
-                </p>
-
-
-            </div>
-
-
-
-            <!-- FOOTER PLATFORM LINKS -->
-
-            <div class="footer-links">
-
-
-                <h4>
-                    Platform
-                </h4>
-
-
-                <a href="#about">
-                    About
-                </a>
-
-
-                <a href="#events">
-                    Events
-                </a>
-
-
-                <a href="#community">
-                    Communities
-                </a>
-
-
-                <a href="auth.html">
-                    Resources
-                </a>
-
-
-            </div>
-
-
-
-            <!-- FOOTER SUPPORT -->
-
-            <div class="footer-links">
-
-
-                <h4>
-                    Support
-                </h4>
-
-
-                <a href="#contact">
-                    Contact
-                </a>
-
-
-                <a href="#">
-                    Privacy
-                </a>
-
-
-                <a href="#">
-                    Terms
-                </a>
-
-
-            </div>
-
-
-
-            <!-- FOOTER SOCIAL -->
-
-            <div class="footer-social">
-
-
-                <h4>
-                    Connect
-                </h4>
-
-
-                <div class="social-icons">
-
-
-                    <a
-                        href="#"
-                        aria-label="Facebook"
-                    >
-
-                        <i class="fa-brands fa-facebook-f"></i>
-
-                    </a>
-
-
-                    <a
-                        href="#"
-                        aria-label="Instagram"
-                    >
-
-                        <i class="fa-brands fa-instagram"></i>
-
-                    </a>
-
-
-                    <a
-                        href="#"
-                        aria-label="LinkedIn"
-                    >
-
-                        <i class="fa-brands fa-linkedin-in"></i>
-
-                    </a>
-
-
-                </div>
-
-
-            </div>
-
-
+      <div class="footer-container">
+        <!-- FOOTER BRAND -->
+
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <div class="logo-box">C</div>
+
+            <span> CampusHub </span>
+          </a>
+
+          <p>
+            Connecting Premier University students and alumni in one community.
+          </p>
         </div>
 
+        <!-- FOOTER PLATFORM LINKS -->
 
+        <div class="footer-links">
+          <h4>Platform</h4>
 
-        <!-- COPYRIGHT -->
+          <a href="#about"> About </a>
 
-        <div class="footer-bottom">
+          <a href="#events"> Events </a>
 
+          <a href="#community"> Communities </a>
 
-            <p>
-
-                © 2026 CampusHub. All rights reserved.
-
-            </p>
-
-
+          <a href="auth.html"> Resources </a>
         </div>
 
+        <!-- FOOTER SUPPORT -->
 
+        <div class="footer-links">
+          <h4>Support</h4>
+
+          <a href="#contact"> Contact </a>
+
+          <a href="#"> Privacy </a>
+
+          <a href="#"> Terms </a>
+        </div>
+
+        <!-- FOOTER SOCIAL -->
+
+        <div class="footer-social">
+          <h4>Connect</h4>
+
+          <div class="social-icons">
+            <a href="#" aria-label="Facebook">
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+
+            <a href="#" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a href="#" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin-in"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COPYRIGHT -->
+
+      <div class="footer-bottom">
+        <p>© 2026 CampusHub. All rights reserved.</p>
+      </div>
     </footer>
-
-
 
     <!-- =====================================================
          HOME PAGE JAVASCRIPT
     ====================================================== -->
 
-    <script src="./home.js"></script>
-
-
-</body>
-
+    <script src="./script.js"></script>
+  </body>
 </html>

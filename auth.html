@@ -1,784 +1,402 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CampusHub — Premier University</title>
+    <link rel="stylesheet" href="./auth.css" />
 
     <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
-
-</head>
-<body>
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+    />
+  </head>
+  <body>
     <div class="auth-card" id="authCard">
-
-
-    <!-- =================================================
+      <!-- =================================================
          LOGIN
     ================================================== -->
 
-    <section class="login-panel">
-
+      <section class="login-panel">
         <div class="login-content">
+          <div class="small-title">PREMIER UNIVERSITY</div>
 
+          <h1>Welcome back</h1>
 
-            <div class="small-title">
-                PREMIER UNIVERSITY
+          <p class="subtitle">Sign in to your Premier University account</p>
+
+          <!-- LOGIN FORM -->
+
+          <form id="loginForm">
+            <label> Email address </label>
+
+            <input
+              type="email"
+              id="loginEmail"
+              placeholder="you@premier.edu"
+              required
+            />
+
+            <label> Password </label>
+
+            <div class="password-box">
+              <input
+                type="password"
+                id="loginPassword"
+                placeholder="Enter your password"
+                required
+              />
+
+              <button type="button" id="showPassword">Show</button>
             </div>
 
+            <div class="login-options">
+              <label class="remember">
+                <input type="checkbox" />
 
-            <h1>
-                Welcome back
-            </h1>
+                <span> Remember me </span>
+              </label>
 
+              <a href="#"> Forgot password? </a>
+            </div>
 
-            <p class="subtitle">
-                Sign in to your Premier University account
-            </p>
+            <button type="submit" class="main-button">Login</button>
+          </form>
 
-
-
-            <!-- LOGIN FORM -->
-
-            <form id="loginForm">
-
-
-                <label>
-                    Email address
-                </label>
-
-
-                <input
-                    type="email"
-                    id="loginEmail"
-                    placeholder="you@premier.edu"
-                    required
-                >
-
-
-
-                <label>
-                    Password
-                </label>
-
-
-                <div class="password-box">
-
-                    <input
-                        type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password"
-                        required
-                    >
-
-                    <button
-                        type="button"
-                        id="showPassword"
-                    >
-                        Show
-                    </button>
-
-                </div>
-
-
-
-                <div class="login-options">
-
-
-                    <label class="remember">
-
-                        <input
-                            type="checkbox"
-                        >
-
-                        <span>
-                            Remember me
-                        </span>
-
-                    </label>
-
-
-                    <a href="#">
-                        Forgot password?
-                    </a>
-
-
-                </div>
-
-
-
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Login
-                </button>
-
-
-            </form>
-
-
-
-            <!-- =================================================
+          <!-- =================================================
                  DEMO LOGIN
             ================================================== -->
 
-            <div class="demo-section">
+          <div class="demo-section">
+            <div class="demo-title">Quick login</div>
 
+            <button
+              type="button"
+              class="demo-button"
+              data-email="student@premier.edu"
+              data-password="student123"
+            >
+              <i class="fa-solid fa-user-graduate"></i>
+              Student Demo
+            </button>
 
-                <div class="demo-title">
-                    Quick login
-                </div>
+            <button
+              type="button"
+              class="demo-button"
+              data-email="alumni@premier.edu"
+              data-password="alumni123"
+            >
+              <i class="fa-solid fa-user-tie"></i>
+              Alumni Demo
+            </button>
 
+            <button
+              type="button"
+              class="demo-button"
+              data-email="alumni@premier.edu"
+              data-password="alumni123"
+            >
+              <i class="fa-solid fa-user-graduate"></i>
+              Alumni Demo
+            </button>
+          </div>
 
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="student@premier.edu"
-                    data-password="student123"
-                >
-                    <i class="fa-solid fa-user-graduate"></i>
-                    Student Demo
-                </button>
-
-
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="alumni@premier.edu"
-                    data-password="alumni123"
-                >
-                    <i class="fa-solid fa-user-tie"></i>
-                    Alumni Demo
-                </button>
-
-
-                <button
-                    type="button"
-                    class="demo-button"
-                    data-email="admin@premier.edu"
-                    data-password="admin123"
-                >
-                    <i class="fa-solid fa-user-shield"></i>
-                    Admin Demo
-                </button>
-
-
-            </div>
-
-
-
-            <!-- =================================================
+          <!-- =================================================
                  REGISTRATION LINKS
             ================================================== -->
 
-            <div class="registration-links">
+          <div class="registration-links">
+            <p>Don't have an account?</p>
 
+            <button type="button" id="studentButton">
+              Student Registration
+            </button>
 
-                <p>
-                    Don't have an account?
-                </p>
-
-
-                <button
-                    type="button"
-                    id="studentButton"
-                >
-                    Student Registration
-                </button>
-
-
-                <button
-                    type="button"
-                    id="alumniButton"
-                >
-                    Alumni Registration
-                </button>
-
-
-            </div>
-
-
+            <button type="button" id="alumniButton">Alumni Registration</button>
+          </div>
         </div>
+      </section>
 
-    </section>
-
-
-
-    <!-- =================================================
+      <!-- =================================================
          STUDENT REGISTRATION
     ================================================== -->
 
-    <section
-        class="registration-panel student-panel"
-        id="studentPanel"
-    >
-
+      <section class="registration-panel student-panel" id="studentPanel">
         <div class="registration-content">
+          <div class="small-title">PREMIER UNIVERSITY</div>
 
+          <h1>Student Registration</h1>
 
-            <div class="small-title">
-                PREMIER UNIVERSITY
+          <p class="subtitle">Create your student account</p>
+
+          <form id="studentForm">
+            <label> Full Name * </label>
+
+            <input
+              type="text"
+              id="studentName"
+              placeholder="Arif Rahman"
+              required
+            />
+
+            <label> University Email * </label>
+
+            <input
+              type="email"
+              id="studentEmail"
+              placeholder="arif@premier.edu"
+              required
+            />
+
+            <div class="two-columns">
+              <div>
+                <label> Password * </label>
+
+                <input
+                  type="password"
+                  id="studentPassword"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+
+              <div>
+                <label> Confirm Password * </label>
+
+                <input
+                  type="password"
+                  id="studentConfirmPassword"
+                  placeholder="Confirm"
+                  required
+                />
+              </div>
             </div>
 
+            <div class="two-columns">
+              <div>
+                <label> Department </label>
 
-            <h1>
-                Student Registration
-            </h1>
+                <select id="studentDepartment" required>
+                  <option value="">Select Department</option>
 
+                  <option>Computer Science & Engineering</option>
 
-            <p class="subtitle">
-                Create your student account
-            </p>
+                  <option>Electrical & Electronic Engineering</option>
 
+                  <option>Electronics & Communication</option>
 
-
-            <form id="studentForm">
-
-
-                <label>
-                    Full Name *
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Arif Rahman"
-                    required
-                >
-
-
-
-                <label>
-                    University Email *
-                </label>
-
-
-                <input
-                    type="email"
-                    placeholder="arif@premier.edu"
-                    required
-                >
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="studentPassword"
-                            placeholder="Password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Confirm Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="studentConfirmPassword"
-                            placeholder="Confirm"
-                            required
-                        >
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Department
-                        </label>
-
-                        <select required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option>
-                                Computer Science & Engineering
-                            </option>
-
-                            <option>
-                                Electrical & Electronic Engineering
-                            </option>
-
-                            <option>
-                                Electronics & Communication
-                            </option>
-
-                            <option>
-                                Business Administration
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Batch / Year
-                        </label>
-
-                        <select>
-
-                            <option>
-                                2026
-                            </option>
-
-                            <option>
-                                2025
-                            </option>
-
-                            <option>
-                                2024
-                            </option>
-
-                            <option>
-                                2023
-                            </option>
-
-                            <option>
-                                2022
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <label>
-                    Section
-                </label>
-
-
-                <select>
-
-                    <option>
-                        Section A
-                    </option>
-
-                    <option>
-                        Section B
-                    </option>
-
-                    <option>
-                        Section C
-                    </option>
-
+                  <option>Business Administration</option>
                 </select>
+              </div>
 
+              <div>
+                <label> Batch / Year </label>
 
+                <select id="studentBatch">
+                  <option>2026</option>
 
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Create Student Account
-                </button>
+                  <option>2025</option>
 
+                  <option>2024</option>
 
-            </form>
+                  <option>2023</option>
 
-
-
-            <div class="back-login">
-
-                Already have an account?
-
-                <button
-                    type="button"
-                    class="backLoginButton"
-                >
-                    Sign in
-                </button>
-
+                  <option>2022</option>
+                </select>
+              </div>
             </div>
 
+            <label> Section </label>
 
+            <select id="studentSection">
+              <option>Section A</option>
+
+              <option>Section B</option>
+
+              <option>Section C</option>
+            </select>
+
+            <button type="submit" class="main-button">
+              Create Student Account
+            </button>
+          </form>
+
+          <div class="back-login">
+            Already have an account?
+
+            <button type="button" class="backLoginButton">Sign in</button>
+          </div>
         </div>
+      </section>
 
-    </section>
-
-
-
-    <!-- =================================================
+      <!-- =================================================
          ALUMNI REGISTRATION
     ================================================== -->
 
-    <section
-        class="registration-panel alumni-panel"
-        id="alumniPanel"
-    >
-
+      <section class="registration-panel alumni-panel" id="alumniPanel">
         <div class="registration-content">
+          <div class="small-title">PREMIER UNIVERSITY</div>
 
+          <h1>Alumni Registration</h1>
 
-            <div class="small-title">
-                PREMIER UNIVERSITY
+          <p class="subtitle">Join the Premier University alumni network</p>
+
+          <form id="alumniForm">
+            <label> Full Name * </label>
+
+            <input
+              type="text"
+              id="alumniName"
+              placeholder="Tanvir Ahmed"
+              required
+            />
+
+            <label> Email * </label>
+
+            <input
+              type="email"
+              id="alumniEmail"
+              placeholder="tanvir@company.com"
+              required
+            />
+
+            <div class="two-columns">
+              <div>
+                <label> Password * </label>
+
+                <input
+                  type="password"
+                  id="alumniPassword"
+                  placeholder="Password"
+                  required
+                />
+              </div>
+
+              <div>
+                <label> Confirm Password * </label>
+
+                <input
+                  type="password"
+                  id="alumniConfirmPassword"
+                  placeholder="Confirm"
+                  required
+                />
+              </div>
             </div>
 
+            <div class="two-columns">
+              <div>
+                <label> Department </label>
 
-            <h1>
-                Alumni Registration
-            </h1>
+                <select id="alumniDepartment" required>
+                  <option value="">Select Department</option>
 
+                  <option>Computer Science & Engineering</option>
 
-            <p class="subtitle">
-                Join the Premier University alumni network
-            </p>
+                  <option>Electrical & Electronic Engineering</option>
 
+                  <option>Electronics & Communication</option>
 
+                  <option>Business Administration</option>
+                </select>
+              </div>
 
-            <form id="alumniForm">
+              <div>
+                <label> Graduation Year </label>
 
+                <select id="alumniGraduationYear">
+                  <option>2023</option>
 
-                <label>
-                    Full Name *
-                </label>
+                  <option>2022</option>
 
+                  <option>2021</option>
 
-                <input
-                    type="text"
-                    placeholder="Tanvir Ahmed"
-                    required
-                >
+                  <option>2020</option>
 
-
-
-                <label>
-                    Email *
-                </label>
-
-
-                <input
-                    type="email"
-                    placeholder="tanvir@company.com"
-                    required
-                >
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="alumniPassword"
-                            placeholder="Password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Confirm Password *
-                        </label>
-
-                        <input
-                            type="password"
-                            id="alumniConfirmPassword"
-                            placeholder="Confirm"
-                            required
-                        >
-
-                    </div>
-
-
-                </div>
-
-
-
-                <div class="two-columns">
-
-
-                    <div>
-
-                        <label>
-                            Department
-                        </label>
-
-                        <select required>
-
-                            <option value="">
-                                Select Department
-                            </option>
-
-                            <option>
-                                Computer Science & Engineering
-                            </option>
-
-                            <option>
-                                Electrical & Electronic Engineering
-                            </option>
-
-                            <option>
-                                Electronics & Communication
-                            </option>
-
-                            <option>
-                                Business Administration
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <div>
-
-                        <label>
-                            Graduation Year
-                        </label>
-
-                        <select>
-
-                            <option>
-                                2023
-                            </option>
-
-                            <option>
-                                2022
-                            </option>
-
-                            <option>
-                                2021
-                            </option>
-
-                            <option>
-                                2020
-                            </option>
-
-                            <option>
-                                2019
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <label>
-                    Current Company
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Orbit Labs"
-                >
-
-
-
-                <label>
-                    Job Title
-                </label>
-
-
-                <input
-                    type="text"
-                    placeholder="Software Engineer"
-                >
-
-
-
-                <button
-                    type="submit"
-                    class="main-button"
-                >
-                    Create Alumni Account
-                </button>
-
-
-            </form>
-
-
-
-            <div class="back-login">
-
-                Already have an account?
-
-                <button
-                    type="button"
-                    class="backLoginButton"
-                >
-                    Sign in
-                </button>
-
+                  <option>2019</option>
+                </select>
+              </div>
             </div>
 
+            <label> Current Company </label>
+            <input type="text" id="alumniCompany" placeholder="Orbit Labs" />
 
+            <label> Job Title </label>
+
+            <input
+              type="text"
+              id="alumniJobTitle"
+              placeholder="Software Engineer"
+            />
+
+            <button type="submit" class="main-button">
+              Create Alumni Account
+            </button>
+          </form>
+
+          <div class="back-login">
+            Already have an account?
+
+            <button type="button" class="backLoginButton">Sign in</button>
+          </div>
         </div>
+      </section>
 
-    </section>
-
-
-
-    <!-- =================================================
+      <!-- =================================================
          FLIP COVER
     ================================================== -->
 
-    <div
-        class="flip-cover"
-        id="flipCover"
-    >
-
-
+      <div class="flip-cover" id="flipCover">
         <!-- FRONT -->
 
         <div class="cover-face cover-front">
+          <div class="cover-content">
+            <i class="fa-solid fa-user-graduate cover-icon"></i>
 
+            <h2>Join CampusHub</h2>
 
-            <div class="cover-content">
+            <p>
+              Connect with students, alumni and the Premier University
+              community.
+            </p>
 
+            <button type="button" id="coverStudentButton" class="cover-button">
+              Student Registration
 
-                <i
-                    class="fa-solid fa-user-graduate cover-icon"
-                ></i>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
 
+            <button type="button" id="coverAlumniButton" class="cover-button">
+              Alumni Registration
 
-                <h2>
-                    Join CampusHub
-                </h2>
-
-
-                <p>
-                    Connect with students, alumni and
-                    the Premier University community.
-                </p>
-
-
-
-                <button
-                    type="button"
-                    id="coverStudentButton"
-                    class="cover-button"
-                >
-
-                    Student Registration
-
-                    <i
-                        class="fa-solid fa-arrow-right"
-                    ></i>
-
-                </button>
-
-
-
-                <button
-                    type="button"
-                    id="coverAlumniButton"
-                    class="cover-button"
-                >
-
-                    Alumni Registration
-
-                    <i
-                        class="fa-solid fa-arrow-right"
-                    ></i>
-
-                </button>
-
-
-            </div>
-
-
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
         </div>
-
-
 
         <!-- BACK -->
 
         <div class="cover-face cover-back">
+          <div class="cover-content">
+            <i class="fa-solid fa-right-to-bracket cover-icon dark"></i>
 
+            <h2>Welcome Back!</h2>
 
-            <div class="cover-content">
+            <p>Already have an account? Sign in to continue.</p>
 
+            <button
+              type="button"
+              id="coverLoginButton"
+              class="cover-button dark-button"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
 
-                <i
-                    class="fa-solid fa-right-to-bracket cover-icon dark"
-                ></i>
-
-
-                <h2>
-                    Welcome Back!
-                </h2>
-
-
-                <p>
-                    Already have an account?
-                    Sign in to continue.
-                </p>
-
-
-
-                <button
-                    type="button"
-                    id="coverLoginButton"
-                    class="cover-button dark-button"
-                >
-
-                    <i
-                        class="fa-solid fa-arrow-left"
-                    ></i>
-
-                    Back to Login
-
-                </button>
-
-
-            </div>
-
-
+              Back to Login
+            </button>
+          </div>
         </div>
-
-
+      </div>
     </div>
-
-
-</div>
-<script src="./script.js"></script>
-</body>
+    <script src="./script.js"></script>
+  </body>
 </html>
