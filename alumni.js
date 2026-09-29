@@ -5,11 +5,19 @@ document.addEventListener("DOMContentLoaded", function () {
   const COMMUNITIES_KEY = "campusHubCommunities";
   const MEMBERSHIP_KEY = "campusHubCommunityMemberships";
   const ALUMNI_KEY = "campusHubAlumniDirectory";
+  const ALUMNI_DATA_VERSION_KEY = "campusHubAlumniDataVersion";
+  const ALUMNI_DATA_VERSION = "2";
   const RSVP_KEY = "campusHubEventRSVPs";
   const SAVED_JOBS_KEY = "campusHubSavedJobs";
   const SETTINGS_KEY = "campusHubAlumniSettings";
 
-  const currentUser = JSON.parse(localStorage.getItem(SESSION_KEY));
+  let currentUser = null;
+
+  try {
+    currentUser = JSON.parse(localStorage.getItem(SESSION_KEY));
+  } catch (error) {
+    localStorage.removeItem(SESSION_KEY);
+  }
 
   /* =========================================================
        AUTH GUARD
@@ -49,6 +57,257 @@ document.addEventListener("DOMContentLoaded", function () {
   function saveData(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
   }
+
+  const defaultAlumni = [
+    {
+      id: "alumni-001",
+      name: "Tanvir Ahmed",
+      department: "Computer Science & Engineering",
+      graduationYear: "2020",
+      company: "Orbit Labs",
+      jobTitle: "Software Engineer",
+      location: "Dhaka, Bangladesh",
+      avatar: "TA",
+    },
+    {
+      id: "alumni-002",
+      name: "Nusrat Jahan",
+      department: "Business Administration",
+      graduationYear: "2021",
+      company: "Grameen Digital",
+      jobTitle: "Product Marketing Manager",
+      location: "Dhaka, Bangladesh",
+      avatar: "NJ",
+    },
+    {
+      id: "alumni-003",
+      name: "Sabbir Hossain",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2022",
+      company: "Walton",
+      jobTitle: "Embedded Systems Engineer",
+      location: "Dhaka, Bangladesh",
+      avatar: "SH",
+    },
+    {
+      id: "alumni-004",
+      name: "Farzana Karim",
+      department: "English",
+      graduationYear: "2023",
+      company: "The Daily Star",
+      jobTitle: "Content Editor",
+      location: "Dhaka, Bangladesh",
+      avatar: "FK",
+    },
+    {
+      id: "alumni-005",
+      name: "Mahin Chowdhury",
+      department: "Architecture",
+      graduationYear: "2024",
+      company: "UrbanForm Studio",
+      jobTitle: "Junior Architect",
+      location: "Chattogram, Bangladesh",
+      avatar: "MC",
+    },
+    {
+      id: "alumni-006",
+      name: "Rafiul Islam",
+      department: "Computer Science & Engineering",
+      graduationYear: "2025",
+      company: "Pathao",
+      jobTitle: "Associate Software Engineer",
+      location: "Dhaka, Bangladesh",
+      avatar: "RI",
+    },
+    {
+      id: "alumni-007",
+      name: "Samira Rahman",
+      department: "Business Administration",
+      graduationYear: "2022",
+      company: "bKash",
+      jobTitle: "Business Analyst",
+      location: "Dhaka, Bangladesh",
+      avatar: "SR",
+    },
+    {
+      id: "alumni-008",
+      name: "Adnan Kabir",
+      department: "Electrical & Electronic Engineering",
+      graduationYear: "2021",
+      company: "Robi Axiata",
+      jobTitle: "Network Engineer",
+      location: "Dhaka, Bangladesh",
+      avatar: "AK",
+    },
+      {
+      id: "alumni-009",
+      name: "Avishek Chowdhury",
+      department: "Computer Science & Engineering",
+      graduationYear: "2020",
+      company: "Robi Axiata",
+      jobTitle: "Network Engineer",
+      location: "Dhaka, Bangladesh",
+      avatar: "AK",
+    },
+  ];
+
+  const storedAlumni = readData(ALUMNI_KEY, []);
+  const storedAlumniVersion = localStorage.getItem(ALUMNI_DATA_VERSION_KEY);
+
+  const alumniDirectory = Array.isArray(storedAlumni)
+    ? storedAlumni
+    : [];
+
+  const newDefaultAlumni = defaultAlumni.filter(
+    (person) => !alumniDirectory.some((storedPerson) => storedPerson.id === person.id),
+  );
+
+  if (
+    storedAlumniVersion !== ALUMNI_DATA_VERSION &&
+    alumniDirectory.length > 0
+  ) {
+    saveData(ALUMNI_KEY, defaultAlumni);
+    localStorage.setItem(ALUMNI_DATA_VERSION_KEY, ALUMNI_DATA_VERSION);
+  } else if (alumniDirectory.length === 0) {
+    saveData(ALUMNI_KEY, defaultAlumni);
+    localStorage.setItem(ALUMNI_DATA_VERSION_KEY, ALUMNI_DATA_VERSION);
+  } else if (newDefaultAlumni.length > 0) {
+    saveData(ALUMNI_KEY, [...alumniDirectory, ...newDefaultAlumni]);
+    localStorage.setItem(ALUMNI_DATA_VERSION_KEY, ALUMNI_DATA_VERSION);
+  }
+
+  const defaultEvents = [
+    {
+      id: "e1",
+      title: "Campus Career Fair 2026",
+      date: "2026-09-28",
+      time: "10:00 AM - 4:00 PM",
+      location: "University Auditorium",
+      category: "Career",
+      description: "Meet recruiters and explore career opportunities.",
+    },
+    {
+      id: "e2",
+      title: "Inter-University Programming Contest",
+      date: "2026-10-03",
+      time: "9:00 AM - 5:00 PM",
+      location: "CSE Department Lab",
+      category: "Academic",
+      description: "A competitive programming event for university students.",
+    },
+    {
+      id: "e3",
+      title: "Alumni Networking Evening",
+      date: "2026-10-10",
+      time: "5:30 PM - 8:00 PM",
+      location: "University Conference Hall",
+      category: "Networking",
+      description: "Connect with alumni and learn about career opportunities.",
+    },
+    {
+      id: "e4",
+      title: "Freshers Cultural Night",
+      date: "2026-10-17",
+      time: "6:00 PM - 9:30 PM",
+      location: "Central Auditorium",
+      category: "Cultural",
+      description: "An evening of music, performances, and student activities.",
+    },
+  ];
+
+  const defaultJobs = [
+    {
+      id: "j1",
+      title: "Frontend Developer Intern",
+      company: "Orbit Labs",
+      location: "Dhaka, Bangladesh",
+      category: "Engineering",
+      mode: "Hybrid",
+      type: "Internship",
+      deadline: "2026-10-15",
+      description: "Build accessible interfaces with a product engineering team.",
+    },
+    {
+      id: "j2",
+      title: "Software Engineer",
+      company: "Pathao",
+      location: "Dhaka, Bangladesh",
+      category: "Engineering",
+      mode: "On-site",
+      type: "Full-time",
+      deadline: "2026-10-20",
+      description: "Work on reliable services used by millions of customers.",
+    },
+    {
+      id: "j3",
+      title: "Product Design Intern",
+      company: "bKash",
+      location: "Dhaka, Bangladesh",
+      category: "Design",
+      mode: "Remote",
+      type: "Internship",
+      deadline: "2026-10-25",
+      description: "Support product discovery and interface design projects.",
+    },
+    {
+      id: "j4",
+      title: "Data Analyst",
+      company: "Grameen Digital",
+      location: "Dhaka, Bangladesh",
+      category: "Analytics",
+      mode: "Remote",
+      type: "Full-time",
+      deadline: "2026-11-01",
+      description: "Turn operational data into useful business decisions.",
+    },
+  ];
+
+  const defaultCommunities = [
+    {
+      id: "c1",
+      name: "Technology Club",
+      category: "Academic",
+      description: "Learn, build, and share ideas about emerging technology.",
+      members: 248,
+      icon: "fa-solid fa-code",
+    },
+    {
+      id: "c2",
+      name: "Business Network",
+      category: "Career",
+      description: "Connect students and alumni interested in business and leadership.",
+      members: 186,
+      icon: "fa-solid fa-chart-line",
+    },
+    {
+      id: "c3",
+      name: "Creative Writers",
+      category: "Creative",
+      description: "Share writing, storytelling, and creative projects.",
+      members: 94,
+      icon: "fa-solid fa-pen-nib",
+    },
+    {
+      id: "c4",
+      name: "University Volunteers",
+      category: "Community",
+      description: "Organize initiatives that make a positive campus impact.",
+      members: 132,
+      icon: "fa-solid fa-hand-holding-heart",
+    },
+  ];
+
+  function initializeArrayData(key, fallback) {
+    const data = readData(key, null);
+
+    if (!Array.isArray(data) || data.length === 0) {
+      saveData(key, fallback);
+    }
+  }
+
+  initializeArrayData(EVENTS_KEY, defaultEvents);
+  initializeArrayData(JOBS_KEY, defaultJobs);
+  initializeArrayData(COMMUNITIES_KEY, defaultCommunities);
 
   function escapeHTML(value) {
     return String(value ?? "")
@@ -307,7 +566,7 @@ document.addEventListener("DOMContentLoaded", function () {
     settings: "Settings",
   };
 
-  function showSection(sectionName) {
+  function showSection(sectionName, updateHash = true) {
     const targetId = sectionMap[sectionName];
 
     if (!targetId) return;
@@ -332,7 +591,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setText("pageTitle", pageTitles[sectionName]);
 
-    window.location.hash = sectionName;
+    if (updateHash && window.location.hash !== `#${sectionName}`) {
+      history.replaceState(null, "", `#${sectionName}`);
+    }
 
     if (sectionName === "events") {
       renderEvents();
@@ -375,7 +636,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const initialSection = window.location.hash.replace("#", "");
 
-  showSection(sectionMap[initialSection] ? initialSection : "dashboard");
+  window.addEventListener("hashchange", function () {
+    const sectionName = window.location.hash.replace("#", "");
+
+    showSection(
+      sectionMap[sectionName] ? sectionName : "dashboard",
+      false,
+    );
+  });
 
   /* =========================================================
        SIDEBAR
@@ -418,7 +686,7 @@ document.addEventListener("DOMContentLoaded", function () {
       event.preventDefault();
       event.stopPropagation();
 
-      if (sidebar.classList.contains("open")) {
+      if (sidebar && sidebar.classList.contains("open")) {
         closeSidebar();
       } else {
         openSidebar();
@@ -513,7 +781,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderEvents(filter = "all") {
     if (!eventList) return;
 
-    const events = readData(EVENTS_KEY, []);
+    const eventData = readData(EVENTS_KEY, []);
+
+    const events = Array.isArray(eventData) ? eventData : [];
 
     const rsvps = getRSVPs();
 
@@ -673,19 +943,26 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderJobs() {
     if (!jobsList) return;
 
-    const jobs = readData(JOBS_KEY, []);
+    const jobData = readData(JOBS_KEY, []);
+
+    const jobs = Array.isArray(jobData) ? jobData : [];
 
     const savedJobs = getSavedJobs();
 
     const search = jobSearch?.value?.toLowerCase().trim() || "";
 
     const filtered = jobs.filter((job) => {
+      const title = String(job.title || "");
+      const company = String(job.company || "");
+      const location = String(job.location || "");
+      const category = String(job.category || "");
+
       const searchMatch =
         !search ||
-        job.title.toLowerCase().includes(search) ||
-        job.company.toLowerCase().includes(search) ||
-        job.location.toLowerCase().includes(search) ||
-        job.category.toLowerCase().includes(search);
+        title.toLowerCase().includes(search) ||
+        company.toLowerCase().includes(search) ||
+        location.toLowerCase().includes(search) ||
+        category.toLowerCase().includes(search);
 
       if (!searchMatch) {
         return false;
@@ -870,7 +1147,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function renderCommunities() {
     if (!communitiesList) return;
 
-    const communities = readData(COMMUNITIES_KEY, []);
+    const communityData = readData(COMMUNITIES_KEY, []);
+
+    const communities = Array.isArray(communityData) ? communityData : [];
 
     const memberships = getMemberships();
 
@@ -881,10 +1160,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const search = communitySearch?.value?.toLowerCase().trim() || "";
 
     const filtered = communities.filter(
-      (community) =>
-        community.name.toLowerCase().includes(search) ||
-        community.category.toLowerCase().includes(search) ||
-        community.description.toLowerCase().includes(search),
+      (community) => {
+        const name = String(community.name || "").toLowerCase();
+        const category = String(community.category || "").toLowerCase();
+        const description = String(community.description || "").toLowerCase();
+
+        return (
+          name.includes(search) ||
+          category.includes(search) ||
+          description.includes(search)
+        );
+      },
     );
 
     if (!filtered.length) {
@@ -1043,10 +1329,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const alumniResultCount = document.getElementById("alumniResultCount");
 
+  const directoryPagination = document.getElementById("directoryPagination");
+
+  const alumniPageNumbers = document.getElementById("alumniPageNumbers");
+
+  const alumniPageSize = 4;
+
+  let alumniPage = 1;
+
   function renderDirectory() {
     if (!alumniList) return;
 
-    const alumni = readData(ALUMNI_KEY, []);
+    const alumniData = readData(ALUMNI_KEY, []);
+
+    const alumni = Array.isArray(alumniData) ? alumniData : [];
 
     const search = alumniSearch?.value?.toLowerCase().trim() || "";
 
@@ -1055,15 +1351,20 @@ document.addEventListener("DOMContentLoaded", function () {
     const year = alumniYearFilter?.value || "all";
 
     const filtered = alumni.filter((person) => {
+      const name = String(person.name || "").toLowerCase();
+      const company = String(person.company || "").toLowerCase();
+      const jobTitle = String(person.jobTitle || "").toLowerCase();
+      const personDepartment = String(person.department || "");
+
       const matchesSearch =
         !search ||
-        person.name.toLowerCase().includes(search) ||
-        person.company.toLowerCase().includes(search) ||
-        person.jobTitle.toLowerCase().includes(search) ||
-        person.department.toLowerCase().includes(search);
+        name.includes(search) ||
+        company.includes(search) ||
+        jobTitle.includes(search) ||
+        personDepartment.toLowerCase().includes(search);
 
       const matchesDepartment =
-        department === "all" || person.department === department;
+        department === "all" || personDepartment === department;
 
       const matchesYear = year === "all" || person.graduationYear === year;
 
@@ -1075,6 +1376,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (!filtered.length) {
+      alumniPage = 1;
+
       alumniList.innerHTML = `
                 <div class="empty-card">
                     <i class="fa-solid fa-user-group"></i>
@@ -1083,10 +1386,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 </div>
             `;
 
+      directoryPagination?.classList.add("is-hidden");
+
       return;
     }
 
-    alumniList.innerHTML = filtered
+    const totalPages = Math.ceil(filtered.length / alumniPageSize);
+
+    alumniPage = Math.min(alumniPage, totalPages);
+
+    const pageStart = (alumniPage - 1) * alumniPageSize;
+
+    const pageItems = filtered.slice(pageStart, pageStart + alumniPageSize);
+
+    alumniList.innerHTML = pageItems
       .map((person) => {
         return `
                     <article class="alumni-card">
@@ -1147,18 +1460,63 @@ document.addEventListener("DOMContentLoaded", function () {
                 `;
       })
       .join("");
+
+    directoryPagination?.classList.toggle("is-hidden", totalPages <= 1);
+
+    if (alumniPageNumbers) {
+      alumniPageNumbers.innerHTML = Array.from(
+        { length: totalPages },
+        (_, index) => {
+          const pageNumber = index + 1;
+
+          return `
+            <button
+              type="button"
+              class="pagination-button ${
+                pageNumber === alumniPage ? "active" : ""
+              }"
+              data-alumni-page="${pageNumber}"
+              aria-label="Go to alumni page ${pageNumber}"
+              aria-current="${pageNumber === alumniPage ? "page" : "false"}"
+            >
+              ${pageNumber}
+            </button>
+          `;
+        },
+      ).join("");
+    }
   }
 
   if (alumniSearch) {
-    alumniSearch.addEventListener("input", renderDirectory);
+    alumniSearch.addEventListener("input", function () {
+      alumniPage = 1;
+      renderDirectory();
+    });
   }
 
   if (alumniDepartmentFilter) {
-    alumniDepartmentFilter.addEventListener("change", renderDirectory);
+    alumniDepartmentFilter.addEventListener("change", function () {
+      alumniPage = 1;
+      renderDirectory();
+    });
   }
 
   if (alumniYearFilter) {
-    alumniYearFilter.addEventListener("change", renderDirectory);
+    alumniYearFilter.addEventListener("change", function () {
+      alumniPage = 1;
+      renderDirectory();
+    });
+  }
+
+  if (alumniPageNumbers) {
+    alumniPageNumbers.addEventListener("click", function (event) {
+      const button = event.target.closest("[data-alumni-page]");
+
+      if (!button) return;
+
+      alumniPage = Number(button.dataset.alumniPage);
+      renderDirectory();
+    });
   }
 
   /* =========================================================
@@ -1207,13 +1565,23 @@ document.addEventListener("DOMContentLoaded", function () {
     ========================================================= */
 
   function renderDashboard() {
-    const events = readData(EVENTS_KEY, []);
+    const eventData = readData(EVENTS_KEY, []);
 
-    const jobs = readData(JOBS_KEY, []);
+    const events = Array.isArray(eventData) ? eventData : [];
 
-    const communities = readData(COMMUNITIES_KEY, []);
+    const jobData = readData(JOBS_KEY, []);
 
-    const announcements = readData("campusHubAnnouncements", []);
+    const jobs = Array.isArray(jobData) ? jobData : [];
+
+    const communityData = readData(COMMUNITIES_KEY, []);
+
+    const communities = Array.isArray(communityData) ? communityData : [];
+
+    const announcementData = readData("campusHubAnnouncements", []);
+
+    const announcements = Array.isArray(announcementData)
+      ? announcementData
+      : [];
 
     const today = new Date();
 
@@ -1393,6 +1761,11 @@ document.addEventListener("DOMContentLoaded", function () {
   /* =========================================================
        INITIAL RENDER
     ========================================================= */
+
+  showSection(
+    sectionMap[initialSection] ? initialSection : "dashboard",
+    false,
+  );
 
   renderDashboard();
   renderEvents();
