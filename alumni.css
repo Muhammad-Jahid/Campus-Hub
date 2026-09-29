@@ -1228,6 +1228,38 @@ button {
   color: var(--navy);
 }
 
+.directory-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.directory-pagination.is-hidden {
+  display: none;
+}
+
+.pagination-button {
+  padding: 9px 13px;
+  border: 1px solid #dfe3e8;
+  border-radius: 8px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.pagination-button:hover,
+.pagination-button.active {
+  border-color: var(--gold);
+  background: #fcfbf6;
+}
+
+#alumniPageNumbers {
+  display: flex;
+  gap: 7px;
+}
+
 /* =========================================================
    PROFILE
 ========================================================= */
