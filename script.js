@@ -24,93 +24,39 @@ document.addEventListener("DOMContentLoaded", function () {
   const backLoginButtons = document.querySelectorAll(".backLoginButton");
 
   /* =====================================================
-       DEFAULT DEMO USERS
+       INITIALIZE USERS FROM JSON
     ===================================================== */
 
-  const defaultUsers = [
-    {
-      id: "student-001",
-
-      name: "Arif Rahman",
-
-      email: "student@premier.edu",
-
-      password: "student123",
-
-      role: "student",
-
-      department: "Computer Science & Engineering",
-
-      batch: "2026",
-
-      section: "Section A",
-
-      avatar: "AR",
-    },
-
-    {
-      id: "alumni-001",
-
-      name: "Tanvir Ahmed",
-
-      email: "alumni@premier.edu",
-
-      password: "alumni123",
-
-      role: "alumni",
-
-      department: "Computer Science & Engineering",
-
-      graduationYear: "2020",
-
-      company: "Orbit Labs",
-
-      jobTitle: "Software Engineer",
-
-      avatar: "TA",
-    },
-
-    {
-      id: "admin-001",
-
-      name: "CampusHub Admin",
-
-      email: "admin@premier.edu",
-
-      password: "admin123",
-
-      role: "admin",
-
-      department: "Administration",
-
-      avatar: "CA",
-    },
-  ];
-
-  /* =====================================================
-       INITIALIZE LOCAL STORAGE
-    ===================================================== */
-
-  function initializeUsers() {
-    const users = localStorage.getItem("campusHubUsers");
-
-    if (!users) {
-      localStorage.setItem(
-        "campusHubUsers",
-
-        JSON.stringify(defaultUsers),
-      );
+  async function initializeUsers() {
+    if (localStorage.getItem("campusHubUsers")) {
+      return;
     }
+
+    const response = await fetch("./users.json");
+
+    if (!response.ok) {
+      throw new Error("Unable to load users.json");
+    }
+
+    const users = await response.json();
+    localStorage.setItem("campusHubUsers", JSON.stringify(users));
   }
 
-  initializeUsers();
+  const usersReady = initializeUsers().catch(function (error) {
+    console.error(error);
+  });
 
   /* =====================================================
        GET USERS
     ===================================================== */
 
   function getUsers() {
-    return JSON.parse(localStorage.getItem("campusHubUsers")) || [];
+    try {
+      return JSON.parse(localStorage.getItem("campusHubUsers")) || [];
+    } catch (error) {
+      console.error("Invalid CampusHub users data");
+      return [];
+    }
   }
 
   /* =====================================================
@@ -220,61 +166,16 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   /* =====================================================
-       DEMO LOGIN BUTTONS
-    ===================================================== */
-
-  const demoButtons = document.querySelectorAll(
-    ".demo-button, button[data-email][data-password]",
-  );
-
-  demoButtons.forEach(function (button) {
-    button.addEventListener("click", function (event) {
-      event.preventDefault();
-
-      const email = button.dataset.email;
-
-      const password = button.dataset.password;
-
-      const emailInput = document.getElementById("loginEmail");
-
-      const passwordInput = document.getElementById("loginPassword");
-
-      if (emailInput) {
-        emailInput.value = email;
-      }
-
-      if (passwordInput) {
-        passwordInput.value = password;
-      }
-
-      openLogin();
-
-      console.log("Demo account selected:", email);
-
-      /*
-       * Automatically login
-       * after selecting demo account.
-       */
-
-      setTimeout(function () {
-        const loginForm = document.getElementById("loginForm");
-
-        if (loginForm) {
-          loginForm.requestSubmit();
-        }
-      }, 150);
-    });
-  });
-
-  /* =====================================================
        LOGIN FORM
     ===================================================== */
 
   const loginForm = document.getElementById("loginForm");
 
   if (loginForm) {
-    loginForm.addEventListener("submit", function (event) {
+    loginForm.addEventListener("submit", async function (event) {
       event.preventDefault();
+
+      await usersReady;
 
       const emailInput = document.getElementById("loginEmail");
 
@@ -341,8 +242,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const studentForm = document.getElementById("studentForm");
 
   if (studentForm) {
-    studentForm.addEventListener("submit", function (event) {
+    studentForm.addEventListener("submit", async function (event) {
       event.preventDefault();
+
+      await usersReady;
 
       /* -----------------------------------------
                    GET FORM ELEMENTS
@@ -461,8 +364,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const alumniForm = document.getElementById("alumniForm");
 
   if (alumniForm) {
-    alumniForm.addEventListener("submit", function (event) {
+    alumniForm.addEventListener("submit", async function (event) {
       event.preventDefault();
+
+      await usersReady;
 
       /* -----------------------------------------
                    GET FORM ELEMENTS
