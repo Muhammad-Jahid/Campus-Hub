@@ -1,0 +1,34 @@
+[
+  {
+    "id": "student-001",
+    "name": "Arif Rahman",
+    "email": "student@premier.edu",
+    "password": "student123",
+    "role": "student",
+    "department": "Computer Science & Engineering",
+    "batch": "2026",
+    "section": "Section A",
+    "avatar": "AR"
+  },
+  {
+    "id": "alumni-001",
+    "name": "Tanvir Ahmed",
+    "email": "alumni@premier.edu",
+    "password": "alumni123",
+    "role": "alumni",
+    "department": "Computer Science & Engineering",
+    "graduationYear": "2020",
+    "company": "Orbit Labs",
+    "jobTitle": "Software Engineer",
+    "avatar": "TA"
+  },
+  {
+    "id": "admin-001",
+    "name": "CampusHub Admin",
+    "email": "admin@premier.edu",
+    "password": "admin123",
+    "role": "admin",
+    "department": "Administration",
+    "avatar": "CA"
+  }
+]
